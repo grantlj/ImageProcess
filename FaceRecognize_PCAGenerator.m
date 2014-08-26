@@ -1,15 +1,15 @@
 
 
  
-function []=MassFaceDetectorByGrid()
+function []=FaceRecognize_PCAGenerator()
   srcDir='D:\Matlab\Faces\';
   dstDir='D:\Matlab\Faces\detected\';
-  transMatDir='D:\Matlab\Faces\transMat.txt';  %存COFF矩阵
-  dbMatDir='D:\Matlab\Faces\dbMat.txt';        %存数据库 PCA后的得分
-  
-  totalPho=50;
+ transMatDir='D:\Matlab\Faces\transMat.dat';  %存COFF矩阵
+dbMatDir='D:\Matlab\Faces\dbMat.dat';        %存数据库 PCA后的得分
+  meanFaceDir='D:\Matlab\Faces\meanFace.dat';  %存储平均脸
+  totalPho=100;
   rootFileName='2014';
-  scoreTerm=500;              %PCA中取新参考系下的前10个指标作为标准
+  scoreTerm=9;              %PCA中取新参考系下的前10个指标作为标准
    global rowC;global colC;  %这是全局变量，matlab中 哪里要用 必须在两个函数中都定义
    rowC=80;colC=100;
    global fullInfo;
@@ -40,11 +40,19 @@ function []=MassFaceDetectorByGrid()
      end
   end
   
+  meanFace=double(mean(fullInfo));  %平均脸 用来进行归一化操作
+  for i=1:totalPho
+      fullInfo(i,:)=fullInfo(i,:)-meanFace;
+  end
+  
   [COEFF,SCORE]=princomp(fullInfo);          %PCA分析
   samplePCAScore=SCORE(:,1:scoreTerm);
-  save(transMatDir,'COEFF');
-  save(dbMatDir,'samplePCAScore');
+  save(transMatDir,'COEFF','-ascii');
+  save(dbMatDir,'samplePCAScore','-ascii');
+  save(meanFaceDir,'meanFace','-ascii');
   
+  %save transMatDir COEFF -ascii;
+  %save dbMatDir samplePCAScore -ascii;
   disp('Finished');
   
   %disp(samplePCAScore);
@@ -53,6 +61,7 @@ function []=MassFaceDetectorByGrid()
 end
 
 function []=FaceProcess(tmpSrcFile,tmpDstFile,nownum)
+disp(nownum);
 % 载入图像
    global rowC;global colC;  %这里也要声明 以下的rowC和colC是全局的
    global fullInfo;
@@ -106,7 +115,7 @@ for k = 1:s1
     end
 end
 
- figure('visible','off');
+figure('visible','off');
 ret=round(Bd(j2,1:4));
 I_face=uint8(zeros(ret(4),ret(3)));
 
@@ -122,7 +131,7 @@ imshow(I_face); hold on;
 
 for i=1:rowC
     for j=1:colC
-        fullInfo(nownum,(i-1)*colC+j)=I_face(i,j);
+        fullInfo(nownum,(i-1)*rowC+j)=I_face(i,j);
     end
 end
 

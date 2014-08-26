@@ -1,6 +1,6 @@
 function []=FaceDetectorByGrid()
 % ÔØÈëÍ¼Ïñ
-Img = imread('D:\test.jpg');
+Img = imread('D:\test4.jpg');
 if ndims(Img) == 3
     I=rgb2gray(Img);
 else
