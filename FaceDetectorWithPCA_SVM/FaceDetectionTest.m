@@ -7,7 +7,7 @@ function []=FaceDetectionTest()
    COEFF=load(COEFFMatDir);
    meanFace=load(meanFaceDir);
    clc;
-   
+   scoreTerm=70;                     %SVM使用PCA后的前70个参数
   path='D:\Matlab\Faces'; 
   path2='D:\Matlab\Faces\Detected2';
   
@@ -33,7 +33,7 @@ function []=FaceDetectionTest()
   l_origin=imread(fileInfo{p});
   l_origin=imresize(l_origin,[160,120]);
   l_gray=rgb2gray(l_origin);
-  l_gray=imadjust(l_gray);
+  l_gray=histeq(l_gray);
 
   window_h=80;window_w=60;
   step_row=10;step_col=5;
@@ -66,7 +66,7 @@ function []=FaceDetectionTest()
           l_selected_info=l_selected_info-meanFace;
           
           l_selected_info=l_selected_info*COEFF;
-          l_selected_info=l_selected_info(1:35);
+          l_selected_info=l_selected_info(1:scoreTerm);
           
           ret=svmclassify(SVMStruct,l_selected_info);
          % disp(ret);

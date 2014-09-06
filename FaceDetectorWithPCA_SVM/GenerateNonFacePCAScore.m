@@ -22,8 +22,8 @@ COEFFMatDir='D:\Matlab\MITFace\COEFF.dat';  %存COFF矩阵
   h=20;w=20;   %识别库中，高宽均为20
   phoCount=size(fileInfo,1);
   fullInfo=zeros(phoCount,h*w);    %所有图片原始信息
-  scoreTerm=35;
-  fullScore=zeros(phoCount,h*w);    %存前35个
+  scoreTerm=70;
+  fullScore=zeros(phoCount,h*w);    %存前70个
  
    
     for i=1:phoCount
@@ -38,7 +38,7 @@ COEFFMatDir='D:\Matlab\MITFace\COEFF.dat';  %存COFF矩阵
       fullScore(i,:)=fullInfo(i,:)*COEFF;   %完成PCA Score
       disp(['finish:',file]);
     end
-    fullScore=fullScore(:,1:35);
+    fullScore=fullScore(:,1:scoreTerm);
    save(nonfacePCAScoreDir,'fullScore','-ascii');
 
 

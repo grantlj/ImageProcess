@@ -20,8 +20,14 @@ function []=GetOverallPCATrans(path)
   fullInfo=zeros(phoCount,h*w);
   COEFF=double(zeros(h*w,h*w)); 
   for i=1:phoCount
+     disp(fileInfo{i});
     file=fileInfo{i};
     tmp=imread(file);
+    tmp=uint8(tmp);
+    try
+      tmp=histeq(tmp);
+    catch
+    end
       for j=1:h
         for k=1:w
           fullInfo(i,(j-1)*h+k)=tmp(j,k);
