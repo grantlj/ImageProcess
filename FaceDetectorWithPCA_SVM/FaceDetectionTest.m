@@ -82,7 +82,9 @@ function []=FaceDetectionTest()
             hold on;
             rectangle('Position',[(i-1)*step_row+1,(j-1)*step_col+1,window_w,window_h]);
           end
-          end   
+         
+          else
+              disp('Not a effective region');end
           
           
       end
