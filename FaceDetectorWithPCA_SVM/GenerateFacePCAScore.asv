@@ -2,7 +2,7 @@ function [] = GenerateFacePCAScore()
  COEFFMatDir='D:\Matlab\MITFace\COEFF.dat';  %存COFF矩阵
  meanFaceDir='D:\Matlab\MitFace\meanFace.dat';%存储平均脸
  facePCAScoreDir='D:\Matlab\MitFace\facePCAScore.dat'; %存储PCA评分后的脸
- faceThreshholdDir='D:\Matlab\MitFace\Threshhold.dat'; %存储脸部到meanFace的最远距离
+ faceThreshholdDir='D:\Matlab\MitFace\Threshhold.mat'; %存储脸部到meanFace的最远距离
  path='D:\Matlab\MITFace\faces';
   %COEFF=double(zeros(h*w,h*w)); 
    COEFF=load(COEFFMatDir);        %载入平均脸和COEFF变换矩阵
@@ -42,15 +42,11 @@ function [] = GenerateFacePCAScore()
         end
       end
       fullInfo(i,:)=fullInfo(i,:)-meanFace;  %归一化操作
-      tmp=double(sum(fullInfo(i,:).^2));
-%      disp(tmp);
-      if (tmp>threshhold) threshhold=tmp;end;  %保留最离谱脸的信息。
-      
+      tmp=double(fullInfo(i,:).^2)
       fullScore(i,:)=fullInfo(i,:)*COEFF;   %完成PCA Score
       disp(['finish:',file]);
     end
     fullScore=fullScore(:,1:scoreTerm);
    save(facePCAScoreDir,'fullScore','-ascii');
-   save(faceThreshholdDir,'threshhold','-ascii');
 end
 

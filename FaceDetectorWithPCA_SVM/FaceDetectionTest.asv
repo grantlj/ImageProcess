@@ -2,7 +2,7 @@ function []=FaceDetectionTest()
    COEFFMatDir='D:\Matlab\MITFace\COEFF.dat';  %存COFF矩阵
    meanFaceDir='D:\Matlab\MitFace\meanFace.dat';%存储平均脸
    SVMStructDir='D:\Matlab\Mitface\SVMStruct.mat';       %存储SVM分类器相关信息
-   faceThreshholdDir='D:\Matlab\MitFace\Threshhold.dat'; %存储脸部到meanFace的最远距离
+   faceThreshholdDir='D:\Matlab\MitFace\Threshhold.mat'; %存储脸部到meanFace的最远距离
    threshhold=load(faceThreshholdDir);
    
    SVMStruct=load(SVMStructDir);
@@ -11,7 +11,7 @@ function []=FaceDetectionTest()
    meanFace=load(meanFaceDir);
    clc;
    scoreTerm=70;                     %SVM使用PCA后的前70个参数
-  path='D:\Matlab\Faces'; 
+  path='D:\Matlab\Faces\tmp'; 
   path2='D:\Matlab\Faces\Detected2';
   
   t = cd(path);                        % dos命令cd重置当前路径，自行设置，其下包含全部待处理文件
@@ -67,9 +67,7 @@ function []=FaceDetectionTest()
           end
           
           l_selected_info=l_selected_info-meanFace;
-          tmp=double(sum(l_selected_info.^2));
-          
-          if (tmp<=threshhold*0.7)
+          tmp=double(sum(l_selected_info(i,:).^2));
           
           l_selected_info=l_selected_info*COEFF;
           l_selected_info=l_selected_info(1:scoreTerm);
@@ -82,7 +80,7 @@ function []=FaceDetectionTest()
             hold on;
             rectangle('Position',[(i-1)*step_row+1,(j-1)*step_col+1,window_w,window_h]);
           end
-          end   
+           
           
           
       end
