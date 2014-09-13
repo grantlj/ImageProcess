@@ -2,15 +2,15 @@
 %生成某一特定文件夹（动作类型）训练集（前9个人的各种场景）下的原始数据
 function [] = GeneateFundamentalInfo(path)
   
-  trainCount=9;
+  trainCount=12;
   
- % path='D:\Matlab\ImageProcess\KTHActionRecognition\boxing\';
-  %type='boxing';
+% path='D:\Matlab\ImageProcess\KTHActionRecognition\boxing\';
+% type='boxing';
   path='D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\';
-   type='handclapping';
+  type='handclapping';
 %   
-%   path='D:\Matlab\ImageProcess\KTHActionRecognition\jogging\';
-%   type='jogging';
+  %path='D:\Matlab\ImageProcess\KTHActionRecognition\jogging\';
+ %  type='jogging';
 %   
 %   path='D:\Matlab\ImageProcess\KTHActionRecognition\running\';
 %   type='running';
@@ -21,7 +21,7 @@ function [] = GeneateFundamentalInfo(path)
  dbName=[path,type,'_RawData_Training.mat'];
  dbraw=[];
   for i=1:trainCount
-      for j=1:4
+      for j=4:4
          filename=[path,'person0',num2str(i),'_',type,'_d',num2str(j),'_uncomp.avi'];
          try
          MotionHistoryImageInfo=GetMotionHistoryInfo(filename);

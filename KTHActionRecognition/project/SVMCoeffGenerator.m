@@ -27,6 +27,20 @@ function [] = SVMCoeffGenerator()
   
   retFile=[set1_type,'_',set2_type,'_SVMStruct.mat'];
   
+%   meanv=double(mean(data1.dbraw));
+%  % data1.dbraw=double(data1.dbraw)-double(mean1.*ones(size(data1.dbraw)));
+%  for i=1:size1
+%      data1.dbraw(i,:)=double(data1.dbraw(i,:))-meanv;
+%  end
+%   save([set1_path,set1_type,'_Mean.mat'],'meanv');
+%   meanv=double(mean(data2.dbraw));
+%  % data2.dbraw=double(data2.dbraw)-double(mean2.*ones(size(data2.dbraw)));
+%   for i=1:size2
+%      data2.dbraw(i,:)=double(data2.dbraw(i,:))-meanv;
+%   end
+
+%   save([set2_path,set2_type,'_Mean.mat'],'meanv');
+  
   TrainingSet=double([data1.dbraw;data2.dbraw]);
   Tag=zeros(size1+size2,1);
   
@@ -37,7 +51,7 @@ function [] = SVMCoeffGenerator()
       Tag(i)=-1;
   end
   
-  SVMStruct=svmtrain(TrainingSet,Tag,'Kernel_Function','rbf','showplot',true);
+  SVMStruct=svmtrain(TrainingSet,Tag,'Kernel_Function','linear','showplot',true);
   disp(['SVM Coeefficent generated between: ',set1_type,' and ',set2_type]);
   save(retFile,'-struct','SVMStruct');
   

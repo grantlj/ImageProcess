@@ -17,9 +17,12 @@ function []=SingleSVMTest()
   set1_path=box_path;set1_type=box_type;
   set2_path=han_path;set2_type=han_type;
   
+% mean1=load([set1_path,set1_type,'_Mean.mat']);
+% mean2=load([set2_path,set2_type,'_Mean.mat']);
+  
   SVMFile=[set1_type,'_',set2_type,'_SVMStruct.mat'];
   SVMStruct=load(SVMFile);
-  
+   
   accuracy1=GetAccuracy(SVMStruct,set1_path,root,1);
   accuracy2=GetAccuracy(SVMStruct,set2_path,root,-1);
   
@@ -57,7 +60,8 @@ function [accuracy]=GetAccuracy(SVMStruct,set_path,root,standardAns)
   clc;
   
   for p=1:aviCount
-      nowFile=fileInfo{p};
+     nowFile=fileInfo{aviCount-p+1};
+   %  nowFile=fileInfo{p};
       %ret=svmclassify(SVMStruct,l_selected_info);
       MotionHistoryImageInfo=GetMotionHistoryInfo(nowFile);
       raw=[];
@@ -71,9 +75,9 @@ function [accuracy]=GetAccuracy(SVMStruct,set_path,root,standardAns)
       ret=svmclassify(SVMStruct,raw);
       if (ret==standardAns)
           accuracy=accuracy+1;
-          disp([fileInfo{p},': Right']);
+          disp([nowFile,': Right']);
       else
-          disp([fileInfo{p},': Wrong']);
+          disp([nowFile,': Wrong']);
       end
   end
   

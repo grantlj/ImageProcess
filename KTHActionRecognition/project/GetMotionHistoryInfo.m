@@ -3,15 +3,15 @@
 function [MotionHistoryImageInfo]=GetMotionHistoryInfo(destFile)
 
 disp(['Generating ',destFile,' MHI Image']);
-retFrameCount=7;
+retFrameCount=15;
 
 obj=VideoReader(destFile);  %得到的是一个object
 vidFrames=read(obj);     %得到的是所有帧的数据
 numFrames=obj.numberOfFrames;  %所有帧的数量
 
-selectedFrame=round(linspace(2,numFrames,retFrameCount));    %确定选哪几张MHI
+%selectedFrame=round(linspace(2,numFrames,retFrameCount));    %确定选哪几张MHI
 
-MotionHistoryImageInfo.selectedFrame=selectedFrame;
+%MotionHistoryImageInfo.selectedFrame=selectedFrame;
 MotionHistoryImageInfo.retFrameCount=retFrameCount;
 
 
@@ -34,9 +34,13 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
    H=uint8(zeros(height,width,numFrames));
   tau=250;decay=10;                                           %MHI中的 托 和 衰减参数
   
-  bg_info=getMeanBackground(mov,numFrames);                   %计算背景
-  %imwrite(bg_info.mu,'bg.jpg');
- 
+ % bg_info=getMeanBackground(mov,numFrames);                   %计算背景
+ % imwrite(bg_info.mu,'bg.jpg');
+  now=0;
+  
+  avg_threshhold=0;
+  c=double(zeros(1,numFrames));
+  
   for i=2:numFrames
      %nowFrame=mov(i).cdata;
      %disp(['Now Frame:',num2str(i)]);
@@ -45,7 +49,7 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
      for j=1:height
          for k=1:width
              ab=double(abs(nowFrame(j,k)));
-           if ((ab/5)>bg_info.sigma(j,k))    %大于一定的阈值 就认定为前景（运动的人）
+           if  ((ab>35))    %大于一定的阈值 就认定为前景（运动的人）
         % if (abs(nowFrame(j,k))>0)
                nowFrame(j,k)=1;
               % disp(['Frame:',num2str(i),' j=',num2str(j),' k=',num2str(k),' sigma=',num2str(bg_info.sigma(j,k))]);
@@ -56,7 +60,7 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
          end
      end
       
-       
+       validPix=uint16(0);
        for j=1:height
            for k=1:width
        if (nowFrame(j,k)==1)                  
@@ -69,71 +73,69 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
                    H(j,k,i)=0;                                 %第一帧的情况，i-1=0会抛出异常，全部放0（黑）
                end
        end
-       
+           if (H(j,k,i)>=30)
+               validPix=validPix+1;
+           end
+           
            end
        end
        
-      se=strel('diamond',4);
-    % nowFrame=imopen(nowFrame,se);
+    %se = strel('ball',10,8);
+     %nowFrame=imopen(nowFrame,se);
      %imwrite(H(:,:,i),[num2str(i),'.jpg']);
      %nowFrame=nowFrame.*255;                             %255是白，0是黑，出来的第一张图理论上应该全黑，但是却全白?
      % imwrite(nowFrame,['RAW',num2str(i),'.jpg']);
       
+       
      % disp(['Finish MHI of ',num2str(i),' Frame']);
+     c(1,i)=double(double(validPix)/(height*width));
+     avg_threshhold=avg_threshhold+c(1,i);
      
+   
   end
   
- % produceavifrompic('MHI.avi',H(:,:,1:numFrames),numFrames);
- 
- for i=1:retFrameCount
+  avg_threshhold=avg_threshhold/numFrames;
+  
+  for i=2:numFrames
+    if (c(1,i)>(avg_threshhold)*0.8)
      %tmp=uint8(zeros(height,width));
-     tmp=H(:,:,selectedFrame(i));
-     MotionHistoryImageInfo.image(:,:,i)=tmp;
-    % imwrite(MotionHistoryImageInfo.image(:,:,i),[num2str(i),'.jpg']);
- end
+     now=now+1;
+     tmp=H(:,:,i);
+     w2=fspecial('average',[2 2]);
+     tmp=imfilter(tmp,w2); 
+     MotionHistoryImageInfo.image(:,:,now)=tmp;
+    % imwrite(MotionHistoryImageInfo.image(:,:,now),[num2str(now),'.jpg']);
+    end
+     
+   if (now>=retFrameCount)
+         break;
+   end
+   
+  end
+
+    if (now<retFrameCount)
+        if (now~=0)
+              for i=now+1:retFrameCount
+                  MotionHistoryImageInfo.image(:,:,i)=MotionHistoryImageInfo.image(:,:,now);
+              end
+        else
+            for i=1:retFrameCount
+                for j=1:height
+                    for k=1:width
+                       MotionHistoryImageInfo.image(:,:,i)=10;
+                    end
+                end
+            end
+        end
+        
+            
+    end
+    
+%     for i=1:retFrameCount
+%         imwrite(MotionHistoryImageInfo.image(:,:,i),[num2str(i),'.jpg']);
+%     end
+
  
  disp('MHI Finished...');
 end
 
-function [bg_info]=getMeanBackground(mov,numFrames)
- disp('    Calculating background...');
- [height,width]=size(mov(1).cdata);
- 
- bg_info.mu=double(zeros(height,width));                                  %对每个点前2%的帧做高斯分布
- bg_info.sigma=double(zeros(height,width));
- 
- par=0.10;
- for i=1:height
-     for j=1:width
-         data=[];
-        % for k=1:round(par*numFrames)
-          for k=1:round(par*numFrames)
-           data=[data;mov(k).cdata(i,j)];
-          end
-         [bg_info.mu(i,j),bg_info.sigma(i,j)]=normfit(data);              %计算每个点的参数
-     end
- end
- 
- bg_info.mu=uint8(bg_info.mu);
- disp('    Finish background...');
-end
-
-% 
-% function produceavifrompic(path,phos,numFrames)
-% aviobj = avifile(path);
-% try
-% aviobj.Quality = 100;
-% aviobj.compression='None';
-% cola=0:1/255:1;
-% cola=[cola;cola;cola];%%黑白图像
-% cola=cola';
-% aviobj.colormap=cola;
-% for i=1:numFrames
-%     adata=phos(:,:,i);
-%     aviobj = addframe(aviobj,uint8(adata));
-% end
-% aviobj=close(aviobj);   
-% catch
-%      aviobj=close(aviobj);
-% end
-% end
