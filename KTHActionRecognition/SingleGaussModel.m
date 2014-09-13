@@ -1,5 +1,5 @@
 function []=SingleGaussModel()
-  destFile='D:\Matlab\ImageProcess\KTHActionRecognition\running\person01_running_d1_uncomp.avi';
+  destFile='D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person04_handclapping_d4_uncomp.avi';
   obj=VideoReader(destFile);  %得到的是一个object
   vidFrames=read(obj);     %得到的是所有帧的数据
   numFrames=obj.numberOfFrames;  %所有帧的数量
@@ -37,7 +37,7 @@ function []=SingleGaussModel()
         end
     end
     
-    alpha=0.3;
+    alpha=0.2; %高斯模型更新学习效率
     
     for i=LearnSet+1:numFrames
        
