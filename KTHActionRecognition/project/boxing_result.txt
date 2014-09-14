@@ -1,0 +1,121 @@
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person25_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person25_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person24_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person24_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person23_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person23_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person22_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person22_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person21_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person21_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person20_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person20_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person19_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person19_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person18_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person18_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person17_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person17_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person16_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person16_boxing_d4_uncomp.avi is incorrectly classified:(
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person15_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person15_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person14_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person14_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person13_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person13_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person12_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person12_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person11_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person11_boxing_d4_uncomp.avi is incorrectly classified:(
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person10_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person10_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person09_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person09_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person08_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person08_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person07_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person07_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person06_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person06_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person05_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person05_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person04_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person04_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person03_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person03_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person02_boxing_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\boxing\person02_boxing_d4_uncomp.avi is CORRECTLY classified:)
+Overall Rate is:91.6667

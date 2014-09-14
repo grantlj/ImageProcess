@@ -1,8 +1,8 @@
 %主测试器 使用1v1 SVM，投票策略 超过半数可靠 就认定分类正确
 function [] = MainTester()
    root=(GetPresentPath);
-   test_path='D:\Matlab\ImageProcess\KTHActionRecognition\boxing\';  %待测类型
-   test_type='boxing';
+   test_path='D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\';  %待测类型
+   test_type='handclapping';
    
    %pathes={'D:\Matlab\ImageProcess\KTHActionRecognition\boxing\','D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\','D:\Matlab\ImageProcess\KTHActionRecognition\jogging\','D:\Matlab\ImageProcess\KTHActionRecognition\running\','D:\Matlab\ImageProcess\KTHActionRecognition\walking\'};
    types={'boxing','handclapping','jogging','running','walking'};

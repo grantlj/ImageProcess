@@ -1,0 +1,81 @@
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person25_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person25_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person24_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person24_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person23_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person23_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person22_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person22_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person21_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person21_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person20_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person20_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person19_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person19_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person18_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person18_handclapping_d4_uncomp.avi is incorrectly classified:(
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person17_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person17_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person16_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person16_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person15_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person15_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person14_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person14_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person13_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person13_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person12_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person12_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person11_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person11_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person10_handclapping_d4_uncomp.avi MHI Image
+MHI Finished...
+   Generating Hu-Moments
+   Finished Hu-Moments
+D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person10_handclapping_d4_uncomp.avi is CORRECTLY classified:)
+Generating D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\person09_handclapping_d4_uncomp.avi MHI Image
