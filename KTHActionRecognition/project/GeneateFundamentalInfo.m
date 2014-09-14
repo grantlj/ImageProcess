@@ -2,21 +2,21 @@
 %生成某一特定文件夹（动作类型）训练集（前9个人的各种场景）下的原始数据
 function [] = GeneateFundamentalInfo(path)
   
-  trainCount=12;
+  trainCount=9;
   
 % path='D:\Matlab\ImageProcess\KTHActionRecognition\boxing\';
 % type='boxing';
-  path='D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\';
-  type='handclapping';
+  %path='D:\Matlab\ImageProcess\KTHActionRecognition\handclapping\';
+ % type='handclapping';
 %   
   %path='D:\Matlab\ImageProcess\KTHActionRecognition\jogging\';
- %  type='jogging';
+ % type='jogging';
 %   
-%   path='D:\Matlab\ImageProcess\KTHActionRecognition\running\';
-%   type='running';
+  %path='D:\Matlab\ImageProcess\KTHActionRecognition\running\';
+  % type='running';
 %   
-%   path='D:\Matlab\ImageProcess\KTHActionRecognition\walking\';
-%   type='walking';
+ path='D:\Matlab\ImageProcess\KTHActionRecognition\walking\';
+ type='walking';
   
  dbName=[path,type,'_RawData_Training.mat'];
  dbraw=[];

@@ -48,7 +48,7 @@ function [accuracy]=GetAccuracy(SVMStruct,set_path,root,standardAns)
   fileInfo={};
   for i= 3:n                           % 从3开始。前两个属于系统内部。
      name = allnames{1,i}         %  逐次取出文件名
-     if (findstr(name,'.avi')>=1)
+     if ( (findstr(name,'.avi')>=1) & (findstr(name,'d4')>=1) )
         filename=[set_path,name]        %   组成文件名
         fileInfo=[fileInfo;filename];
      end

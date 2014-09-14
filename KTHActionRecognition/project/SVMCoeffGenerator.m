@@ -14,8 +14,10 @@ function [] = SVMCoeffGenerator()
   wal_path='D:\Matlab\ImageProcess\KTHActionRecognition\walking\';
   wal_type='walking';
   
-  set1_path=box_path;set1_type=box_type;
-  set2_path=han_path;set2_type=han_type;
+  %set1_path=box_path;set1_type=box_type;
+  %set2_path=han_path;set2_type=han_type;
+  set1_path=run_path;set1_type=run_type;
+  set2_path=wal_path;set2_type=wal_type;
   %boxing_RawData_Training.mat
   
   file1=[set1_path,set1_type,'_RawData_Training.mat'];
