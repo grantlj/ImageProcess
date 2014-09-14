@@ -3,7 +3,7 @@
 function [MotionHistoryImageInfo]=GetMotionHistoryInfo(destFile)
 
 disp(['Generating ',destFile,' MHI Image']);
-retFrameCount=15;
+retFrameCount=15;                  
 
 obj=VideoReader(destFile);  %得到的是一个object
 vidFrames=read(obj);     %得到的是所有帧的数据
@@ -22,6 +22,7 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
       %mov_rgb(i)=mov(i);
       mov(i).cdata=rgb2gray(mov(i).cdata);          %转换成灰度
       mov(i).cdata=histeq(mov(i).cdata);
+      %这里的灰度归一化操作效果不佳
       % mov(i).cdata=imadjust(mov(i).cdata,[],[0.1,0.9]);
       %  mov(i).cdata=imadjust(mov(i).cdata,[0.3,0.8],[0.2,0.5]);
       %mov(i).cdata=uint8(im2bw(mov(i).cdata,graythresh(mov(i).cdata)));
@@ -38,7 +39,7 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
  % imwrite(bg_info.mu,'bg.jpg');
   now=0;
   
-  avg_threshhold=0;
+  avg_threshhold=0;                                               %使用所有帧的灰度均值来作为有效MHI的阈值
   c=double(zeros(1,numFrames));
   
   for i=2:numFrames
@@ -60,7 +61,7 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
          end
      end
       
-       validPix=uint16(0);
+       validPix=uint16(0);                                        %统计当前帧的有效点数
        for j=1:height
            for k=1:width
        if (nowFrame(j,k)==1)                  
@@ -74,7 +75,7 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
                end
        end
            if (H(j,k,i)>=30)
-               validPix=validPix+1;
+               validPix=validPix+1;                           %灰度大于30，算作有效点
            end
            
            end
@@ -88,16 +89,16 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
       
        
      % disp(['Finish MHI of ',num2str(i),' Frame']);
-     c(1,i)=double(double(validPix)/(height*width));
+     c(1,i)=double(double(validPix)/(height*width));              %计算有效点的比例
      avg_threshhold=avg_threshhold+c(1,i);
      
    
   end
   
-  avg_threshhold=avg_threshhold/numFrames;
+  avg_threshhold=avg_threshhold/numFrames;                         %得到阈值
   
   for i=2:numFrames
-    if (c(1,i)>(avg_threshhold)*0.8)
+    if (c(1,i)>(avg_threshhold)*0.8)                               %大于80%的阈值：有效帧，可以用来做MHI
      %tmp=uint8(zeros(height,width));
      now=now+1;
      tmp=H(:,:,i);
@@ -107,19 +108,19 @@ MotionHistoryImageInfo.retFrameCount=retFrameCount;
     % imwrite(MotionHistoryImageInfo.image(:,:,now),[num2str(now),'.jpg']);
     end
      
-   if (now>=retFrameCount)
+   if (now>=retFrameCount)                                        %已经生成到总帧数，可以退出
          break;
    end
    
   end
 
-    if (now<retFrameCount)
+    if (now<retFrameCount)                                        %不够所需帧数，使用最后一帧补齐
         if (now~=0)
               for i=now+1:retFrameCount
                   MotionHistoryImageInfo.image(:,:,i)=MotionHistoryImageInfo.image(:,:,now);
               end
         else
-            for i=1:retFrameCount
+            for i=1:retFrameCount                                 %特殊情况，如果有效帧为0，这张avi全部放10
                 for j=1:height
                     for k=1:width
                        MotionHistoryImageInfo.image(:,:,i)=10;

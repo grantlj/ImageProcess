@@ -1,3 +1,5 @@
+%1v1 SVM分类测试
+
 function []=SingleSVMTest()
   root=(GetPresentPath);
   box_path='D:\Matlab\ImageProcess\KTHActionRecognition\boxing\';
@@ -38,7 +40,7 @@ p1=p1(1:i(end));
 res=p1;
 end
  
-
+%返回测试结果
 function [accuracy]=GetAccuracy(SVMStruct,set_path,root,standardAns)
   accuracy=0;
   disp(set_path);
@@ -60,7 +62,7 @@ function [accuracy]=GetAccuracy(SVMStruct,set_path,root,standardAns)
   clc;
   
   for p=1:aviCount
-     nowFile=fileInfo{aviCount-p+1};
+     nowFile=fileInfo{aviCount-p+1};              %我们从末尾向头测试，因为最前面的若干是训练集
    %  nowFile=fileInfo{p};
       %ret=svmclassify(SVMStruct,l_selected_info);
       MotionHistoryImageInfo=GetMotionHistoryInfo(nowFile);
