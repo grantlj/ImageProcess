@@ -1,40 +1,36 @@
 
-%得到MHI图像，返回帧数由retFrameCount确定
+%生成每一个block的MHI图像
 function [MotionHistoryImageInfo]=GetMotionHistoryInfo(destFile)
 
-disp(['Generating ',destFile,' MHI Image']);
-retFrameCount=15;
+%disp(['Generating ',destFile,' MHI Pieces']);
+                 
 
 obj=VideoReader(destFile);  %得到的是一个object
 vidFrames=read(obj);     %得到的是所有帧的数据
 numFrames=obj.numberOfFrames;  %所有帧的数量
+retFrameCount=round(numFrames/7); % 所有帧的数量/7作为采样数
 
-%selectedFrame=round(linspace(2,numFrames,retFrameCount));    %确定选哪几张MHI
+%selectedFrame=round(linspace(2,numFrames,retFrameCount));
 
-%MotionHistoryImageInfo.selectedFrame=selectedFrame;
+
 MotionHistoryImageInfo.retFrameCount=retFrameCount;
 
+setHeight=120;setWidth=160;         %全部调整成120*160的尺寸
+blockRow=24;blockCol=32;            %对每一帧分block用来计算humoment和bag-of-words模型
 
-%disp(selectedFrame);
-
-for i=1:numFrames
-    mov(i).cdata=vidFrames(:,:,:,i);                        %存每一帧的数据
-    %mov_rgb(i)=mov(i);
-    mov(i).cdata=rgb2gray(mov(i).cdata);          %转换成灰度
-    mov(i).cdata=histeq(mov(i).cdata);
-    %这里的灰度归一化操作效果不佳
-    % mov(i).cdata=imadjust(mov(i).cdata,[],[0.1,0.9]);
-    %  mov(i).cdata=imadjust(mov(i).cdata,[0.3,0.8],[0.2,0.5]);
-    %mov(i).cdata=uint8(im2bw(mov(i).cdata,graythresh(mov(i).cdata)));
-    %imwrite(mov(i).cdata,['origin',num2str(i),'.jpg']);
-end
-[height,width]=size(mov(1).cdata);                          %得到AVI文件大小
-
-% MotionHistoryImageInfo.image=uint8(zeros(selectedFrame,height,width));  %返回的MHI数据
-
-H=uint8(zeros(height,width,numFrames));
-tau=250;decay=10;                                           %MHI中的 托 和 衰减参数
-
+   for i=1:numFrames
+      mov(i).cdata=vidFrames(:,:,:,i);                        %存每一帧的数据
+      %mov_rgb(i)=mov(i);
+      mov(i).cdata=rgb2gray(mov(i).cdata);          %转换成灰度
+      mov(i).cdata=histeq(mov(i).cdata);
+      mov(i).cdata=imresize(mov(i).cdata,[setHeight,setWidth]);
+   end
+  [height,width]=size(mov(1).cdata);                          %得到AVI文件大小
+  
+  H=uint8(zeros(height,width,numFrames));
+  tau=250;decay=10;                                           %MHI中的 托 和 衰减参数
+  
+  disp('     Calculating MHI Information...');
 % bg_info=getMeanBackground(mov,numFrames);                   %计算背景
 % imwrite(bg_info.mu,'bg.jpg');
 now=0;
@@ -81,14 +77,7 @@ for i=2:numFrames
         end
     end
     
-    %se =a strel('ball',10,8);
-    %nowFrame=imopen(nowFrame,se);
-    %imwrite(H(:,:,i),[num2str(i),'.jpg']);
-    %nowFrame=nowFrame.*255;                             %255是白，0是黑，出来的第一张图理论上应该全黑，但是却全白?
-    % imwrite(nowFrame,['RAW',num2str(i),'.jpg']);
-    
-    
-    % disp(['Finish MHI of ',num2str(i),' Frame']);
+   
     c(1,i)=double(double(validPix)/(height*width));              %计算有效点的比例
     avg_threshhold=avg_threshhold+c(1,i);
     
@@ -104,7 +93,7 @@ for i=2:numFrames
         tmp=H(:,:,i);
         w2=fspecial('average',[2 2]);
         tmp=imfilter(tmp,w2);
-        MotionHistoryImageInfo.image(:,:,now)=tmp;
+        MotionHistoryImageInfo.image2(:,:,now)=tmp;
         % imwrite(MotionHistoryImageInfo.image(:,:,now),[num2str(now),'.jpg']);
     end
     
@@ -117,26 +106,39 @@ end
 if (now<retFrameCount)                                        %不够所需帧数，使用最后一帧补齐
     if (now~=0)
         for i=now+1:retFrameCount
-            MotionHistoryImageInfo.image(:,:,i)=MotionHistoryImageInfo.image(:,:,now);
+            MotionHistoryImageInfo.image2(:,:,i)=MotionHistoryImageInfo.image2(:,:,now);
         end
     else
         for i=1:retFrameCount                                 %特殊情况，如果有效帧为0，这张avi全部放10
             for j=1:height
                 for k=1:width
-                    MotionHistoryImageInfo.image(:,:,i)=10;
+                    MotionHistoryImageInfo.image2(:,:,i)=10;
                 end
             end
         end
     end
+end  
     
-    
-end
+  
+  rowCount=round(height/blockRow);colCount=round(width/blockCol);
+  
+  for i=1:retFrameCount
+    for j=1:rowCount
+       for k=1:colCount
+           %disp([num2str(i),',',num2str(j),',',num2str(k)]);
+         %  try
+             tmp=MotionHistoryImageInfo.image2((j-1)*blockRow+1:j*blockRow,(k-1)*blockCol+1:k*blockCol,i);
+             MotionHistoryImageInfo.block(:,:,(i-1)*(rowCount*colCount)+(j-1)*rowCount+k)=tmp;
+             %imwrite(tmp,[num2str((i-1)*(rowCount*colCount)+(j-1)*rowCount+k),'.jpg']);
+%            catch
+%                disp([num2str((j-1)*blockRow+1),',',num2str(j*blockRow),',',num2str((k-1)*blockCol+1),',',num2str(k*blockCol)]);
+%                pause;
+%            end
+       end
+    end
+  end
 
-%     for i=1:retFrameCount
-%         imwrite(MotionHistoryImageInfo.image(:,:,i),[num2str(i),'.jpg']);
-%     end
-
-
-disp('MHI Finished...');
+disp('     Finished MHI pieces.');
+  
 end
 

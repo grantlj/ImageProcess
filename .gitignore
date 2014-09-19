@@ -17,6 +17,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+*.mat
 
 # External tool builders
 .externalToolBuilders/
