@@ -4,3 +4,9 @@
 4. 确定训练集的特征向量（计算训练集的BOG结果)
 5. SVM训练
 6. SVM检测
+
+huRAW: 训练集（用来产生BOW模型）
+histRAW: bow模型向量（用来训练最终分类的svm）
+ClassInfo: words 聚类的结果
+
+

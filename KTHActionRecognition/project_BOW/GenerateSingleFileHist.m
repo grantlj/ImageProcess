@@ -1,6 +1,8 @@
-%得到指定视频归一化之后的bow直方图
-function [histVal] = GenerateSingleFileHist(filename)
+%得到指定视频归一化之后的bow直方图,存入到histfilename指定的文件中
+function [histVal] = GenerateSingleFileHist(path,filename,histfilename)
   %filename='huRaw\person02_boxing_d2_uncomp_HU.mat';
+  filename=[path,filename];
+  histfilename=[path,histfilename];
   warning off all;
   load(filename);
   classInfoPath='ClassInfo.mat';
@@ -33,8 +35,9 @@ function [histVal] = GenerateSingleFileHist(filename)
     maxVal=max(histVal);minVal=min(histVal);
     histVal=(histVal-minVal)./(maxVal-minVal);
   
-  
-  bar(histVal);
+    save(histfilename,'histVal');
+    
+%  bar(histVal);
       
 end
 
