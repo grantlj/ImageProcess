@@ -35,7 +35,13 @@ function [] = GeneratorSVMInfo()
       hists=[hists;histVal];
   end
   tag=tag';
-  model=svmtrain(tag,hists,'-s 1 -t 2');  %V-svc
+  
+  %网格法参数寻优
+  
+ % [bestCVaccuracy,bestc,bestg]=SVMcgForClass(tag,hists,-9,9,-9,9,size(tag,1),1,1,6);
+  %参数调优后 g=0.0125
+  model=svmtrain(tag,hists,'-s 1 -t 2 -g 0.0125');  %V-svc
+ % model=svmtrain(tag,hists,'-s 1 -t 2');
 
   save(SVMModel,'model');
 

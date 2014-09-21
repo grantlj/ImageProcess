@@ -6,7 +6,7 @@ function [] = MainTester()
 % jogging :44%
 % walking: 60%
 % running: 96%
-  testpath='running\';
+  testpath='boxing\';
   root=(GetPresentPath);
   load('SVMModel.mat');
   disp(['Test set:', testpath]);
