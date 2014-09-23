@@ -1,0 +1,5 @@
+1. 每一个视频 所有帧的1/3 提取SIFT 存到一个cell array 然后文件。（作为SFIT RAW)
+2. 所有视频的SIFT_RAW 按照大小 方向 跑一遍Bag of Words
+3. 每一个视频重新归类 bag of words 的直方图
+4. 根据直方图训练libsvm 注意样本的归一化和参数调优配置（这里可以尝试做个SVM-tree 把多场景问题解决掉）
+5. 再用SVM来测试

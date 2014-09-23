@@ -1,4 +1,3 @@
-%根据histRAW中的特征向量信息，获得SVM的参数
 function [] = GeneratorSVMInfo()
   path='histRAW\';
   root=(GetPresentPath);
@@ -32,18 +31,20 @@ function [] = GeneratorSVMInfo()
       if (strfind(file,'running')) tag(i)=4;end
       if (strfind(file,'walking')) tag(i)=5;end    
       load(histfileInfo{i});
+      maxVal=max(histVal);minVal=min(histVal);
+      histVal=(histVal-minVal)./(maxVal-minVal);
       hists=[hists;histVal];
   end
   tag=tag';
   
   %网格法参数寻优
   
- % [bestCVaccuracy,bestc,bestg]=SVMcgForClass(tag,hists,-9,9,-9,9,size(tag,1),1,1,6);
-  %参数调优后 g=0.0125
- model=svmtrain(tag,hists,'-s 1 -t 2 -g 0.0125');  %V-svc
- % model=svmtrain(tag,hists,'-s 1 -t 2');
+% [bestCVaccuracy,bestc,bestg]=SVMcgForClass(tag,hists,-9,9,-9,9,size(tag,1),1,1,6);
+%参数调优后 c=4 g=4
+ model=svmtrain(tag,hists,'-s 1 -t 2 -g 4');  %V-svc
+% model=svmtrain(tag,hists,'-s 1');  %V-svc
 
-  save(SVMModel,'model');
+ save(SVMModel,'model');
 
 end
 
