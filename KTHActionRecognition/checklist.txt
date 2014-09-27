@@ -1,0 +1,4 @@
+此外，还要做的三件事情是：
+1. 把SIFT换成Hog，试试
+2. 把SIFT换成Dense trajectory 试试
+3.把bag of words换成 fisher vector试试

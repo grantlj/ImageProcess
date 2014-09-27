@@ -3,3 +3,8 @@
 3. 每一个视频重新归类 bag of words 的直方图
 4. 根据直方图训练libsvm 注意样本的归一化和参数调优配置（这里可以尝试做个SVM-tree 把多场景问题解决掉）
 5. 再用SVM来测试
+
+
+带Spatial的版本，增加了Spatial(基于时间顺序 分成4个level） 方法的应用，极大提高了正确率
+
+SIFT描述子的好处：SIFT的运算较快，生成一个文件夹下所有视频的Eigen Vector,大约只需要5分钟（HU Moment需要1个晚上，具有一定的实时性）在Spatial的帮助下，准确度极高。

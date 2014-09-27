@@ -1,0 +1,9 @@
+1. 每一个视频 所有帧的 1/3 按照参数1:（cellSize=15）来做HOG，一个格子一行存到matrix里面；
+2. 所有视频的HOG RAW 按照31个维（vlfeat 默认参数）跑Bag of Words(参数3： words数 10个 最初：55个，时间复杂度在spatial下难以承受）
+3. 每一个视频重新归类bag of words 直方图 使用spatial策略 按照时间顺序，分成参数2:3个level
+4. SVM训练（libsvm 参数调优）
+5. SVM测试
+
+遇到的问题：
+HOG每一帧都有很多，kmeans聚类的效率极低：时间复杂度 为迭代次数*维数*vectors数 
+解决方案1： 打乱rawmatrix 选择5%的数据来生成类！
