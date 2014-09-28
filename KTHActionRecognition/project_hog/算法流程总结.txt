@@ -7,3 +7,11 @@
 遇到的问题：
 HOG每一帧都有很多，kmeans聚类的效率极低：时间复杂度 为迭代次数*维数*vectors数 
 解决方案1： 打乱rawmatrix 选择5%的数据来生成类！
+
+Final Result:
+boxing/:100%
+handclapping/:80%
+jogging/:80%
+running/:96%
+walking/:76%
+>> 

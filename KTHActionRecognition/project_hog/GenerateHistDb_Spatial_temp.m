@@ -4,7 +4,7 @@ function [] = GenerateHistDb_Spatial()
   root=(GetPresentPath);
  %   path='boxing/'; 
 %    type='boxing';
-  path='handclapping/';
+ % path='handclapping/';
 %    type='handclapping';   
 %  path='jogging/';
 %    type='jogging';   
@@ -12,7 +12,7 @@ function [] = GenerateHistDb_Spatial()
 %   type='running';   
   %  path='walking/';
  %   type='walking';
-  paths={'handclapping/','jogging/','running/','walking/'};
+  paths={'boxing/','handclapping/','jogging/','running/','walking/'};
   
   for pathi=1:size(paths,2)
       path=paths{pathi};

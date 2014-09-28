@@ -57,7 +57,7 @@ function [histVal] = GenerateSingleFileHist_Spatial(path,filename,histfilename)
     for n=1:size(trunks,2)-1                          
          histTmp=zeros(1,coreCount);                        %不同维度下的总hist，包括所有block的帧拼接而成
         for i=trunks(n):trunks(n+1)                         %Every frame
-             histTmp=histTmp+histSingle(i);
+             histTmp=histTmp+histSingle(i,:);
         end%end of i
         
          maxVal=max(histTmp);minVal=min(histTmp);
