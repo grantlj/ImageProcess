@@ -26,8 +26,9 @@ hvp = vision.VideoPlayer ('Name','Motion Vector');
 
 while ~ isDone(hvfr)
     frame=step (hvfr);  %读入视频
-    im = step (hidtc,frame); %将图像的每帧视频图像转换成单精度型
-    of = step (hof,im); %用光流法对视频中的每一帧图像进行处理,我们要的就是这个of 用complex的形式表明了每个点的转移速度
+   im = step (hidtc,frame); %将图像的每帧视频图像转换成单精度型
+   %im=single(frame);
+   of = step (hof,im); %用光流法对视频中的每一帧图像进行处理,我们要的就是这个of 用complex的形式表明了每个点的转移速度
     lines=videooptflowlines(of,20); %产生坐标点
     if ~ isempty(lines)
         out = step(hsi,im,lines);  %标记出光流
