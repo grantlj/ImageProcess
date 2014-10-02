@@ -1,5 +1,5 @@
 %根据K-means聚类结果，生成每个avi的bag-of-words的hist信息
-function [] = GenerateHistDb_Spatial()
+function [] = GenerateHistDb()
    %文件夹和类型选项，打开相应的注释，生成对应文件夹下的训练集数据
   root=(GetPresentPath);
   paths={'boxing/','handclapping/','jogging/','running/','walking/'};
@@ -13,10 +13,10 @@ function [] = GenerateHistDb_Spatial()
       histfileInfo={};
       for i= 3:n                               % 从3开始。前两个属于系统内部。
          name = allnames{1,i}                  %  逐次取出文件名
-         if ( (findstr(name,'_HOG.mat')>=1))
+         if ( (findstr(name,'_TRA.mat')>=1))
             filename=[name];                   %   组成文件名
             fileInfo=[fileInfo;filename];
-            histfileInfo=[histfileInfo;strrep(filename,'_HOG.mat','_HIST_SPATIAL.mat')];
+            histfileInfo=[histfileInfo;strrep(filename,'_TRA.mat','_HIST.mat')];
          end
       end
 
@@ -29,7 +29,7 @@ function [] = GenerateHistDb_Spatial()
 
         if (~exist([path,histfileInfo{i}],'file'))
             disp('      Generating Hist info...');
-            GenerateSingleFileHist_Spatial(path,fileInfo{i},histfileInfo{i});
+            GenerateSingleFileHist(path,fileInfo{i},histfileInfo{i});
             disp('   ');
         else
             disp('      Hist Info already existed...');

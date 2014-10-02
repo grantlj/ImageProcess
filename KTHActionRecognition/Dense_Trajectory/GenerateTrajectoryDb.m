@@ -6,6 +6,7 @@ function [] = GenerateTrajectoryDb()
 % 4. 请求trajectory
 % 5. 将所有trajectory联合，保存到文件中
 
+
     root=(GetPresentPath);
     paths={'boxing/','handclapping/','jogging/','running/','walking/'};
     for pathCount=1:size(paths,2)
