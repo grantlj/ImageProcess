@@ -33,8 +33,8 @@ function [] = MainTester()
   histfileInfo={};
   for i= 3:n                               % 从3开始。前两个属于系统内部。
      name = allnames{1,i}                  %  逐次取出文件名
-    % if ( (findstr(name,'_HIST.mat')>=1))
-          if ( (findstr(name,'_HIST.mat')>=1) & findstr(name,'d4')>=1)
+     if ( (findstr(name,'_HIST.mat')>=1))
+       %   if ( (findstr(name,'_HIST.mat')>=1) & findstr(name,'d4')>=1)
         filename=[testpath,name];                   %   组成文件名
         histfileInfo=[histfileInfo;filename];
        
