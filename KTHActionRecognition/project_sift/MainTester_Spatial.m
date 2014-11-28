@@ -3,7 +3,7 @@
 function [] = MainTester_Spatial() 
 
 
-  testpath='boxing\';
+  testpath='walking\';
   root=(GetPresentPath);
   load('SVMModel_Spatial.mat');
   disp(['Test set:', testpath]);

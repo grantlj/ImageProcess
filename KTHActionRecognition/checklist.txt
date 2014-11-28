@@ -1,4 +1,14 @@
 此外，还要做的三件事情是：
 1. 把SIFT换成Hog，试试                                            clear
-2. 把SIFT换成Dense trajectory 试试
-3.把bag of words换成 fisher vector试试
+2. 把SIFT换成Dense trajectory 试试                                clear
+3.把bag of words换成 fisher vector试试                            clear
+
+GMM模型做分类：
+1. 对每个动作建GMM，数量不一定是按照scene来的，而是应该有个学习的过程。
+2. 分类的方法：到哪个团团近，就算那个团团的class；
+               或这到哪个类的所有团团的总距离近，就算哪个类的；
+               训练负样本，加入-分策略；
+
+
+
+
