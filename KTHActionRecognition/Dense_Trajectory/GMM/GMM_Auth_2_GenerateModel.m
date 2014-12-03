@@ -1,15 +1,14 @@
-function []=GMM_Exp1_2_GenerateModel()
-% Experiment 1-2:（SIFT的bag-of-words dim=18结果)
-% GMM数量：4个
-%   1. 每个动作训练8的GMM（使用vl_gmm)做，全场景测试，（每个动作训练集：40个(hist_trainSet) 随机选择，测试集：60个
-% (hist_testSet）；
-%   2. 判别方法：找最小分布所在的region对应的class
-% 代码：project_sift\GMM
+function []=GMM_Auth_2_GenerateModel()
+% 对dense trajectory做。
+% Experiment 3(dense trajector+fv improved test)
+% . 每个动作训练8的GMM（使用vl_gmm)做，全场景测试，（每个动作训练集：40个(hist_trainSet) 随机选择，测试集：60个(hist_testSet）；
+%   2. 判别方法：判别方法：利用概率参数做（参见论文）
+% 代码：DenseTrajectory\GMM
 %============================================================================================================
-% GMM_Exp1_GenerateModel:训练每种动作类别下的GMM。
-  fileNameRoot='GMM_Exp1_2_GenerateModel_';
+% GMM_Auth_2_MainTester:主测试程序；
+  fileNameRoot='GMM_Auth_2_GenerateModel_';
   vl_setup;
-  path='hist_trainSet/';
+  path='fv_trainSet/';
   
   actionTypes={'boxing','handclapping','jogging','running','walking'};
   actionCount=size(actionTypes,2);
@@ -22,7 +21,7 @@ function []=GMM_Exp1_2_GenerateModel()
       HISTfileInfo={};
       for i= 3:n                               % 从3开始。前两个属于系统内部。
          name = allnames{1,i}                  %  逐次取出文件名
-         if ( (findstr(name,'_HIST.mat')>=1) & (findstr(name,actionTypes{action})>=1) )
+         if ( (findstr(name,'_FV.mat')>=1) & (findstr(name,actionTypes{action})>=1) )
             filename=[path,name];                   %   组成文件名
             HISTfileInfo=[HISTfileInfo;filename];
 
@@ -33,17 +32,17 @@ function []=GMM_Exp1_2_GenerateModel()
       t=cd(root);
       clc;
       load(HISTfileInfo{1});
-      dim=size(histVal,2);
+      dim=size(fvVal,2);
       hists=zeros(histCount,dim);
       for i=1:histCount
         load(HISTfileInfo{i});
-        maxVal=max(histVal);minVal=min(histVal);
-      histVal=(histVal-minVal)./(maxVal-minVal);
         %histVal=fvVal';
-        hists(i,:)=histVal(1,:);
+        maxVal=max(fvVal);minVal=min(fvVal);
+        fvVal=(fvVal-minVal)./(maxVal-minVal);
+        hists(i,:)=fvVal(1,:);
       end
       
-      clusterCount=4;               %each GMM has 4 sub-models.
+      clusterCount=8;               %each GMM has 8 sub-models.
       filename=['Models/',fileNameRoot,actionTypes{action},'.mat'];
       [means,cov,priors]=vl_gmm(hists',clusterCount);
       save(filename,'means','cov','priors');

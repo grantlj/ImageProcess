@@ -37,6 +37,8 @@ function []=GMM_Exp1_3_GenerateModel()
       for i=1:histCount
         load(HISTfileInfo{i});
         %histVal=fvVal';
+        maxVal=max(histVal);minVal=min(histVal);
+      histVal=(histVal-minVal)./(maxVal-minVal);
         hists(i,:)=histVal(1,:);
       end
       

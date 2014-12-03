@@ -1,21 +1,21 @@
-function GMM_Exp3_MainTester()
-% 对dense trajectory做。
-% Experiment 3(dense trajector+fv improved test)
-% . 每个动作训练8的GMM（使用vl_gmm)做，全场景测试，（每个动作训练集：40个(hist_trainSet) 随机选择，测试集：60个(hist_testSet）；
-%   2. 判别方法：找到分布距离之和最小的对应的class
-% 代码：DenseTrajectory\GMM
+function GMM_Auth_1_MainTester()
+% Experiment_Auth 1:（SIFT的bag-of-words dim=18结果)
+%   1. 每个动作训练8的GMM（使用vl_gmm)做，全场景测试，（每个动作训练集：40个(hist_trainSet) 随机选择，测试集：60个
+% (hist_testSet）；
+%   2. 判别方法：利用概率参数做（参见论文）
+% 代码：project_sift\GMM
 %============================================================================================================
-% GMM_Exp3_MainTester:主测试程序；
+% GMM_Exp1_MainTester:主测试程序；
 
 
-fileNameRoot='GMM_Exp3_GenerateModel_';
-path='fv_testSet/';
+fileNameRoot='GMM_Auth_1_GenerateModel_';
+path='hist_testSet/';
 actionTypes={'boxing','handclapping','jogging','running','walking'};
 actionCount=size(actionTypes,2);
 root=(GetPresentPath);
 totalExp=10;
 for expCount=1:totalExp                            %10次试验平均结果
-        GMM_Exp3_GenerateModel();
+        GMM_Auth_1_GenerateModel();
        
 
         %load models.
@@ -35,7 +35,7 @@ for expCount=1:totalExp                            %10次试验平均结果
             HISTfileInfo={};
             for i= 3:n                               % 从3开始。前两个属于系统内部。
                name = allnames{1,i}                  %  逐次取出文件名
-               if ( (findstr(name,'_FV.mat')>=1) & (findstr(name,actionTypes{action})>=1) )
+               if ( (findstr(name,'_HIST.mat')>=1) & (findstr(name,actionTypes{action})>=1) )
                   filename=[path,name];                   %   组成文件名
                   HISTfileInfo=[HISTfileInfo;filename];
                end
@@ -45,38 +45,49 @@ for expCount=1:totalExp                            %10次试验平均结果
             t=cd(root);
             clc;
             load(HISTfileInfo{1});
-            dim=size(fvVal,2);
+            dim=size(histVal,2);
             hists=zeros(histCount,dim);
             for i=1:histCount
               load(HISTfileInfo{i});
-              maxVal=max(fvVal);minVal=min(fvVal);
-              fvVal=(fvVal-minVal)./(maxVal-minVal);
-              hists(i,:)=fvVal(1,:);
+              maxVal=max(histVal);minVal=min(histVal);
+              histVal=(histVal-minVal)./(maxVal-minVal);
+              hists(i,:)=histVal(1,:);
             end
 
 
             for i=1:histCount
-            mindisp=inf; flag=-1;
+            %mindisp=inf; flag=-1;
+            maxprob=-inf; flag=-1;
             videoCount=videoCount+1;
             %compare start.
               for classes=1:actionCount
-                  dist=0;
+                  prob=0;
                   for gmms=1:size(models{classes}.means,2)
                     v1=models{classes}.means(:,gmms)';
                     v2=hists(i,:);
-                     %dist=pdist([v1;v2]); %calculate distances!!
+                  
+                    %dist=pdist([v1;v2]); %calculate distances!!
                     
                     %improved version: normalized and calculate the
                     %probability.
-                    normVal=abs(v2-v1)./sqrt(models{classes}.cov(:,gmms)');
-                    s=pdist([normVal;zeros(size(normVal))]);
-                    
-                    dist=dist+s; 
+%                     normVal=abs(v2-v1)./sqrt(models{classes}.cov(:,gmms)');
+%                     dist=pdist([normVal;zeros(size(normVal))]);
+%                     if (dist<mindisp)
+%                         mindisp=dist;
+%                         flag=classes;
+%                     end
+                      %ans=mvnpdf(v1,v1,models{classes}.cov(:,gmms)');
+                      %disp(num2str(ans));
+                   %   pause;
+                      prob0=mvnpdf(v2,v1,models{classes}.cov(:,gmms)').*models{classes}.priors(gmms);
+                      
+                      prob=prob+prob0;
+                      
                   end
-                     if (dist<mindisp)   %improved version.
-                        mindisp=dist;
-                        flag=classes;
-                    end
+                  if (prob>maxprob)
+                          maxprob=prob;
+                          flag=classes;
+                  end
               end
 
                %compare end; now we evaluate results. 

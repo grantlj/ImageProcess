@@ -1,21 +1,21 @@
-function GMM_Exp3_MainTester()
+function GMM_Auth_2_MainTester()
 % 对dense trajectory做。
 % Experiment 3(dense trajector+fv improved test)
 % . 每个动作训练8的GMM（使用vl_gmm)做，全场景测试，（每个动作训练集：40个(hist_trainSet) 随机选择，测试集：60个(hist_testSet）；
-%   2. 判别方法：找到分布距离之和最小的对应的class
+%   2. 判别方法：判别方法：利用概率参数做（参见论文）
 % 代码：DenseTrajectory\GMM
 %============================================================================================================
-% GMM_Exp3_MainTester:主测试程序；
+% GMM_Auth_2_MainTester:主测试程序；
 
 
-fileNameRoot='GMM_Exp3_GenerateModel_';
+fileNameRoot='GMM_Auth_2_GenerateModel_';
 path='fv_testSet/';
 actionTypes={'boxing','handclapping','jogging','running','walking'};
 actionCount=size(actionTypes,2);
 root=(GetPresentPath);
 totalExp=10;
 for expCount=1:totalExp                            %10次试验平均结果
-        GMM_Exp3_GenerateModel();
+        GMM_Auth_2_GenerateModel();
        
 
         %load models.
@@ -56,11 +56,11 @@ for expCount=1:totalExp                            %10次试验平均结果
 
 
             for i=1:histCount
-            mindisp=inf; flag=-1;
+            maxprob=-inf; flag=-1;
             videoCount=videoCount+1;
             %compare start.
               for classes=1:actionCount
-                  dist=0;
+                  prob=0;
                   for gmms=1:size(models{classes}.means,2)
                     v1=models{classes}.means(:,gmms)';
                     v2=hists(i,:);
@@ -68,13 +68,16 @@ for expCount=1:totalExp                            %10次试验平均结果
                     
                     %improved version: normalized and calculate the
                     %probability.
-                    normVal=abs(v2-v1)./sqrt(models{classes}.cov(:,gmms)');
-                    s=pdist([normVal;zeros(size(normVal))]);
-                    
-                    dist=dist+s; 
+%                     normVal=abs(v2-v1)./sqrt(models{classes}.cov(:,gmms)');
+%                     s=pdist([normVal;zeros(size(normVal))]);
+%                     
+%                     dist=dist+s; 
+                       prob0=mvnpdf(v2,v1,models{classes}.cov(:,gmms)').*models{classes}.priors(gmms);
+                       
+                      prob=prob+prob0;
                   end
-                     if (dist<mindisp)   %improved version.
-                        mindisp=dist;
+                     if (prob>maxprob)   %improved version.
+                        maxprob=prob;
                         flag=classes;
                     end
               end

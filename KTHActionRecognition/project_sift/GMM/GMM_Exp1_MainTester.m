@@ -49,23 +49,37 @@ for expCount=1:totalExp                            %10次试验平均结果
             hists=zeros(histCount,dim);
             for i=1:histCount
               load(HISTfileInfo{i});
+              maxVal=max(histVal);minVal=min(histVal);
+              histVal=(histVal-minVal)./(maxVal-minVal);
               hists(i,:)=histVal(1,:);
             end
 
 
             for i=1:histCount
             mindisp=inf; flag=-1;
+           % maxprob=-inf; flag=-1;
             videoCount=videoCount+1;
             %compare start.
               for classes=1:actionCount
                   for gmms=1:size(models{classes}.means,2)
                     v1=models{classes}.means(:,gmms)';
                     v2=hists(i,:);
-                    dist=pdist([v1;v2]); %calculate distances!!
+                  
+                    %dist=pdist([v1;v2]); %calculate distances!!
+                    
+                    %improved version: normalized and calculate the
+                    %probability.
+                    normVal=abs(v2-v1)./sqrt(models{classes}.cov(:,gmms)');
+                    dist=pdist([normVal;zeros(size(normVal))]);
                     if (dist<mindisp)
                         mindisp=dist;
                         flag=classes;
                     end
+%                       prob=normpdf(v2,v1,models{classes}.cov(:,gmms)')*models{classes}.priors(gmms);
+%                       if (prob>maxprob)
+%                           maxprob=prob;
+%                           flag=classes;
+%                       end
                   end
               end
 

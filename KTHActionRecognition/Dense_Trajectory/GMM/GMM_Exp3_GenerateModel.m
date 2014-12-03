@@ -37,10 +37,12 @@ function []=GMM_Exp3_GenerateModel()
       for i=1:histCount
         load(HISTfileInfo{i});
         %histVal=fvVal';
+        maxVal=max(fvVal);minVal=min(fvVal);
+        fvVal=(fvVal-minVal)./(maxVal-minVal);
         hists(i,:)=fvVal(1,:);
       end
       
-      clusterCount=2;               %each GMM has 8 sub-models.
+      clusterCount=8;               %each GMM has 8 sub-models.
       filename=['Models/',fileNameRoot,actionTypes{action},'.mat'];
       [means,cov,priors]=vl_gmm(hists',clusterCount);
       save(filename,'means','cov','priors');
