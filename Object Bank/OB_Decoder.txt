@@ -1,0 +1,9 @@
+feature_extraction部分
+==============================================================================================
+	code/part:
+objectlist.txt : 存放了Model下每个object编号对应的真实意义；
+scenelist.txt:   存放了Secene下的每个东西的真实意义；？
+getfeat_single_image: 生成single图片的fature，存放到Feature目录下；
+ImageSet: 原图片；
+detectorset:   返回用哪些检测器跑OB，存放在res的编号里面。
+detect_with_responsemap:最核心的函数；

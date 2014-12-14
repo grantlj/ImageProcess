@@ -1,0 +1,41 @@
+synsetid	words
+6882	beach
+12887	aquarium, fish tank, marine museum
+12920	bathroom, bath
+12932	bedroom, sleeping room, sleeping accommodation, chamber, bedchamber
+12934	billiard room, billiard saloon, billiard parlor, billiard parlour, billiard hall
+12952	classroom, schoolroom
+13002	court, courtroom
+13026	concert hall
+13041	kitchen
+13063	recreation room, rec room
+13199	conservatory, hothouse, indoor garden
+13378	restaurant, eating house, eating place, eatery
+13413	home theater, home theatre
+13604	garage, service department
+13626	office, business office
+13935	sail
+17102	airfield, landing field, flying field, field
+18824	business district, downtown
+21539	basketball court
+24268	street
+30156	wedding, wedding party
+31264	street
+33917	resort area, playground, vacation spot
+36537	campsite, campground, camping site, camping ground, bivouac, encampment, camping area
+36800	amusement park, funfair, pleasure ground
+40046	bus stop
+46955	concert
+52813	check-in
+53648	polo
+55350	court
+58090	menagerie, zoo, zoological garden
+59395	basketball, basketball game, hoops
+60935	air terminal, airport terminal
+64539	intersection, crossroad, crossway, crossing, carrefour
+67048	scuba diving
+68656	camping, encampment, bivouacking, tenting
+69162	garden
+72665	airport, airdrome, aerodrome, drome
+13342   church
+43206   forest

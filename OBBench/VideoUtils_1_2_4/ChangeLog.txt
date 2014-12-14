@@ -1,0 +1,82 @@
+===========================================================================
+Matlab VideoUtils 1.2.4
+
+$Date: 2013-03-09 14:19:06 +0000 (Sat, 09 Mar 2013) $, $Revision: 25 $
+===========================================================================
+
++ Added function play into the VideoPlayer class ( now you can reproduce the video without having to create a loop.
++ Now button quit closes the window.
++ Fix bug when computing the number of frames of wmv files (now gives an approximate value, before was 0).
++ Now the title bar shows the StepInFrames value.
++ Now the title bar shows the time in seconds.
++ Added new optional parameter into the VideoPlayer class 'BinaryThreshold', which let you define a threshold applied to each pixel. It should be combined with 'Binarize' option.
++ Added more documentation inside the VideoPlayer class.
++ Added time information and a progress bar when displaying the VideoPlayer on the console.
++ Added into the special thanks section (inside VideoPlayer class) Le Hai, Kensaku Nomoto and Steve Mintz, who had reported bugs, for the versions 1.2, 1.2.1, 1.2.2 and 1.2.3.
+
+===========================================================================
+Matlab VideoUtils 1.2.3
+
+Date: 2013-03-08 00:16:12 +0000 (Fri, 08 Mar 2013), Revision: 23
+===========================================================================
+
++ Fixed bug when reading videos with more than 160.000 frames.
++ Updated ffmpeg for windows.
++ Fixed bug when deleting VideoPlayer and VideoRecorder.
++ Fixed bug when using verbose mode.
++ Now it is possible to create 1024 video recorders.
++ Fixed bug when creating new VideoPlayers and VideoRecorders.
+
+===========================================================================
+Matlab VideoUtils 1.2.2
+
+Date: 2013-03-05 22:01:20 +0000 (Tue, 05 Mar 2013) , Revision: 21
+===========================================================================
+
++ Solved bug when using InitialFrame and InitialSecond in some videos.
++ Solved bug when releasing the VideoPlayer object using clear.
++ Solved bug when using function getFrameAt.
++ Now the maximum number of VideoPlayers is 1024 (it was 128).
++ New functions for error control.
++ Solved bug when computing the number of frames.
+
+===========================================================================
+Matlab VideoUtils 1.2.1 
+
+Date: 2013-03-03 17:08:06 +0000 (Sun, 03 Mar 2013) , Revision: 18 
+===========================================================================
+
++ Frame number is now a int64_t in order to avoid problems with large videos.
++ Now you can seek to a concrete time (in seconds), much more accurate that using the frame number. 
++ Added optional parameter InitialSecond to specify the initial video position in seconds.
++ Added function getTime, returns the time stamp of a frame in seconds
++ Added function goToSecond let you seek to specified frame by giving its time stamp (in seconds). 
++ Bugs fixed in the VideoWriter
++ In the c++ files changed -> mxCreateScalarDouble to mxCreateDoubleScalar.
++ Binaries updated to ffmpeg 53 for working on Ubuntu 12.04.
+   -> Remember that it is necessary to install FFmpeg.
+       -> sudo apt-get install ffmpeg libswscale2 libavdevice53 libavfilter2 libavcodec53 libavformat53 libavutil51
+
+===========================================================================
+Matlab VideoUtils 1.2.0 
+
+Date: 2012-04-28 13:49:18 +0200 (Sat, 28 Apr 2012) , Revision: 17
+===========================================================================
+
++ Added MultibandBlending class to stitch images.
++ Added an example of MultibandBlending.
++ addFrameToFrame function now can use multiband blending.
++ Now the resourcer are in the folder resources.
+
+===========================================================================
+Matlab VideoUtils 1.1.0 
+
+Date: 2012-04-20 11:31:29 +0200 (Fri, 20 Apr 2012) , Revision: 9 
+===========================================================================
+
++ Added the C++ source code.
++ Added the icons and script.
++ Added help for the addFrameToFrame method, and now this function returns the percentage of overlapped pixels.
++ Added ShowTime parameter help into the VideoPlayer class. 
++ Corrected a bug while reaching the last frame in ISV videos.
++ Modified the windows binaries names in order to solve the error -> "Cannot find an exact (case-sensitive) match for 'mexVideoReader'."

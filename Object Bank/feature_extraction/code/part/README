@@ -1,0 +1,27 @@
+PARTLESS OBJECTBANK RELEASE
+
+getfeat_single_image takes in FOUR parameters:
+1. imagepath: path of the image
+2. outputfilename: filename of the output (without extension)
+3. outputpath: parent directory of the output
+4. savermap: boolean variable; 1 means save and 0 means not save.
+
+By default,
+imagepath=ImageSet/1.jpg
+outputfilename=tmp
+outputpath=NULL
+savermap=0
+
+Make sure to use resize_img function to resize all the images in the dataset so that minimum side is 400.
+
+To run the default setting, run 'getfeat_single_image' in MATLAB. Otherwise, modify the imagepath, outputfilename, and/or outputpath (if outputpath does not exists, the code will automatically try to make a new one).
+
+The features for the sample images in ImageSet folder are saved in Feature folder. Use these to test whether your code is properly running.
+
+If the responsemap needs to be saved, set the fourth parameter to 1 (in fact, any non-empty string).
+
+The object names can be looked up in objectlist.txt and scene names can be looked up in scenelist.txt.
+
+The current object order is in detectorset.m.
+
+This code for research purpose and is not fully optimized.

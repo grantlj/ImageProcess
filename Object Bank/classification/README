@@ -1,0 +1,3 @@
+Classifcation Code README
+
+get_traintestfeat.m and run_classification.m are helper functions we used to produce the result; in order to use it, LIBSVM needs to be successfully compiled first and appropriate configuration should replace {} within the code.

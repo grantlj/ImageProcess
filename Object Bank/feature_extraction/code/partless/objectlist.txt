@@ -1,0 +1,250 @@
+synsetid	words
+38	bear
+159	homo, man, human being, human
+187	cat, true cat
+553	mouse
+574	male horse
+717	elephant
+767	horse, Equus caballus
+865	rabbit, coney, cony
+940	lion, king of beasts, Panthera leo
+994	monkey
+1074	dog, domestic dog, Canis familiaris
+1103	cow
+1172	umbrella
+1176	soccer ball
+1190	laptop, laptop computer
+1232	airplane, aeroplane, plane
+1253	balloon
+1256	aircraft
+1329	boat
+1354	sailboat, sailing boat
+1442	ship
+1634	car, auto, automobile, machine, motorcar
+1643	motorcycle, bike
+1666	truck, motortruck
+1744	bed
+1754	cabinet
+1768	lamp
+1784	bench
+1823	chair
+1834	sofa, couch, lounge
+1843	toilet seat
+1871	counter
+1874	writing desk
+1875	desk
+1876	dressing table, dresser, vanity, toilet table
+1888	pool table, billiard table, snooker table
+1891	table-tennis table, ping-pong table, pingpong table
+1898	table
+2232	fruit
+2276	drum, membranophone, tympan
+2315	guitar
+2329	French horn, horn
+3283	flower
+3824	grass
+5703	tree
+6878	plant, flora, plant life
+6882	beach
+6986	mountain, mount
+7022	seashore, coast, seacoast, sea-coast
+7198	fork
+7403	tool
+8036	duck
+8274	bird
+8892	fish
+8923	turtle
+9176	snake, serpent, ophidian
+9328	wing
+9370	aqualung, Aqua-Lung, scuba
+9371	oxygen mask
+9588	cell, electric cell
+9693	loudspeaker, speaker, speaker unit, loudspeaker system, speaker system
+9700	microphone, mike
+9726	computer monitor
+9730	computer screen, computer display
+9749	mouse, computer mouse
+9864	filter
+9887	stove
+10200	clock
+10302	goggles
+10306	spectacles, specs, eyeglasses, glasses
+10477	knife
+10572	key
+10577	keyboard
+10638	desktop computer
+10658	computer, computing machine, computing device, data processor, electronic computer, information processing system
+10790	printer
+10887	faucet, spigot
+10914	switch, electric switch, electrical switch
+11050	wheel
+11057	propeller, propellor
+11084	Ferris wheel
+11086	roller coaster, big dipper, chute-the-chute
+11110	swing
+11300	mirror
+11337	buckle
+11340	button
+11344	hook
+11498	ski
+11515	candle, taper, wax light
+11541	streetlight, street lamp
+11543	lamp
+11555	room light
+11564	light, light source
+11696	saddle
+11700	bookshelf
+11704	shelf
+11707	step, stair
+11736	plate
+12438	coral
+12498	snail
+12534	clam
+12612	microwave, microwave oven
+12634	dishwasher, dish washer, dishwashing machine
+12638	electric refrigerator, fridge
+12706	pot
+12887	aquarium, fish tank, marine museum
+12982	car, elevator car
+13022	gallery, art gallery, picture gallery
+13041	kitchen
+13095	public toilet, comfort station, public convenience, convenience, public lavatory, restroom, toilet facility, wash room
+13113	cupboard, closet
+13114	drawer
+13153	bridge, span
+13320	garage
+13394	skyscraper
+13420	building, edifice
+13469	cross
+13793	fence, fencing
+13818	door
+13838	railing, rail
+13888	wall
+13935	sail
+13968	pup tent, shelter tent
+14042	rack
+14081	window
+14126	tower
+14530	shower curtain
+15928	rock, stone
+15946	basketball player, basketeer, cager
+16353	newspaper, paper
+16629	pool ball
+16805	necklace
+17138	sand
+18142	bag
+18802	gravel, crushed rock
+18907	attire, garb, dress
+19406	shield
+19614	female child, girl, little girl
+20056	backboard, basketball backboard
+20342	train, railroad train
+20965	helmet
+21539	basketball court
+21785	bride
+22319	radio, radiocommunication, wireless
+22558	artwork, art, graphics, nontextual matter
+22605	face veil
+22907	people
+23351	sheet, bed sheet
+24627	mug
+25482	cloud
+26062	referee, ref
+26330	book, rule book
+27212	fan, buff, devotee, lover
+27781	child, kid
+27921	suit, suit of clothes
+28092	cue, cue stick, pool cue, pool stick
+28137	shoe
+30313	stage
+30792	baseball
+30820	soap dish
+30891	camper
+30925	flag
+31831	basket, basketball hoop, hoop
+31884	book
+31887	slide, playground slide, sliding board
+32025	blind, screen
+32068	floor
+33258	sign
+33506	water
+34958	bedside
+37636	bottle
+38176	sidewalk, pavement
+39102	bouquet, corsage, posy, nosegay
+39435	bowl
+40046	bus stop
+40128	jockey
+40584	paper
+42817	groom, bridegroom
+42837	wave
+43462	musician, instrumentalist, player
+44932	traffic light, traffic signal, stoplight
+45566	blanket, cover
+45602	teacher, instructor
+45802	television, telecasting, TV, video
+45863	player, participant
+46868	runway
+47025	diver, plunger
+47499	pin, flag
+48078	bridal gown, wedding gown, wedding dress
+48279	dais, podium, pulpit, rostrum, ambo, stump, soapbox
+48328	vase
+49501	place, shoes
+49680	concert band, military band
+49895	pen
+50209	student, pupil, educatee
+50468	bathtub, bathing tub, bath, tub
+51125	rug, carpet, carpeting
+52218	curtain, drape, drapery, mantle, pall
+52627	pillow
+52747	toilet tissue, toilet paper, bathroom tissue
+52785	ball
+53023	picture, image, icon, ikon
+53184	camera, photographic camera
+53441	baseball glove, glove, baseball mitt, mitt
+53456	ball
+53996	dinner napkin
+54612	towel
+56222	polo mallet, polo stick
+56253	basketball
+56923	stick
+57816	squash racket, squash racquet, bat
+59818	plain, field, champaign
+61595	ocean
+62095	sky
+62251	crowd
+63194	box
+63354	baggage, luggage
+63931	street sign
+65593	mallet
+66238	singer, vocalist, vocalizer, vocaliser
+66479	television, television system
+66576	person, individual, someone, somebody, mortal, soul
+66964	blackboard, chalkboard
+67467	glove
+67608	uniform
+67636	telephone, phone, telephone set
+68622	ballplayer, baseball player
+68772	rope
+69237	headboard
+69930	jersey, T-shirt, tee shirt
+70374	boot
+70422	bush
+70901	animal, animate being, beast, brute, creature, fauna
+70945	shower
+71062	outdoors, out-of-doors, open air, open
+72925	bus, autobus, coach, charabanc, double-decker, jitney, motorbus, motorcoach, omnibus, passenger vehicle
+73445	flipper, fin
+74298	scuba diver
+74356	soil, dirt
+74634	hat, chapeau, lid
+74974	cesspool, cesspit, sink, sump
+75484	bleacher
+76126	playground
+77536	document, written document, papers
+78489	son, boy
+78913	bubble
+80282	tile
+81233	car tire, automobile tire, auto tire, rubber tire
+81664	mast
