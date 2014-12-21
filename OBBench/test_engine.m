@@ -7,13 +7,20 @@ function [] = test_engine(searchArg)
       pause;
   end
   if (nargin<1)
-      searchArg=0;   
+      searchArg=0;  %searchArg=0 means using default args train svm.
   else
-      searchArg=1;  %obliging to search best c g for svm again.
+     if (searchArg~=2), searchArg=1;end 
+     %arg=1: trying to load bestarg file to svm train, if failed then
+     %search for best c,g.
+     %arg=2: obliging to search best c g for svm again.
   end
-  datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'}; %search path;
+  datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
+            'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'...
+            'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
+            'dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/','dataset/shoot_gun/','dataset/sit/'...
+            'dataset/stand/','dataset/swing_baseball/'}; %search path;
   keyword='-Feature.mat'; %feature file key word.
-  train_ratio=0.5;         %the radio of train set over all data. 
+  train_ratio=0.7;         %the radio of train set over all data. 
   svmmodel_path='SVMModel.mat'; %svm model file saving path.
   svmarg_path='SVMArgs.mat';    %svm arg file saving path.
   
@@ -61,7 +68,7 @@ function [] = test_engine(searchArg)
   end
   
   clc;
-    if (~exist(svmarg_path,'file') || (searchArg==1))   %file not exist or mandatory search again.
+    if ((~exist(svmarg_path,'file') && (searchArg~=0)) || (searchArg==2))   %file not exist and not in defualt mode or mandatory search again.
         disp('Searching for best svm args...');
         svmarg=SVMcgForClass(train_label,train_set,-8,8,-8,8,size(train_label,1),1,1,6);
         clc;
@@ -69,15 +76,25 @@ function [] = test_engine(searchArg)
         disp(['Saving svmargs...']);
         save(svmarg_path,'svmarg');
     end;
-        
-    disp('Loading svm svmarg...');
-    load(svmarg_path);
+   
+    if (searchArg~=0)  %not default mode, we must load svmarg file.
+        disp('Loading svm svmarg...');
+        load(svmarg_path);
+       
+    else
+        svmarg.bestc=1e200;  %default, the args are as same as that in feifei's raw code.
+        svmarg.bestg=length(unique(test_label));
+    end
+    
+    %Training and test accuracy.
     disp('Training svm...');
     model=svmtrain(train_label,train_set,['-t 0 -c ',num2str(svmarg.bestc),' -g ',num2str(svmarg.bestg)]);  %temporary only.
     save(svmmodel_path,'model');
     disp('Running test...');    
     [~, accur, ~]=svmpredict(test_label,test_set,model);               
-    disp(['Accuracy=',num2str(accur)]);      
+    disp(['Accuracy=',num2str(accur(1))]);      
+   
+        
 end
 
 function res=GetPresentPath()

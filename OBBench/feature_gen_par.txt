@@ -1,0 +1,14 @@
+feature_generator_new({'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'})
+9257.pts-1.gaocq-All-Series 
+
+
+feature_generator_new({ 'dataset/pullup/','dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/'})
+5451.pts-1.gaocq-All-Series  
+
+
+feature_generator_new({ 'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/shoot_gun/','dataset/sit/', 'dataset/stand/','dataset/swing_baseball/'})
+ 14438.pts-1.gaocq-All-Series
+
+32217.pts-1.gaocq-All-Series 
+feature_generator(walk)
+
