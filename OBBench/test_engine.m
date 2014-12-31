@@ -23,9 +23,14 @@ function [] = test_engine(searchArg)
   train_ratio=0.7;         %the radio of train set over all data. 
   svmmodel_path='SVMModel.mat'; %svm model file saving path.
   svmarg_path='SVMArgs.mat';    %svm arg file saving path.
+  max_total_clips=100;          %the maximum number of train+test in each set.
   
   test_set=[];train_set=[]; train_label=[];test_label=[];
   root=(GetPresentPath);
+  
+  
+  datalist_featureCount=zeros(1,size(datapath,2));
+  datalist_train_num=zeros(1,size(datapath,2));
   
   for datacount=1:size(datapath,2)
   
@@ -37,7 +42,7 @@ function [] = test_engine(searchArg)
      featureInfo={};
      for i= 1:n                              
         name = allnames{1,i}                 
-        if ( ~(isempty(findstr(name,keyword))))
+          if ( ~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)~=1))
              featurename=[db,name];                 
              featureInfo=[featureInfo;featurename];
         end
@@ -49,25 +54,50 @@ function [] = test_engine(searchArg)
      featureCount=size(featureInfo,1);
      train_num=randperm(featureCount,round(featureCount*train_ratio)); %generate trainset orders according to ratio.
      
+
+     
+     strain=0; stest=0;
      for i=1:featureCount
       try
            feat=extract_feature_fromfile(featureInfo{i});
            if (any(train_num==i)==1)   % i-th feature belongs to train_set.
              train_set=[train_set;feat];
              train_label=[train_label;datacount];
+             strain=strain+1;
            else                       %other order num, belongs to test_set.
              test_set=[test_set;feat];
              test_label=[test_label;datacount];
+             stest=stest+1;
            end
+           
        catch
            disp(['Error reading file:',featureInfo{i}]);
+           datalist_featureCount(1,datacount)=datalist_featureCount(1,datacount)-1;
+           if (any(train_num==i)==1);datalist_train_num(1,datacount)=datalist_train_num(1,datacount)-1;end  
+           
           % pause;
+      end
+      
+       if ((strain+stest>=max_total_clips) && (strain>=max_total_clips*train_ratio) && (stest>=max_total_clips*(1-train_ratio)))
+           break;
        end
      end
+     
+     datalist_featureCount(1,datacount)=strain+stest;
+     datalist_train_num(1,datacount)=strain;
        
-  end
+  end %datacount;
   
   clc;
+  disp('Feature info:');
+  
+  for datacount=1:size(datapath,2)
+     disp([datapath(1,datacount),'          Total=',num2str(datalist_featureCount(1,datacount)),'        Train=',num2str(datalist_train_num(1,datacount))]);
+     
+  end
+  pause;
+  clc;
+  
     if ((~exist(svmarg_path,'file') && (searchArg~=0)) || (searchArg==2))   %file not exist and not in defualt mode or mandatory search again.
         disp('Searching for best svm args...');
         svmarg=SVMcgForClass(train_label,train_set,-8,8,-8,8,size(train_label,1),1,1,6);
@@ -96,6 +126,13 @@ function [] = test_engine(searchArg)
    
         
 end
+
+function [featureVector] = extract_feature_fromfile(fileinfo)
+  %For OBBench use only. extract feature from specific file.
+  A=load(fileinfo);
+  featureVector=A.feature;
+end
+
 
 function res=GetPresentPath()
 clc;
