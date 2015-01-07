@@ -1,6 +1,5 @@
 %test engine for our lsvm model.
-%33.3%
-function [accuracy] = lsvm_test_engine(itecount)
+function [accuracy,fval] = lsvm_test_engine(itecount,datapath,test_set)
 addpath(genpath('libsvm-3.18/'));
   try
       make
@@ -8,20 +7,15 @@ addpath(genpath('libsvm-3.18/'));
       disp('Error compiling libsvm...');
       pause;
   end
- datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'};
-%   datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
-%             'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'...
-%             'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
-%             'dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/','dataset/shoot_gun/','dataset/sit/'...
-%             'dataset/stand/','dataset/swing_baseball/'}; %search path;
-% row_dim=44604;
  
-% load('lsvm_rand_row.mat');    %load rand row info.
- load('lsvm_test_set.mat');     %load test set.
  
  %itecount=1;                    %select models at ite count of n.
  load(['lsvm_model/Models_After_ITE_',num2str(itecount),'.mat']);   %load models.
- 
+ try
+   fval=models{4}.fval;
+ catch
+    fval=inf;
+ end
  success=0; total=0;
  for datacount=1:size(datapath,2)
     tests=test_set{datacount}.tests;

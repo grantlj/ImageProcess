@@ -1,6 +1,6 @@
-%Generate latent svm model.
+%Generate latent svm model.(1v1 svm)
 %Comparing test: 50 feature dim randomly selected. classical libsvm: 33.3%
-function [] = lsvm_generator()
+function [] = lsvm_generator_1v1()
 addpath(genpath('libsvm-3.18/'));
   try
       make
@@ -8,7 +8,12 @@ addpath(genpath('libsvm-3.18/'));
       disp('Error compiling libsvm...');
       pause;
   end
- datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'};
+  
+   datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
+                 'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
+             
+ %datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'};
+
 % datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
 %             'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'...
 %             'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
@@ -16,6 +21,9 @@ addpath(genpath('libsvm-3.18/'));
 %             'dataset/stand/','dataset/swing_baseball/'};
  keyword='-Feature.mat'; %feature file key word.
  train_ratio=0.7;         %the radio of train set over all data. 
+ global train_w_b_ratio;
+ 
+ train_w_b_ratio=0.5;     %we specify different train_data for w b and theta.
  max_total_clips=100;          %the maximum number of train+test in each set.
  
  test_set={};train_set={}; %train_label=[];test_label=[];
@@ -26,10 +34,10 @@ addpath(genpath('libsvm-3.18/'));
  datalist_train_num=zeros(1,size(datapath,2));
  
  row_dim=44604;
- 
- rand_row=randperm(row_dim);
- rand_row=rand_row(1:300);  %random selected some feature dims. 
- save('lsvm_rand_row.mat','rand_row');  %save it, for later use.
+  rand_row=randperm(row_dim);
+% rand_row=1:252 %random selected some feature dims. 
+  rand_row=rand_row(1:44604);
+save('1v1_lsvm_rand_row.mat','rand_row');  %save it, for later use.
  
  for datacount=1:size(datapath,2)
      db=datapath{datacount};
@@ -98,7 +106,7 @@ addpath(genpath('libsvm-3.18/'));
        
   end %datacount;
   
-  save('lsvm_test_set.mat','test_set');   %save the test_set, for the convenience of test_engine.
+  save('1v1_lsvm_test_set.mat','test_set','-v7.3');   %save the test_set, for the convenience of test_engine.
   
   %data initializing finished.
   
@@ -127,13 +135,18 @@ addpath(genpath('libsvm-3.18/'));
 
   
   
-  modelCount=size(datapath,2);     %number of 1-n svm.
-  models={};
+ % modelCount=size(datapath,2);     %number of 1-n svm.
+ 
+ global chosek;
+ chosek=nchoosek([1:size(datapath,2)],2);
+ modelCount=size(chosek,1);
+ 
+ models={};
   
   for i=1:modelCount               %initialize thetaMat,w,b for each model.
      model.thetaMat=initWeight;
      model.w=[];model.b=[];
-     model.comment=datapath{i};
+     model.comment=chosek(i,:);
      models{i}=model;
   end
   %run_compared_test(train_set,test_set,models);
@@ -142,12 +155,12 @@ addpath(genpath('libsvm-3.18/'));
   for itecount=1:100   %begin iteration.
       
       for i=1:modelCount
-         %Step 1: Update w and b in 1 v N svm using default theta.
-        models{i}=lsvm_update_w_b(train_set,models{i},i);
+         %Step 1: Update w and b in 1 v 1 svm using default theta.
+        models{i}=lsvm_update_w_b(train_set,models{i},chosek(i,:));
       end
       
       if (itecount==1)
-          save('lsvm_model/Models_After_ITE_0.mat','models');  %save default mean-pooling strategy for comparing test.
+          save('lsvm_model/1v1_Models_After_ITE_0.mat','models');  %save default mean-pooling strategy for comparing test.
       end
      % else
       %    
@@ -155,9 +168,9 @@ addpath(genpath('libsvm-3.18/'));
       
       for i=1:modelCount
         %Step 2: Update theata using w,b in step 1.
-        models{i}=lsvm_update_theta(train_set,models{i},i);
+        models{i}=lsvm_update_theta(train_set,models{i},chosek(i,:));
       end
-      save(['lsvm_model/Models_After_ITE_',num2str(itecount),'.mat'],'models');
+      save(['lsvm_model/1v1_Models_After_ITE_',num2str(itecount),'.mat'],'models');
       
    end
   
@@ -251,10 +264,16 @@ function f=theta_opt(thetaMatVec)
  % f=-rank(thetaMat)-cos(rank(thetaMat));
   
   global train_set_global; global train_label;
+  global tag2;
+  
+  global train_w_b_ratio;
+  
   train_feat=[];
   f=0;
   for i=1:size(train_set_global,2)
-     for j=1:size(train_set_global{i}.trains,2)
+     for j=floor(size(train_set_global{i}.trains,2)*train_w_b_ratio)+1:size(train_set_global{i}.trains,2)
+         
+         if (i==tag2(1,1) || i==tag2(1,2))
          feat_new=train_set_global{i}.trains{j};   %a single video's mat.
         
          if(isempty(feat_new)) continue; end;
@@ -270,6 +289,7 @@ function f=theta_opt(thetaMatVec)
 %          else
 %              train_label_native=[train_label_native;-1];  %otherwise;
 %          end
+         end
      end  %end of a single action class.
          
   end
@@ -300,6 +320,8 @@ function [model]=lsvm_update_theta(train_set,model,tag)
   train_set_global=train_set;
   train_label=[];
   
+  global train_w_b_ratio;
+  
    global w_global;
    w_global=model.w;
    global b_global;
@@ -307,17 +329,19 @@ function [model]=lsvm_update_theta(train_set,model,tag)
   
    global svmmodel_global;
    svmmodel_global=model.svmmodel;
-  
+   
+   global tag2;
+   tag2=tag;
   %spos=size(train_set{tag}.trains,2);
   
   for i=1:size(train_set,2)
     % snega=0;
-     for j=1:size(train_set{i}.trains,2)
+     for j=floor(size(train_set{i}.trains,2)*train_w_b_ratio)+1:size(train_set{i}.trains,2)
          feat_new=train_set{i}.trains{j};   %a single video's mat.
          if(isempty(feat_new)) continue; end;
-         if (i==tag)
+         if (i==tag(1,1))
              train_label=[train_label;1];   %belongs to present 1-n svm's positive examples.
-         else
+         elseif (i==tag(1,2))
              train_label=[train_label;-1];  %otherwise;
              
          end
@@ -326,7 +350,7 @@ function [model]=lsvm_update_theta(train_set,model,tag)
   
  % options = optimset('GradObj', 'on', 'MaxIter', 1000);
  %  options=optimoptions(@fmincon,'Algorithm','sqp','Display','iter-detailed');
-%  opts = optimoptions(@fmincon,'MaxIter',50,'Display','iter-detailed');
+  opts = optimoptions(@fmincon,'MaxFunEvals',50000);
   %[ansMat,fval]=fmincon(@theta_opt,zeros(size(model.thetaMat(:)')));%,[],[])   % ,[],[],[],[],'theta_con',opts);
   global initWeight;
   [ansMat,fval, exitflag]=fmincon(@theta_opt, ...                                                             %goal function.                                                    initial value.
@@ -335,7 +359,7 @@ function [model]=lsvm_update_theta(train_set,model,tag)
                                   [],[],                          ...                                         %linear equiity. Aeq,beq
                                   zeros(1,size(model.thetaMat(:)',1)*size(model.thetaMat(:)',2)), ...         %lower bound.
                                   [],...                                                                      %upper bound.
-                                  @theta_con);                                                                %constraint function.
+                                  @theta_con,opts);                                                           %constraint function.
                                                                                                    
   %                                 
   model.thetaMat=ansMat';
@@ -343,10 +367,10 @@ function [model]=lsvm_update_theta(train_set,model,tag)
   model.fval=fval+1/2*model.w'*model.w;
   
   %normalization operation.
-%   s=sum(model.thetaMat,2);
-%   for i=1:size(model.thetaMat,1)
-%     model.thetaMat(i,:)=model.thetaMat(i,:)./s(i);
-%   end
+   s=sum(model.thetaMat,2);
+  for i=1:size(model.thetaMat,1)
+     model.thetaMat(i,:)=model.thetaMat(i,:)./s(i);
+  end
 end
  
 % The first step in alternative search: extract w and b giving
@@ -354,11 +378,11 @@ end
 function [model]=lsvm_update_w_b(train_set,model,tag)
   thetaMat=model.thetaMat;
   train_feat=[]; train_label=[];
-  
-  spos=size(train_set{tag}.trains,2);
+  global train_w_b_ratio;
+
   for i=1:size(train_set,2)
-     snega=0;
-     for j=1:size(train_set{i}.trains,2)
+  
+     for j=1:floor(size(train_set{i}.trains,2)*train_w_b_ratio)   %specify w b's data.
          feat_new=train_set{i}.trains{j};   %a single video's mat.
          if(isempty(feat_new)) 
              continue; 
@@ -368,13 +392,13 @@ function [model]=lsvm_update_w_b(train_set,model,tag)
 %              vec=[vec,thetaMat(k,:)*feat_new(:,k)];
 %          end
          vec=thetaMat*feat_new;
-         if (i==tag)
+         if (i==tag(1,1))
              train_label=[train_label;1];   %belongs to present 1-n svm's positive examples.
              train_feat=[train_feat;vec];
              %spos=spos+1;
-         elseif (snega<spos/(size(train_set,2)-1))
+         elseif (i==tag(1,2))
              train_label=[train_label;-1];  %otherwise;
-             snega=snega+1;
+            
              train_feat=[train_feat;vec];
              
          end
@@ -383,10 +407,10 @@ function [model]=lsvm_update_w_b(train_set,model,tag)
   end
     
     %doing linear svm.
-    %svmarg.bestc=1e200;  %default, the args are as same as that in feifei's raw code.
+    svmarg.bestc=1e200;  %default, the args are as same as that in feifei's raw code.
     svmarg.bestg=length(unique(train_label));
-   % svmmodel=svmtrain(train_label,train_feat,['-t 0 -c ',num2str(svmarg.bestc),' -g ',num2str(svmarg.bestg)]); 
-    svmmodel=svmtrain(train_label,train_feat,['-t 0 -g ',num2str(svmarg.bestg)]);
+    svmmodel=svmtrain(train_label,train_feat,['-t 0 -c ',num2str(svmarg.bestc),' -g ',num2str(svmarg.bestg)]); 
+    %svmmodel=svmtrain(train_label,train_feat,['-t 0 -g ',num2str(svmarg.bestg)]);
     %extract w and b from svmmodel.
     try
     model.w=svmmodel.SVs'*svmmodel.sv_coef;

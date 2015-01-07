@@ -15,14 +15,10 @@ function [] = test_engine(searchArg)
      %arg=2: obliging to search best c g for svm again.
   end
   datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
-                 'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
-  %datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
-  %          'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
-  %datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'}; %...
-            %'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'...
-           % 'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
-           % 'dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/','dataset/shoot_gun/','dataset/sit/'...
-           % 'dataset/stand/','dataset/swing_baseball/'}; %search path;
+            'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'...
+            'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
+            'dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/','dataset/shoot_gun/','dataset/sit/'...
+            'dataset/stand/','dataset/swing_baseball/'}; %search path;
   keyword='-Feature.mat'; %feature file key word.
   train_ratio=0.7;         %the radio of train set over all data. 
   svmmodel_path='SVMModel.mat'; %svm model file saving path.
@@ -46,8 +42,7 @@ function [] = test_engine(searchArg)
      featureInfo={};
      for i= 1:n                              
         name = allnames{1,i}                 
-         if ( ~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)~=1))
-     %   if (~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)==1))
+          if ( ~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)~=1))
              featurename=[db,name];                 
              featureInfo=[featureInfo;featurename];
         end
@@ -126,8 +121,7 @@ function [] = test_engine(searchArg)
     model=svmtrain(train_label,train_set,['-t 0 -c ',num2str(svmarg.bestc),' -g ',num2str(svmarg.bestg)]);  %temporary only.
     save(svmmodel_path,'model');
     disp('Running test...');    
-    [~, accur, ~]=svmpredict(test_label,test_set,model);  
-   % [~, accur, ~]=svmpredict(train_label,train_set,model);  
+    [~, accur, ~]=svmpredict(test_label,test_set,model);               
     disp(['Accuracy=',num2str(accur(1))]);      
    
         
@@ -139,12 +133,6 @@ function [featureVector] = extract_feature_fromfile(fileinfo)
   featureVector=A.feature;
 end
 
-% %for TEMPORARY Lagrange Method test only.
-% function [featureVector] = extract_feature_fromfile(fileinfo)
-%   %For OBBench use only. extract feature from specific file.
-%   load(fileinfo);
-%   featureVector=mean(feat_new);
-% end
 
 function res=GetPresentPath()
 clc;

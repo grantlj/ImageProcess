@@ -1,0 +1,11 @@
+feature_generator_new({'dataset/shoot_bow/','dataset/walk/'})
+8293
+
+feature_generator_new({ 'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/shoot_gun/','dataset/sit/', 'dataset/stand/','dataset/swing_baseball/'})
+
+2464
+
+
+lsvm_generator_1v1
+
+
