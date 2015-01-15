@@ -5,10 +5,10 @@ function []=run_lsvm_test_engine_1v1()
 
     t=dir('lsvm_model/');
     modelcount=size(t,1)-3;
-
+    % datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/wave/'};
     % datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'};
-      datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
-                 'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
+     datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
+                'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
     %             'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
     %             'dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/','dataset/shoot_gun/','dataset/sit/'...
     %             'dataset/stand/','dataset/swing_baseball/'}; %search path;

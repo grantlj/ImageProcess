@@ -1,4 +1,5 @@
-function [] = test_engine(searchArg)
+function [] = test_engine(searchArg, splits_num)
+  
   addpath(genpath('libsvm-3.18/'));
   try
       make
@@ -6,28 +7,36 @@ function [] = test_engine(searchArg)
       disp('Error compiling libsvm...');
       pause;
   end
+  
+  if (~exist('splits_num','var'))
+     splits_num=1;
+  end
+  
   if (nargin<1)
       searchArg=0;  %searchArg=0 means using default args train svm.
-  else
+  elseif (searchArg~=0)
      if (searchArg~=2), searchArg=1;end 
      %arg=1: trying to load bestarg file to svm train, if failed then
      %search for best c,g.
      %arg=2: obliging to search best c g for svm again.
   end
-  datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
-                 'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
+  
+  splits_path='dataset/testTrainMulti_7030_splits/';
+  %datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/wave/'};
+ % datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
+           %      'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
   %datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
   %          'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
-  %datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'}; %...
-            %'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'...
-           % 'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
-           % 'dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/','dataset/shoot_gun/','dataset/sit/'...
-           % 'dataset/stand/','dataset/swing_baseball/'}; %search path;
+  datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/' ...
+           'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'...
+          'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
+          'dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/','dataset/shoot_gun/','dataset/sit/'...
+          'dataset/stand/','dataset/swing_baseball/'}; %search path;
   keyword='-Feature.mat'; %feature file key word.
-  train_ratio=0.7;         %the radio of train set over all data. 
+ % train_ratio=0.7;         %the radio of train set over all data. 
   svmmodel_path='SVMModel.mat'; %svm model file saving path.
   svmarg_path='SVMArgs.mat';    %svm arg file saving path.
-  max_total_clips=100;          %the maximum number of train+test in each set.
+ % max_total_clips=100;          %the maximum number of train+test in each set.
   
   test_set=[];train_set=[]; train_label=[];test_label=[];
   root=(GetPresentPath);
@@ -37,57 +46,37 @@ function [] = test_engine(searchArg)
   datalist_train_num=zeros(1,size(datapath,2));
   
   for datacount=1:size(datapath,2)
-  
-     db=datapath{datacount};
-     t=cd(db);
-     clc;
-     allnames = struct2cell(dir);            
-     [m,n] = size(allnames);
-     featureInfo={};
-     for i= 1:n                              
-        name = allnames{1,i}                 
-         if ( ~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)~=1))
-     %   if (~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)==1))
-             featurename=[db,name];                 
-             featureInfo=[featureInfo;featurename];
+     strain=0; stest=0;
+     naked_class_name=get_naked_class_name(datapath{datacount});
+     splits_file=[splits_path,naked_class_name,'_test_split',num2str(splits_num),'.txt'];
+     fid=fopen(splits_file,'r');
+   while (~feof(fid))
+        tmpstr=fgets(fid);
+        split_tmpstr=regexp(tmpstr,' ', 'split');
+        featurename=[datapath{datacount},split_tmpstr{1},keyword];tag=str2num(split_tmpstr{2});
+      
+       try
+           
+        if (tag==1) %train set
+          feat=extract_feature_fromfile(featurename);
+          train_set=[train_set;feat];
+          train_label=[train_label;datacount];
+          strain=strain+1;
+          
+        elseif (tag==2) %test set
+          feat=extract_feature_fromfile(featurename);
+          test_set=[test_set;feat];
+          test_label=[test_label;datacount];
+          stest=stest+1;
         end
-     end
-     
-     t=cd(root);
-     clc;
-     
-     featureCount=size(featureInfo,1);
-     train_num=randperm(featureCount,round(featureCount*train_ratio)); %generate trainset orders according to ratio.
+        
+       catch
+             disp(['Error reading file:',featurename]); 
+       end
+        
+    end   %end of while 
      
 
-     
-     strain=0; stest=0;
-     for i=1:featureCount
-      try
-           feat=extract_feature_fromfile(featureInfo{i});
-           if (any(train_num==i)==1)   % i-th feature belongs to train_set.
-             train_set=[train_set;feat];
-             train_label=[train_label;datacount];
-             strain=strain+1;
-           else                       %other order num, belongs to test_set.
-             test_set=[test_set;feat];
-             test_label=[test_label;datacount];
-             stest=stest+1;
-           end
-           
-       catch
-           disp(['Error reading file:',featureInfo{i}]);
-           datalist_featureCount(1,datacount)=datalist_featureCount(1,datacount)-1;
-           if (any(train_num==i)==1);datalist_train_num(1,datacount)=datalist_train_num(1,datacount)-1;end  
-           
-          % pause;
-      end
-      
-       if ((strain+stest>=max_total_clips) && (strain>=max_total_clips*train_ratio) && (stest>=max_total_clips*(1-train_ratio)))
-           break;
-       end
-     end
-     
      datalist_featureCount(1,datacount)=strain+stest;
      datalist_train_num(1,datacount)=strain;
        
@@ -124,6 +113,8 @@ function [] = test_engine(searchArg)
     %Training and test accuracy.
     disp('Training svm...');
     model=svmtrain(train_label,train_set,['-t 0 -c ',num2str(svmarg.bestc),' -g ',num2str(svmarg.bestg)]);  %temporary only.
+   % model=svmtrain(train_label,train_set,['-t 2  -g ',num2str(svmarg.bestg)]); 
+  %   model=svmtrain(train_label,train_set,'-t 2');
     save(svmmodel_path,'model');
     disp('Running test...');    
     [~, accur, ~]=svmpredict(test_label,test_set,model);  
@@ -131,6 +122,11 @@ function [] = test_engine(searchArg)
     disp(['Accuracy=',num2str(accur(1))]);      
    
         
+end
+
+function [naked_class_name]=get_naked_class_name(naked_class_name)
+ dash_pos=findstr(naked_class_name,'/');
+ naked_class_name=naked_class_name(dash_pos(1,1)+1:dash_pos(1,2)-1);
 end
 
 function [featureVector] = extract_feature_fromfile(fileinfo)
@@ -158,3 +154,55 @@ disp(i);
 p1=p1(1:i(end));
 res=p1;
 end
+
+
+%      db=datapath{datacount};
+%      t=cd(db);
+%      clc;
+%      allnames = struct2cell(dir);            
+%      [m,n] = size(allnames);
+%      featureInfo={};
+%      for i= 1:n                              
+%         name = allnames{1,i}                 
+%          if ( ~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)~=1))
+%      %   if (~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)==1))
+%              featurename=[db,name];                 
+%              featureInfo=[featureInfo;featurename];
+%         end
+%      end
+%      
+%      t=cd(root);
+%      clc;
+%      
+%      featureCount=size(featureInfo,1);
+%      train_num=randperm(featureCount,round(featureCount*train_ratio)); %generate trainset orders according to ratio.
+%      
+% 
+%      
+%      strain=0; stest=0;
+%      for i=1:featureCount
+%       try
+%            feat=extract_feature_fromfile(featureInfo{i});
+%            if (any(train_num==i)==1)   % i-th feature belongs to train_set.
+%              train_set=[train_set;feat];
+%              train_label=[train_label;datacount];
+%              strain=strain+1;
+%            else                       %other order num, belongs to test_set.
+%              test_set=[test_set;feat];
+%              test_label=[test_label;datacount];
+%              stest=stest+1;
+%            end
+%            
+%        catch
+%            disp(['Error reading file:',featureInfo{i}]);
+%            datalist_featureCount(1,datacount)=datalist_featureCount(1,datacount)-1;
+%            if (any(train_num==i)==1);datalist_train_num(1,datacount)=datalist_train_num(1,datacount)-1;end  
+%            
+%           % pause;
+%       end
+%       
+%        if ((strain+stest>=max_total_clips) && (strain>=max_total_clips*train_ratio) && (stest>=max_total_clips*(1-train_ratio)))
+%            break;
+%        end
+%      end
+     

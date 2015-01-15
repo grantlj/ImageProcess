@@ -1,6 +1,6 @@
 %Generate latent svm model.(1v1 svm)
 %Comparing test: 50 feature dim randomly selected. classical libsvm: 33.3%
-function [] = lsvm_generator_1v1()
+function [] = lsvm_generator_1v1(splits_num)
 addpath(genpath('libsvm-3.18/'));
   try
       make
@@ -9,22 +9,27 @@ addpath(genpath('libsvm-3.18/'));
       pause;
   end
   
+   if (~exist('splits_num','var'))
+     splits_num=1;
+   end
+  
    datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
                  'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'};
              
- %datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'};
-
+% datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'};
+ %datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/wave/'};
+ splits_path='dataset/testTrainMulti_7030_splits/';
 % datapath={'dataset/pick/','dataset/run/','dataset/throw/','dataset/walk/','dataset/wave/'...
 %             'dataset/brush_hair/','dataset/catch/','dataset/clap/','dataset/climb_stairs/'...
 %             'dataset/golf/','dataset/jump/','dataset/kick_ball/','dataset/pour/','dataset/pullup/'...
 %             'dataset/push/','dataset/shoot_ball/','dataset/shoot_bow/','dataset/shoot_gun/','dataset/sit/'...
 %             'dataset/stand/','dataset/swing_baseball/'};
  keyword='-Feature.mat'; %feature file key word.
- train_ratio=0.7;         %the radio of train set over all data. 
+ %train_ratio=0.7;         %the radio of train set over all data. 
  global train_w_b_ratio;
  
  train_w_b_ratio=0.5;     %we specify different train_data for w b and theta.
- max_total_clips=100;          %the maximum number of train+test in each set.
+% max_total_clips=100;          %the maximum number of train+test in each set.
  
  test_set={};train_set={}; %train_label=[];test_label=[];
  
@@ -41,58 +46,41 @@ save('1v1_lsvm_rand_row.mat','rand_row');  %save it, for later use.
  
  for datacount=1:size(datapath,2)
      db=datapath{datacount};
-     t=cd(db);
-     clc;
-     allnames = struct2cell(dir);            
-     [m,n] = size(allnames);
-     featureInfo={};
-     for i= 1:n                              
-        name = allnames{1,i}                 
-        if ( ~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)~=1))
-             featurename=[name];                 
-             featureInfo=[featureInfo;featurename];
+     naked_class_name=get_naked_class_name(datapath{datacount});
+     splits_file=[splits_path,naked_class_name,'_test_split',num2str(splits_num),'.txt'];
+     fid=fopen(splits_file,'r');
+     
+     strain=0; stest=0;
+     trains={};tests={}; train_label=[];test_label=[];
+     
+     while (~feof(fid))
+        tmpstr=fgets(fid);
+        split_tmpstr=regexp(tmpstr,' ', 'split');
+        featurename=[split_tmpstr{1},keyword];tag=str2num(split_tmpstr{2});
+        
+       try
+           
+        if (tag==1) %train set
+          feat=extract_feature_fromfile(db,featurename);
+          feat=feat(:,rand_row);
+          strain=strain+1;
+          trains{strain}=feat;
+          train_label=[train_label;datacount];
+          
+        elseif (tag==2) %test set
+          feat=extract_feature_fromfile(db,featurename);
+          feat=feat(:,rand_row);
+          stest=stest+1;
+          tests{stest}=feat;
+          test_label=[test_label;datacount];
         end
-     end
-     
-     t=cd(root);
-     clc;
-     
-     featureCount=size(featureInfo,1);
-     train_num=randperm(featureCount,round(featureCount*train_ratio)); %generate trainset orders according to ratio.
-     
-     datalist_featureCount(1,datacount)=featureCount;
-     datalist_train_num(1,datacount)=size(train_num,2);
-     
-      strain=0; stest=0;
-      trains={};tests={}; train_label=[];test_label=[];
-      
-      for i=1:featureCount
-      try
-           feat=extract_feature_fromfile(db,featureInfo{i});
-           feat=feat(:,rand_row);
-           
-           if (any(train_num==i)==1)   % i-th feature belongs to train_set.
-             strain=strain+1;
-             trains{strain}=feat;
-             train_label=[train_label;datacount];
-              
-           else                       %other order num, belongs to test_set.
-             stest=stest+1;
-             tests{stest}=feat;
-             test_label=[test_label;datacount];
-              
-           end
+        
        catch
-           disp(['Error reading file:',featureInfo{i}]);
-           datalist_featureCount(1,datacount)=datalist_featureCount(1,datacount)-1;
-           if (any(train_num==i)==1);datalist_train_num(1,datacount)=datalist_train_num(1,datacount)-1;end  
-           
-          % pause;
-      end
-          if ((strain+stest>=max_total_clips) && (strain>=max_total_clips*train_ratio) && (stest>=max_total_clips*(1-train_ratio)))
-           break;
+             disp(['Error reading file:',featurename]); 
        end
-      end
+        
+    end   %end of while 
+    
       
       train_set{datacount}.trains=trains; train_set{datacount}.train_label=train_label;
       
@@ -457,3 +445,62 @@ disp(i);
 p1=p1(1:i(end));
 res=p1;
 end
+
+
+function [naked_class_name]=get_naked_class_name(naked_class_name)
+ dash_pos=findstr(naked_class_name,'/');
+ naked_class_name=naked_class_name(dash_pos(1,1)+1:dash_pos(1,2)-1);
+end
+
+%     t=cd(db);
+%      clc;
+%      allnames = struct2cell(dir);            
+%      [m,n] = size(allnames);
+%      featureInfo={};
+%      for i= 1:n                              
+%         name = allnames{1,i}                 
+%         if ( ~(isempty(findstr(name,keyword))) && (strncmp(name,'LAG-',4)~=1))
+%              featurename=[name];                 
+%              featureInfo=[featureInfo;featurename];
+%         end
+%      end
+%      
+%      t=cd(root);
+%      clc;
+%      
+%      featureCount=size(featureInfo,1);
+%      train_num=randperm(featureCount,round(featureCount*train_ratio)); %generate trainset orders according to ratio.
+%      
+%      datalist_featureCount(1,datacount)=featureCount;
+%      datalist_train_num(1,datacount)=size(train_num,2);
+%      
+%       strain=0; stest=0;
+%       trains={};tests={}; train_label=[];test_label=[];
+%       
+%       for i=1:featureCount
+%       try
+%            feat=extract_feature_fromfile(db,featureInfo{i});
+%            feat=feat(:,rand_row);
+%            
+%            if (any(train_num==i)==1)   % i-th feature belongs to train_set.
+%              strain=strain+1;
+%              trains{strain}=feat;
+%              train_label=[train_label;datacount];
+%               
+%            else                       %other order num, belongs to test_set.
+%              stest=stest+1;
+%              tests{stest}=feat;
+%              test_label=[test_label;datacount];
+%               
+%            end
+%        catch
+%            disp(['Error reading file:',featureInfo{i}]);
+%            datalist_featureCount(1,datacount)=datalist_featureCount(1,datacount)-1;
+%            if (any(train_num==i)==1);datalist_train_num(1,datacount)=datalist_train_num(1,datacount)-1;end  
+%            
+%           % pause;
+%       end
+%           if ((strain+stest>=max_total_clips) && (strain>=max_total_clips*train_ratio) && (stest>=max_total_clips*(1-train_ratio)))
+%            break;
+%        end
+%      end
