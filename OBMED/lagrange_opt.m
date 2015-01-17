@@ -5,7 +5,7 @@ function [feat_new] = lagrange_opt(feat_raw)
   
   Ti=size(feat_raw,1);   %frame count before interporation,
   
-  T=30;  %temporary value;
+  T=20;  %temporary value;
   feat_new=[];
   for i=1:size(feat_raw,2)
     feat_now=feat_raw(:,i);  %take out the i-th column;
@@ -32,6 +32,7 @@ for i=1:m
           end
       end
       s=p*y0(k)+s;
-    end
-    y(i)=s;
+  end
+  y(i)=s;
+ end
 end

@@ -33,8 +33,9 @@ function []=getfeat_single_video(datapath,videoid,out_path)
          feature_max=max(feat_raw);
          feature_min=min(feat_raw);
          feature_mean=mean(feat_raw);
+         feat_lag=lagrange_opt(feat_raw);
 
-         save([out_path,num2str(videoid),'-Feature.mat'],'feature_max','feat_raw','feature_min','feature_mean');
+         save([out_path,num2str(videoid),'-Feature.mat'],'feature_max','feat_raw','feature_min','feature_mean','feat_lag');
          disp(['Finish handling:',videopath]);
  end
 end

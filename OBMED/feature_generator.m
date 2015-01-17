@@ -35,8 +35,12 @@ function [] = feature_generator(dev_evl)
     if (~exist(out_path,'dir')); mkdir(out_path);end
     
     for j=1:size(mask,1)
-      getfeat_single_video(datapath,idxinfo(mask(j)),out_path);
-      cd(root);clc;
+      try
+        getfeat_single_video(datapath,idxinfo(mask(j)),out_path);
+      catch
+        disp(['I/O Error on :',num2str(idxinfo(mask(j)))]);  
+      end
+        cd(root);clc;
     end   %end of j
   end  %end of i
   
