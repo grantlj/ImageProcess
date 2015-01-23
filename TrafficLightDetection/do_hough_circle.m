@@ -66,12 +66,15 @@ end
 
 % 从超过峰值阈值中得到
 for k=1:length
+    try
     par3 = floor(index(k)/(m*n))+1;%取整
     par2 = floor((index(k)-(par3-1)*(m*n))/m)+1;
     par1 = index(k)-(par3-1)*(m*n)-(par2-1)*m;
     circleParaXYR = [circleParaXYR;par1,par2,par3];
     hough_circle(par1,par2)= true; %这时得到好多圆心和半径，不同的圆的圆心处聚集好多点，这是因为所给的圆不是标准的圆
     %fprintf(1,'test1:Center %d %d \n',par1,par2);
+    catch
+    end
 end
 
 %集中在各个圆的圆心处的点取平均，得到针对每个圆的精确圆心和半径！

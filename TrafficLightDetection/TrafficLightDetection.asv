@@ -1,6 +1,6 @@
 function [ output_args ] = TrafficLightDetection()
   close all;
-  im=imread('D:\light2.jpg');
+  im=imread('D:\light3.jpg');
   im_norm_rgb=convert_to_norm_rgb(im);
   
   figure;
