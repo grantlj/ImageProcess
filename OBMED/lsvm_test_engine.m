@@ -1,10 +1,12 @@
 %test engine for our lsvm model.
 function [accuracy,fval] = lsvm_test_engine(itecount,test_set,test_object)
+addpath(genpath('VLFEATROOT/'));
 addpath(genpath('libsvm-3.18/'));
   try
-      make
+      make;
+      vl_setup;
   catch
-      disp('Error compiling libsvm...');
+      disp('Error compiling libsvm OR vlfeat..');
       pause;
   end
  
@@ -29,24 +31,26 @@ addpath(genpath('libsvm-3.18/'));
    if (isempty(feat))
       continue;
    end
-      
-   total=total+1;
-   thetaMat=model.thetaMat;
-   vec=thetaMat*feat;
-   decision_values=model.w'*vec'+model.b;
    
-   score=[score;decision_values];
+         total=total+1;
+
+       thetaMat=model.thetaMat;
+       vec=thetaMat*feat;
+       decision_values=model.w'*vec'+model.b;
+
+       score=[score;decision_values];
+
+       if (decision_values>0); max_dec_p=1; else max_dec_p=-1;end
+
+       if (test_label(i,1)==max_dec_p)
+          success=success+1;
+       end
    
-   if (decision_values>0); max_dec_p=1; else max_dec_p=-1;end
-   
-   if (test_label(i,1)==max_dec_p)
-      success=success+1;
-   end
    
  end
  %  clc;
-    disp(num2str(success/total));
-    accuracy=success/total;
+    [RECALL, PRECISION, INFOAP]=vl_pr(test_label,score);
+    accuracy=INFOAP.ap;
     
     subplot(1,2,1);
     vl_pr(test_label,score);

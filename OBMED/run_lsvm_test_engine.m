@@ -17,7 +17,9 @@ function []=run_lsvm_test_engine(test_object)
           fvals(1,i)=fval;
       end
     end
-
+    
+    save(['figures/',test_object,'_AP_RAW.mat'],'acc');
+    
     plot([1:modelcount],acc(2:modelcount+1));
     grid on;
     hold on;
@@ -29,5 +31,5 @@ function []=run_lsvm_test_engine(test_object)
     grid on;
     hold on;
     plot([1:modelcount],fvals);
-    saveas(gcf,['figures/ITEINFO_',test_object,'MODELCOUNT_',num2str(modelcount),'.fig']);
+    saveas(gcf,['figures/ITEINFO_',test_object,'_MODELCOUNT_',num2str(modelcount),'.fig']);
 end
