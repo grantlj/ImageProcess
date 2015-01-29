@@ -76,7 +76,7 @@ global train_w_b_ratio;
 train_feat=[];
 f=0;
 for i=1:size(train_set_global,2)
-    for j=floor(size(train_set_global{i}.trains,2)*train_w_b_ratio)+1:size(train_set_global{i}.trains,2)
+    for j=1:size(train_set_global{i}.trains,2)
         
         if (i==1 || i==2)
             feat_new=train_set_global{i}.trains{j};   %a single video's mat.
@@ -137,7 +137,8 @@ svmmodel_global=model.svmmodel;
 
 for i=1:size(train_set,2)
     % snega=0;
-    for j=floor(size(train_set{i}.trains,2)*train_w_b_ratio)+1:size(train_set{i}.trains,2)
+  %  for j=floor(size(train_set{i}.trains,2)*train_w_b_ratio)+1:size(train_set{i}.trains,2)
+   for j=1:size(train_set{i}.trains,2)   %cancel the w_b validation strategy.
         feat_new=train_set{i}.trains{j};   %a single video's mat.
         if(isempty(feat_new)) continue; end;
         if (i==1)
@@ -154,6 +155,10 @@ end
 opts = optimoptions(@fmincon,'MaxFunEvals',50000);
 %[ansMat,fval]=fmincon(@theta_opt,zeros(size(model.thetaMat(:)')));%,[],[])   % ,[],[],[],[],'theta_con',opts);
 global initWeight;
+
+initWeight=rand(1,size(initWeight));               %random strategy.
+initWeight=initWeight./sum(initWeight);
+
 [ansMat,fval, exitflag]=fmincon(@theta_opt, ...                                                             %goal function.                                                    initial value.
     initWeight',...
     [],[],                    ...                                               %linear inequility. A,b
@@ -183,7 +188,8 @@ global train_w_b_ratio;
 
 for i=1:size(train_set,2)
     
-    for j=1:floor(size(train_set{i}.trains,2)*train_w_b_ratio)   %specify w b's data.
+  %  for j=1:floor(size(train_set{i}.trains,2)*train_w_b_ratio)   %specify w b's data.
+     for j=1:size(train_set{i}.trains,2)   %cancel the w_b validation strategy.
         feat_new=train_set{i}.trains{j};   %a single video's mat.
         if(isempty(feat_new))
             continue;
