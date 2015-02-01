@@ -11,7 +11,7 @@ addpath(genpath('libsvm-3.18/'));
   end
  
  
- %itecount=1;                    %select models at ite count of n.
+ %itecount=1;                    %select models of the n-th iteration.
  load(['lsvm_model/',test_object,'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);   %load models.
  try
    fval=model.fval;
@@ -35,7 +35,12 @@ addpath(genpath('libsvm-3.18/'));
          total=total+1;
 
        thetaMat=model.thetaMat;
+       %first we get the actual feature by multiply feature matrix with
+       %pooling-parameter theta.
        vec=thetaMat*feat;
+       
+       %get decision value by w,b in svm. >0: belongs to pos, <0 belongs to
+       %nega.
        decision_values=model.w'*vec'+model.b;
 
        score=[score;decision_values];

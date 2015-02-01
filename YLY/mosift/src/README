@@ -1,0 +1,2 @@
+Pick the makefile that most fits your environment, then type make
+You will need pkg-config, opencv 1.0 ~ 2.1, ffmpeg installed

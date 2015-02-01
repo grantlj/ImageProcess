@@ -1,5 +1,5 @@
 function []=run_lsvm_test_engine(test_object)
-
+   %test_object:designate the action type for test.
    % clear all;
     clc;
     acc=[];
@@ -11,6 +11,9 @@ function []=run_lsvm_test_engine(test_object)
      load([test_object,'_test_set.mat']);     %load test set.
 
     fvals=zeros(1,modelcount); 
+    
+    %call lsvm_test_engine for each models in iteration and acquire 
+    %their accuracy and object function value, respectively.
     for i=0:modelcount
       [acc(i+1),fval]=lsvm_test_engine(i,test_set,test_object);
       if (i~=0)
@@ -25,7 +28,7 @@ function []=run_lsvm_test_engine(test_object)
     hold on;
     %axis([1,modelcount,0,1]);
     %plot([1:modelcount],acc(0)*ones(1,2:modelcount+1),'r');
-    line([1,modelcount+2],[acc(1),acc(1)],'Color','r','LineWidth',2);
+    line([1,modelcount+2],[acc(1),acc(1)],'Color','r','LineWidth',2);  %the baseline: AP of the default pooling strategy.
 
     figure;
     grid on;
