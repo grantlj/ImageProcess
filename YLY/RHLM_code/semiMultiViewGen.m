@@ -33,6 +33,7 @@ temp = zeros(trainNum,trainNum);
 
 % temp = temp + eyemat / ( L{1}+alpha1* (eyemat -(views{1}')/(views{1}*views{1}' + r*eye(trainF))*views{1}) +alpha2*eyemat );
 %% 
+disp('Doing first For...');
 for i=1:viewNum
     trainF = size(views{i}, 1);
     temp = temp + inv ( Lrga{i}+alpha1* (lc - lc*(views{i}')/(views{i}*lc*views{i}' + r*eye(trainF))*views{i}*lc) +alpha2*eyemat );
@@ -42,12 +43,16 @@ end
 
 f =( viewNum*alpha2*eyemat + U - alpha2^2* temp )\(U*labels);
 clear temp;
+clear U;
 
+disp('Finish first For...');
 for i=1:viewNum
+    disp(['Doing second for:',num2str(i)]);
     trainF = size(views{i}, 1);
-    feach{i} = alpha2* eyemat / ( Lrga{i} + alpha1* (lc - lc*(views{i}')/(views{i}*lc*views{i}' + r*eye(trainF))*views{i}*lc)  + alpha2*eyemat ) * f;
-    w{i} = eye(trainF) / (views{i}*lc*views{i}' + r*eye(trainF)) * views{i}*lc*feach{i};
+    tmp=views{i}*lc*views{i}' + r*eye(trainF);
+    feach{i} = alpha2* eyemat / ( Lrga{i} + alpha1* (lc - lc*(views{i}')/tmp*views{i}*lc)  + alpha2*eyemat ) * f;
+    w{i} = eye(trainF) / tmp * views{i}*lc*feach{i};
     b{i} = (feach{i}'*oneline+w{i}'*views{i}*oneline)/trainNum;
-
+    clear feach;
 end
 clear Lrga;

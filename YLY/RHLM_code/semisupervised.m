@@ -26,18 +26,22 @@ tic;
 % save Laplacian_GK L1 L2;
 % load Laplacian_GK;
 
+disp('Calculating LRGA...');
 for i=1:size(viewsTr,2)
    Lrga{i}=Laplacian_LRGA(viewsTr{i},para); 
 end
+disp('Finish LRGA...');
 
 oneline = ones(trainNum,1);
 % training
-fid=fopen(logfilename,'w');
+
 max_map=0;
-for r=-6:3:6
-    for alpha1=-6:3:6
-        for alpha2=-6:3:6
-            [f, feach, w, b] = semiMultiViewGen(viewsTr, labelTr, U, 10^r, 10^alpha1, 10^alpha2, Lrga);
+% for r=-6:3:6
+%     for alpha1=-6:3:6
+%         for alpha2=-6:3:6
+            r=0;alpha1=0;alpha2=0;
+            disp(['calculating with parameter: r:',num2str(r),'   alpha1:',num2str(alpha1),'    alpha2:',num2str(alpha2)]);
+            [w, b] = semiMultiViewGen(viewsTr, labelTr, U, 10^r, 10^alpha1, 10^alpha2, Lrga);
            %results = ((viewsTest{1}*w{1}+oneline*b{1}')+(viewsTest{2}*w{2}+oneline*b{2}'))/2;
             
             viewNum=size(viewsTest,2);
@@ -48,6 +52,10 @@ for r=-6:3:6
             results=results/viewNum;
             
             map = evaluationMAP(labelnp, results);
+            disp(['MAP=',num2str(map)]);
+            
+            %save to file.
+            fid=fopen(logfilename,'w');
             fprintf(fid,'gamma=%d alpha=%d beta=%d\n',r,alpha1, alpha2);
             fprintf(fid,'mean:%d\n',mean(map));
             if mean(map)>max_map
@@ -55,14 +63,18 @@ for r=-6:3:6
             end
             fprintf(fid,'%d ',map);
             fprintf(fid,'\n');
-        end
-    end
-end
+            fclose(fid);
+%         end
+%     end
+% end
+
 disp(['max_map=',num2str(max_map)]);
+fid=fopen(logfilename,'w');
 fprintf(fid,'%d ',max_map);
 fprintf(fid,'\n');
+fclose(fid);
 toc;
-
+end
 
 
 
