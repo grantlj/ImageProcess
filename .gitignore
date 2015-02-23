@@ -12,6 +12,7 @@ tmp/
 *.swp
 *~.nib
 *.jpg
+*.png
 *.avi
 local.properties
 .classpath
