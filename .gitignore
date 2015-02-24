@@ -1,7 +1,7 @@
 #################
 ## Eclipse
 #################
-
+*.sdn
 *.pydevproject
 .project
 .metadata
