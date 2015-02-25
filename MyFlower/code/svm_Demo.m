@@ -1,14 +1,20 @@
 function [] = svm_Demo(im_path)
+ 
   class_count=17;
   
   %im_path='test3.jpg';
   im=imread(im_path);
   h_raw=size(im,1);w_raw=size(im,2);
   
+  %get json file name.
+  json_path=strrep(im_path,'.jpg','.json');
+  
+  %resize if too big.
   if (h_raw>600)
       im=imresize(im,600/h_raw);
   end
- 
+  
+  %extracting raw feature.
   disp('Extracting raw feature...');
   tic;
   raw_feat.imsize=[size(im,1),size(im,2)];  %size: height*width.
@@ -17,9 +23,10 @@ function [] = svm_Demo(im_path)
   raw_feat.texture_feat=get_texture_feat(im);
   toc;
   
-  %hsv_center_path='../dataset/hsv_words_centers.mat';
- %texture_center_path='../dataset/texture_words_centers.mat';
-  %shape_center_path='../dataset/shape_words_centers.mat';
+  %load centers per-trained.
+%   hsv_center_path='../dataset/hsv_words_centers.mat';
+%   texture_center_path='../dataset/texture_words_centers.mat';
+%   shape_center_path='../dataset/shape_words_centers.mat';
   
   hsv_center_path='hsv_words_centers.mat';
   texture_center_path='texture_words_centers.mat';
@@ -37,13 +44,15 @@ function [] = svm_Demo(im_path)
   load(texture_center_path);
   texture_center=centers;
   texture_tree=vl_kdtreebuild(centers);
-  
+   
+  %generate final bag-of-words feature.
    bow_feat=[0.4*hsv_vote(raw_feat.hsv_feat,hsv_tree,hsv_center),...
                   shape_vote(raw_feat.shape_feat,shape_tree,shape_center),...
                   texture_vote(raw_feat.texture_feat,texture_tree,texture_center)];
               
    toc;
    
+   %conduct classificaton.
    disp('Doing classification...');
    tic;
    %svm_model_path='../dataset/svmmodel.mat';
@@ -55,10 +64,20 @@ function [] = svm_Demo(im_path)
    prob=prob';
    prob=sortrows(prob,1);
    
+   
    for i=1:5
      disp([get_flower_name(prob(class_count-i+1,2)),' with prob:',num2str(prob(class_count-i+1,1))]);
+     json_struct.data{i}.name=get_flower_name(prob(class_count-i+1,2));
+     json_struct.data{i}.prob=prob(class_count-i+1,1);
   end
-   disp(['Image :',im_path,' is classified as:',get_flower_name(predict_label)]);
+   disp(['Image :',im_path,' is classified as:',get_flower_name(predict_label),' Json file saved:',json_path]);
+   
+   %save json string.
+   json_struct.class=get_flower_name(predict_label);
+   json_str=savejson('ret',json_struct,struct('ParseLogical',1));
+   fid=fopen(json_path,'w');
+   fprintf(fid,char(json_str));
+   fclose(fid);
    toc;
 
 end

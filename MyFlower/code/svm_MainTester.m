@@ -9,10 +9,10 @@ function svm_MainTester()
  load(truth_path);
  load(svm_model_path);
  
- feat_mat=zeros(size(tst1,2),1300); label_mat=zeros(size(tst1,2),1);
+ feat_mat=zeros(size(tst3,2),1300); label_mat=zeros(size(tst3,2),1);
  disp(['Loading testing data...']);
- for i=1:size(tst1,2)
-   img_count=tst1(1,i);
+ for i=1:size(tst3,2)
+   img_count=tst3(1,i);
    filename=[bow_feat_path,'image_',sprintf('%04d',img_count),'_bow_feat.mat'];
    load(filename);
    feat_mat(i,:)=bow_feat(1,:);

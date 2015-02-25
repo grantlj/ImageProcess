@@ -8,9 +8,11 @@ function svm_generator()
  load(data_splits_path);
  load(truth_path);
  
- feat_mat=zeros(size(trn1,2),1300); label_mat=zeros(size(trn1,2),1);
+
  
  disp(['Loading training data...']);
+ trn1=[trn1,val1,trn2,val2,trn3,val3];
+ feat_mat=zeros(size(trn1,2),1300); label_mat=zeros(size(trn1,2),1);
  for i=1:size(trn1,2)
    img_count=trn1(1,i);
    filename=[bow_feat_path,'image_',sprintf('%04d',img_count),'_bow_feat.mat'];
