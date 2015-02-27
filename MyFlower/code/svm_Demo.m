@@ -1,13 +1,23 @@
-function [] = svm_Demo(im_path)
+function [] = svm_Demo(im_path,x1,y1,x2,y2)
  
   class_count=17;
   
   %im_path='test3.jpg';
   im=imread(im_path);
+  
+ try
+     x1=str2num(x1);y1=str2num(y1);x2=str2num(x2);y2=str2num(y2);
+     im=im(y1:y2,x1:x2,:);  %try to resize.
+     disp(['BOUND OK...',num2str(x1),num2str(x2),num2str(y1),num2str(y2)]);
+ catch
+     disp('ERROR IN BOUND');
+ end
+ %imshow(im);
+ 
   h_raw=size(im,1);w_raw=size(im,2);
   
   %get json file name.
-  json_path=strrep(im_path,'.jpg','.json');
+  %json_path=strrep(im_path,'.jpg','.json');
   
   %resize if too big.
   if (h_raw>600)
@@ -15,13 +25,13 @@ function [] = svm_Demo(im_path)
   end
   
   %extracting raw feature.
-  disp('Extracting raw feature...');
-  tic;
+ % disp('Extracting raw feature...');
+  %tic;
   raw_feat.imsize=[size(im,1),size(im,2)];  %size: height*width.
   raw_feat.hsv_feat=get_hsv_feat(im);
   raw_feat.shape_feat=get_shape_feat(im);
   raw_feat.texture_feat=get_texture_feat(im);
-  toc;
+ % toc;
   
   %load centers per-trained.
 %   hsv_center_path='../dataset/hsv_words_centers.mat';
@@ -32,7 +42,7 @@ function [] = svm_Demo(im_path)
   texture_center_path='texture_words_centers.mat';
   shape_center_path='shape_words_centers.mat';
  
-  tic;
+ % tic;
   load(hsv_center_path);
   hsv_center=centers;
   hsv_tree=vl_kdtreebuild(centers);
@@ -50,12 +60,12 @@ function [] = svm_Demo(im_path)
                   shape_vote(raw_feat.shape_feat,shape_tree,shape_center),...
                   texture_vote(raw_feat.texture_feat,texture_tree,texture_center)];
               
-   toc;
+ %  toc;
    
    %conduct classificaton.
-   disp('Doing classification...');
-   tic;
-   %svm_model_path='../dataset/svmmodel.mat';
+  % disp('Doing classification...');
+  % tic;
+  % svm_model_path='../dataset/svmmodel.mat';
    svm_model_path='svmmodel.mat';
    load(svm_model_path);
    [predict_label, accuracy, prob] = svmpredict(1,bow_feat, model,'-b 1');
@@ -66,19 +76,20 @@ function [] = svm_Demo(im_path)
    
    
    for i=1:5
-     disp([get_flower_name(prob(class_count-i+1,2)),' with prob:',num2str(prob(class_count-i+1,1))]);
+  %   disp([get_flower_name(prob(class_count-i+1,2)),' with prob:',num2str(prob(class_count-i+1,1))]);
      json_struct.data{i}.name=get_flower_name(prob(class_count-i+1,2));
      json_struct.data{i}.prob=prob(class_count-i+1,1);
   end
-   disp(['Image :',im_path,' is classified as:',get_flower_name(predict_label),' Json file saved:',json_path]);
+  % disp(['Image :',im_path,' is classified as:',get_flower_name(predict_label),' Json file saved:',json_path]);
    
    %save json string.
-   json_struct.class=get_flower_name(predict_label);
+   json_struct.category=get_flower_name(predict_label);
    json_str=savejson('ret',json_struct,struct('ParseLogical',1));
-   fid=fopen(json_path,'w');
-   fprintf(fid,char(json_str));
-   fclose(fid);
-   toc;
+   json_str
+  % fid=fopen(json_path,'w+');
+  % fprintf(fid,char(json_str));
+  % fclose(fid);
+ %  toc;
 
 end
 
@@ -158,7 +169,7 @@ featvec = [ims{8}(:) ims{7}(:) ims{1}(:) ims{3}(:) ims{5}(:) ims{2}(:) ims{4}(:)
 end
 
 function [feat]=hsv_vote(hsv_feat,hsv_tree,hsv_center)
-  disp('Calculating image color representation...');
+ % disp('Calculating image color representation...');
   feat=zeros(1,size(hsv_center,2));
   for i=1:size(hsv_feat,1)
       for j=1:size(hsv_feat,2)
@@ -171,7 +182,7 @@ function [feat]=hsv_vote(hsv_feat,hsv_tree,hsv_center)
 end
 
 function [feat]=shape_vote(shape_feat,shape_tree,shape_center)
-  disp('Calculating image shape representation...');
+%  disp('Calculating image shape representation...');
   feat=zeros(1,size(shape_center,2));
   for i=1:size(shape_feat,1)
     tmp=double(shape_feat(i,:)');
@@ -182,7 +193,7 @@ function [feat]=shape_vote(shape_feat,shape_tree,shape_center)
 end
 
 function [feat]=texture_vote(texture_feat,texture_tree,texture_center)
-disp('Calculating image texture representation...');
+%disp('Calculating image texture representation...');
 feat=zeros(1,size(texture_center,2));
   for i=1:size(texture_feat,1)
     tmp=double(texture_feat(i,:)');
