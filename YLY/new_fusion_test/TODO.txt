@@ -1,0 +1,16 @@
+fisher vector 的fusion实验
+任务如下：
+
+running on pc:
+SIFT+ Traj； done 
+SIFT+ MBHx ； server
+SIFT+STIP；   server
+
+running on server:  4508  （done)
+Traj + STIP+ SIFT；
+MBHx + STIP + SIFT；
+
+running on server: 5896 （done）
+Traj + SIFT + STIP+ MoSIFT
+MBHx + SIFT + STIP + MoSIFT；
+这7组的early fusion
