@@ -1,0 +1,192 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>cnn_Demo</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-03-10"><meta name="DC.source" content="cnn_Demo.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> [] = cnn_Demo(im_path,x1,y1,x2,y2)
+class_count=17;
+im=imread(im_path);
+data_mean_path=<span class="string">'data_mean.mat'</span>;
+load(<span class="string">'net-epoch-45.mat'</span>);
+load(data_mean_path);data_mean=images.data_mean;
+net.layers{end}.type = <span class="string">'softmax'</span>;
+
+ <span class="keyword">try</span>
+     x1=str2num(x1);y1=str2num(y1);x2=str2num(x2);y2=str2num(y2);
+     im=im(y1:y2,x1:x2,:);  <span class="comment">%try to resize.</span>
+     disp([<span class="string">'BOUND OK...'</span>,num2str(x1),num2str(x2),num2str(y1),num2str(y2)]);
+ <span class="keyword">catch</span>
+     disp(<span class="string">'ERROR IN BOUND'</span>);
+ <span class="keyword">end</span>
+
+ <span class="comment">%pre-processing.</span>
+  im=imresize(im,[net.normalization.imageSize(1,1),net.normalization.imageSize(1,2)]);
+  im=double(im)-data_mean;
+  im=single(im);
+  im=gpuArray(im);
+ <span class="comment">%imshow(im);</span>
+
+ <span class="comment">%run cnn.</span>
+ res=vl_simplenn(net,im);
+
+ scores = squeeze(gather(res(end).x)) ;
+ score=zeros(1,class_count);
+ <span class="keyword">for</span> n=1:class_count
+     <span class="keyword">for</span> i=1:size(scores,1)
+         <span class="keyword">for</span> j=1:size(scores,2)
+             score(n)=score(n)+scores(i,j,n);
+         <span class="keyword">end</span>
+     <span class="keyword">end</span>
+ <span class="keyword">end</span>
+
+ score=score./sum(score);
+ score(2,:)=1:class_count;
+ score=score';
+ score=sortrows(score,1);
+
+  <span class="keyword">for</span> i=1:5
+  <span class="comment">%   disp([get_flower_name(score(class_count-i+1,2)),' with score:',num2str(score(class_count-i+1,1))]);</span>
+     json_struct.data{i}.name=get_flower_name(score(class_count-i+1,2));
+     json_struct.data{i}.score=score(class_count-i+1,1);
+  <span class="keyword">end</span>
+  <span class="comment">% disp(['Image :',im_path,' is classified as:',get_flower_name(predict_label),' Json file saved:',json_path]);</span>
+
+   <span class="comment">%save json string.</span>
+   json_struct.category=json_struct.data{1}.name;
+   json_str=savejson(<span class="string">'ret'</span>,json_struct,struct(<span class="string">'ParseLogical'</span>,1));
+   json_str
+  <span class="comment">% fid=fopen(json_path,'w+');</span>
+  <span class="comment">% fprintf(fid,char(json_str));</span>
+  <span class="comment">% fclose(fid);</span>
+ <span class="comment">%  toc;</span>
+
+<span class="keyword">end</span>
+</pre><pre class="codeoutput error">&#38169;&#35823;&#20351;&#29992; cnn_Demo (line 3)
+&#36755;&#20837;&#21442;&#25968;&#30340;&#25968;&#30446;&#19981;&#36275;&#12290;
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function [] = cnn_Demo(im_path,x1,y1,x2,y2)
+class_count=17;
+im=imread(im_path);
+data_mean_path='data_mean.mat';
+load('net-epoch-45.mat');
+load(data_mean_path);data_mean=images.data_mean;
+net.layers{end}.type = 'softmax';
+  
+ try
+     x1=str2num(x1);y1=str2num(y1);x2=str2num(x2);y2=str2num(y2);
+     im=im(y1:y2,x1:x2,:);  %try to resize.
+     disp(['BOUND OK...',num2str(x1),num2str(x2),num2str(y1),num2str(y2)]);
+ catch
+     disp('ERROR IN BOUND');
+ end
+ 
+ %pre-processing.
+  im=imresize(im,[net.normalization.imageSize(1,1),net.normalization.imageSize(1,2)]);
+  im=double(im)-data_mean;
+  im=single(im);
+  im=gpuArray(im);
+ %imshow(im);
+ 
+ %run cnn.
+ res=vl_simplenn(net,im);
+     
+ scores = squeeze(gather(res(end).x)) ;
+ score=zeros(1,class_count);
+ for n=1:class_count
+     for i=1:size(scores,1)
+         for j=1:size(scores,2)
+             score(n)=score(n)+scores(i,j,n);
+         end
+     end
+ end
+
+ score=score./sum(score);
+ score(2,:)=1:class_count;
+ score=score';
+ score=sortrows(score,1);
+ 
+  for i=1:5
+  %   disp([get_flower_name(score(class_count-i+1,2)),' with score:',num2str(score(class_count-i+1,1))]);
+     json_struct.data{i}.name=get_flower_name(score(class_count-i+1,2));
+     json_struct.data{i}.score=score(class_count-i+1,1);
+  end
+  % disp(['Image :',im_path,' is classified as:',get_flower_name(predict_label),' Json file saved:',json_path]);
+   
+   %save json string.
+   json_struct.category=json_struct.data{1}.name;
+   json_str=savejson('ret',json_struct,struct('ParseLogical',1));
+   json_str
+  % fid=fopen(json_path,'w+');
+  % fprintf(fid,char(json_str));
+  % fclose(fid);
+ %  toc;
+
+end
+
+
+##### SOURCE END #####
+--></body></html>

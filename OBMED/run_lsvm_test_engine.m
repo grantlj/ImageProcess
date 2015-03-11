@@ -1,11 +1,12 @@
-function []=run_lsvm_test_engine(test_object)
+function []=run_lsvm_test_engine(test_object,model_folder)
    %test_object:designate the action type for test.
    % clear all;
     clc;
     acc=[];
 
-    t=dir('lsvm_model/');
+    t=dir([model_folder,'/']);
     modelcount=size(t,1)-3;
+    disp(['modelcount=',num2str(modelcount)]);
 
     % load('lsvm_rand_row.mat');    %load rand row info.
      load([test_object,'_test_set.mat']);     %load test set.
@@ -15,24 +16,26 @@ function []=run_lsvm_test_engine(test_object)
     %call lsvm_test_engine for each models in iteration and acquire 
     %their accuracy and object function value, respectively.
     for i=0:modelcount
-      [acc(i+1),fval]=lsvm_test_engine(i,test_set,test_object);
+      
+      [acc(i+1),fval]=lsvm_test_engine(i,test_set,test_object,model_folder);
+      disp([num2str(i),'-th model, acc:',num2str(acc(i+1))]);
       if (i~=0)
           fvals(1,i)=fval;
       end
     end
     
     save(['figures/',test_object,'_AP_RAW.mat'],'acc');
-    
-    plot([1:modelcount],acc(2:modelcount+1));
+    %modelcount=6;
+    plot(1:modelcount,acc(2:modelcount+1));
     grid on;
     hold on;
-    %axis([1,modelcount,0,1]);
-    %plot([1:modelcount],acc(0)*ones(1,2:modelcount+1),'r');
+ %   axis([1,modelcount,0,1]);
+%    plot(1:modelcount,acc(0)*ones(1,modelcount+1),'r');
     line([1,modelcount+2],[acc(1),acc(1)],'Color','r','LineWidth',2);  %the baseline: AP of the default pooling strategy.
 
     figure;
     grid on;
     hold on;
-    plot([1:modelcount],fvals);
+    plot(1:modelcount,fvals);
     saveas(gcf,['figures/ITEINFO_',test_object,'_MODELCOUNT_',num2str(modelcount),'.fig']);
 end

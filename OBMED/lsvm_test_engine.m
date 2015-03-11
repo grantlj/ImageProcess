@@ -1,5 +1,5 @@
 %test engine for our lsvm model.
-function [accuracy,fval] = lsvm_test_engine(itecount,test_set,test_object)
+function [accuracy,fval] = lsvm_test_engine(itecount,test_set,test_object,model_folder)
 addpath(genpath('VLFEATROOT/'));
 addpath(genpath('libsvm-3.18/'));
   try
@@ -12,7 +12,7 @@ addpath(genpath('libsvm-3.18/'));
  
  
  %itecount=1;                    %select models of the n-th iteration.
- load(['lsvm_model/',test_object,'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);   %load models.
+ load([model_folder,'/',test_object,'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);   %load models.
  try
    fval=model.fval;
  catch
@@ -57,12 +57,12 @@ addpath(genpath('libsvm-3.18/'));
     [RECALL, PRECISION, INFOAP]=vl_pr(test_label,score);
     accuracy=INFOAP.ap;
     
-    subplot(1,2,1);
-    vl_pr(test_label,score);
+   % subplot(1,2,1);
+   % vl_pr(test_label,score);
    % plot(recall,precision);
-    subplot(1,2,2);
-    vl_roc(test_label,score);
+   % subplot(1,2,2);
+   % vl_roc(test_label,score);
     
-    saveas(gcf,['figures/AP_ROC_',test_object,'_ITE_',num2str(itecount),'.fig']);
+ %   saveas(gcf,['figures/AP_ROC_',test_object,'_ITE_',num2str(itecount),'.fig']);
 end
 
