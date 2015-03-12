@@ -213,7 +213,7 @@ end
 
 
 %update theta by fmincon, the result is saved in ansMat.
-opts = optimoptions(@fmincon,'MaxFunEvals',5000,'Algorithm','sqp');
+opts = optimoptions(@fmincon,'MaxFunEvals',2000,'Algorithm','sqp');
 
 global initWeight;
 global thetaCount;
