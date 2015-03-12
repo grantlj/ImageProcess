@@ -1,4 +1,4 @@
-function []=run_lsvm_test_engine(test_object,model_folder)
+function []=run_lsvm_test_engine(test_object,word,model_folder)
    %test_object:designate the action type for test.
    % clear all;
     clc;
@@ -17,14 +17,14 @@ function []=run_lsvm_test_engine(test_object,model_folder)
     %their accuracy and object function value, respectively.
     for i=0:modelcount
       
-      [acc(i+1),fval]=lsvm_test_engine(i,test_set,test_object,model_folder);
+      [acc(i+1),fval]=lsvm_test_engine(i,test_set,test_object,word,model_folder);
       disp([num2str(i),'-th model, acc:',num2str(acc(i+1))]);
       if (i~=0)
           fvals(1,i)=fval;
       end
     end
     
-    save(['figures/',test_object,'_AP_RAW.mat'],'acc');
+    save(['figures/',test_object,'_Word_',num2str(word),'_AP_RAW.mat'],'acc');
     %modelcount=6;
     plot(1:modelcount,acc(2:modelcount+1));
     grid on;
@@ -37,5 +37,5 @@ function []=run_lsvm_test_engine(test_object,model_folder)
     grid on;
     hold on;
     plot(1:modelcount,fvals);
-    saveas(gcf,['figures/ITEINFO_',test_object,'_MODELCOUNT_',num2str(modelcount),'.fig']);
+    saveas(gcf,['figures/ITEINFO_',test_object,'_word',num2str(word),'_MODELCOUNT_',num2str(modelcount),'.fig']);
 end

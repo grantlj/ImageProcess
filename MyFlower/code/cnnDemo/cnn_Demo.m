@@ -2,7 +2,7 @@ function [] = cnn_Demo(im_path,x1,y1,x2,y2)
 class_count=17;
 im=imread(im_path);
 data_mean_path='data_mean.mat';
-load('net-epoch-45.mat');
+load('net-epoch-50.mat');
 load(data_mean_path);data_mean=images.data_mean;
 net.layers{end}.type = 'softmax';
   

@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="85358896" file="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\CNNServer.prj" location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo" name="CNNServer" preferred-package-location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\CNNServer\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
+  <configuration build-checksum="3323177476" file="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\CNNServer.prj" location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo" name="CNNServer" preferred-package-location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\CNNServer\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
     <param.appname>CNNServer</param.appname>
     <param.icon />
     <param.icons />
@@ -215,7 +215,7 @@
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\utils\proto\vgg_synset_words.txt</file>
       <file>${PROJECT_ROOT}\data_mean.mat</file>
       <file>${PROJECT_ROOT}\get_flower_name.m</file>
-      <file>${PROJECT_ROOT}\net-epoch-45.mat</file>
+      <file>${PROJECT_ROOT}\net-epoch-50.mat</file>
       <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\AUTHORS.txt</file>
       <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\ChangeLog.txt</file>
       <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\examples\demo_jsonlab_basic.m</file>

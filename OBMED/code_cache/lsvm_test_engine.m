@@ -1,5 +1,5 @@
 %test engine for our lsvm model.
-function [accuracy,fval] = lsvm_test_engine(itecount,test_set,test_object,model_folder)
+function [accuracy,fval] = lsvm_test_engine(itecount,test_set,test_object,object_bank_word,model_folder)
 addpath(genpath('VLFEATROOT/'));
 addpath(genpath('libsvm-3.18/'));
   try
@@ -12,7 +12,7 @@ addpath(genpath('libsvm-3.18/'));
  
  
  %itecount=1;                    %select models of the n-th iteration.
- load([model_folder,'/',test_object,'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);   %load models.
+ load([model_folder,'/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);   %load models.
  try
    fval=model.fval;
  catch
@@ -28,6 +28,8 @@ addpath(genpath('libsvm-3.18/'));
  score=[];
  for i=1:featureCount
    feat=tests{i};     %raw feat for each video.
+  % feat=feat(:,1:(object_bank_word)*252);
+   feat=feat(:,(object_bank_word-1)*252+1:(object_bank_word)*252);
    if (isempty(feat))
       continue;
    end

@@ -1,8 +1,18 @@
 %Generate latent svm model.(1vN svm)
 %For TRECVID MED 2011 dataset.
-
+%Randomly select 20 words to discriminatively train their pooling
+%parameter.
 %%
-function [] = lsvm_generator(test_object)
+function [] = lsvm_generator(test_object,useold)
+
+if (nargin==1)
+    useold=0;
+else
+    useold=1;
+end
+
+mkdir('lsvm_model_new');
+
 addpath(genpath('libsvm-3.18/'));
 try
     make
@@ -16,12 +26,18 @@ end
 root=(GetPresentPath);
 
 %initialize train set and test set.
-[train_set,test_set]=data_initialize(root,test_object);
-cd(root);
 
-%save test set to file, for lsvm_test_engine use.
-save([test_object,'_test_set.mat'],'test_set','-v7.3');   %save the test_set, for the convenience of test_engine.
-clear test_set;  
+if (~useold)
+    [train_set,test_set]=data_initialize(root,test_object);
+    save([test_object,'_train_set.mat'],'train_set','-v7.3');   %save the test_set, for the convenience of test_engine.
+    cd(root);
+
+    %save test set to file, for lsvm_test_engine use.
+    save([test_object,'_test_set.mat'],'test_set','-v7.3');   %save the test_set, for the convenience of test_engine.
+    clear test_set;  
+else
+    load([test_object,'_train_set.mat']);
+end
 
 %data initializing finished.
 
@@ -30,27 +46,56 @@ clear test_set;
 %=================THE ALTERNATIVE SEARCH METHOD========================
 %======================================================================
 
+global object_bank_word;
+global initWeight;
 
 T=20;   %the normalized frame count after lagrange.
-global initWeight;
-initWeight=1/T.*ones(1,T);     %initial value means "Mean-Pooling"
 
+total_word=20;
+
+%model initialization.
+initWeight=1/T.*ones(1,T);     %initial value means "Mean-Pooling"
 model.thetaMat=initWeight;
 model.w=[];model.b=[];         %model w, b, the classical SVM parameters w & b.      
 model.comment=test_object;     
+models={};
+
+for object_bank_word=1:total_word
+  model.word_index=object_bank_word;
+  models{object_bank_word}=model;
+end
 
 for itecount=1:100   %begin iteration. maximum iteration count is 100.
     
-    %Step 1: Update w and b in 1 v 1 svm using default theta.
-    model=lsvm_update_w_b(train_set,model);
-    if (itecount==1)
-        save(['lsvm_model/',test_object,'_1vN_Models_After_ITE_0.mat'],'model');  %save default mean-pooling strategy for comparable test.
-    end
     
-    %Step 2: Update theata using w,b in step 1.
+   %train each word's pooling strategies in each iteration.
+   
+   %Step 1: Update w and b in 1 v n svm using default theta.
+   for object_bank_word=1:total_word
+      model=models{object_bank_word};
+      model=lsvm_update_w_b(train_set,model);
+      models{object_bank_word}=model;
+   end %end of object_bank_word
+   
+  %save classical result using mean-pooling with ordinary svm model.
+  if (itecount==1)
+        save(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_0.mat'],'models');  %save default mean-pooling strategy for comparable test.
+  end
+  
+  
+  %Step 2: Update theata using w,b in step 1.
+  for object_bank_word=1:total_word
+    model=models{object_bank_word};
     model=lsvm_update_theta(train_set,model);
-    save(['lsvm_model/',test_object,'_1vN_Models_After_ITE_',num2str(itecount),'.mat'],'model');
-end
+    models{object_bank_word}=model;
+  end  %end of object_bank_word
+  
+   save(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat'],'models');
+
+end  %end of iteration
+
+
+
 
 
 end
@@ -60,77 +105,66 @@ end
 
 %%
 %constraint function of theta.
-function [c ceq]=theta_con(thetaMatVec)
-%  disp('in theta con');
-thetaMat=thetaMatVec';
+function [c ceq]=theta_con(alpha)
+  global object_bank_word;
+  global thetaCount; global w_global;
+  global b_global;
+  disp('in alpha con');
+ 
+  theta=alpha(1:thetaCount);
+ 
+  %equation 1: the theta shoud be 1.
+  ceq(1)=sum(theta)-1;  %sum of theta should be 1.
+  
+  error=alpha(thetaCount+1:end);
+  
+  global d; global train_label;
+  global train_set_global;
+  
+  train_feat=[];
+  for i=1:size(train_set_global,2)                      %train_set_global{1}: pos examples. train_set_global{2}: nega examples.
+    for j=1:size(train_set_global{i}.trains,2)        
+          
+        if (i==1 || i==2)
+            feat_new=train_set_global{i}.trains{j};   %a single video's feture mat after lagrange: 20*40000+
+            feat_new=feat_new(:,(object_bank_word-1)*252+1:(object_bank_word)*252);
+            % feat_new=feat_new(:,1:(object_bank_word)*252);
+            if(isempty(feat_new)), continue; end;    % a single video's final pooling result after multiplied by theta.
+     
+            vec=theta*feat_new;
+            
+           % vec=vec((object_bank_word-1)*252+1,object_bank_word*252);
+            train_feat=[train_feat;vec];             
+            
+        end
+    end  %end of a single action class.
+  end
+  
+  disp(['size of label:',d,'     size of feat:',num2str(size(train_feat,1))]);
+  
+  for i=1:d
+    c(i)=1-(train_label(i)*(w_global'*train_feat(i,:)'+b_global)+error(i));
+  end
+  
+  
+  %error must larger than 0.
+  for i=1:size(error,2)
+    c(end+1)=-error(i);
+  end
 
-for i=1:size(thetaMat,1)
-    ceq(i)=sum(thetaMat(i,:),2)-1;   %sum of each row must be 1;
-    %     for j=1:size(thetaMat,2)
-    %          c((i-1)*size(thetaMat,1)+j)=-thetaMat(i,j);  %each theta must be larger than 1
-    %      end
-end
-c=[];
-% ceq=[];
+  clear train_feat;
 end
 
 %%
 %optimization funciton of theta(the core part of second step: update theta,
 %implemented with fmincon function.
 
-function f=theta_opt(thetaMatVec)
-% disp('in theta opt');
-disp([num2str(size(thetaMatVec,1)),',',num2str(size(thetaMatVec,2))]);  %debug use.
-% f=-rank(thetaMat)-cos(rank(thetaMat));
-
-global train_set_global; global train_label;
-
-
-%global train_w_b_ratio;
-
-train_feat=[];
-
-%object function result is saved in varible: f.
-
-f=0;
-for i=1:size(train_set_global,2)                      %train_set_global{1}: pos examples. train_set_global{2}: nega examples.
-    for j=1:size(train_set_global{i}.trains,2)        
-          
-        if (i==1 || i==2)
-            feat_new=train_set_global{i}.trains{j};   %a single video's feture mat after lagrange: 20*40000+
-            
-            if(isempty(feat_new)) continue; end;
-            vec=[];                                   % a single video's final pooling result after multiplied by theta.
-     
-            vec=thetaMatVec*feat_new;
-            train_feat=[train_feat;vec];             
-            
-        end
-    end  %end of a single action class.
-    
-end
-
-
-%calculate present object function: f, w_global and b_global are updated
-%iterated result in lsvm_update_w_b.
-
-global w_global;
-global b_global;
-%  global svmmodel_global;
-
-f=0;
-
-disp(['size of label:',num2str(size(train_label),1),'     size of feat:',num2str(size(train_feat,1))]);
-
-%the core part.
-for i=1:size(train_label,1)
-    tmp=(1-train_label(i)*(w_global'*train_feat(i,:)'+b_global));
-    if (tmp<0), tmp=0;end;             
-    f=f+tmp;
-end
-
-clear train_feat;
-end
+function f=theta_opt(alpha)
+  disp('in alpha opt');
+  disp([num2str(size(alpha,1)),',',num2str(size(alpha,2))]);  %debug use.
+  global rho;
+  f=rho*alpha';
+ end
 
 %%
 
@@ -142,7 +176,7 @@ global train_set_global; global train_label;
 train_set_global=train_set;
 train_label=[];
 
-
+global object_bank_word;
 
 global w_global;
 w_global=model.w;
@@ -160,6 +194,12 @@ for i=1:size(train_set,2)
   %  j=floor(size(train_set{i}.trains,2)*train_w_b_ratio)+1:size(train_set{i}.trains,2) 
    for j=1:size(train_set{i}.trains,2)   %cancel the w_b validation strategy.
         feat_new=train_set{i}.trains{j};   %a single video's mat.
+        
+       
+        
+       % disp(['size of feat_new=',num2str(size(feat_new,1)),'*',num2str(size(feat_new,2))]);
+        
+        
         if(isempty(feat_new)) continue; end;
         if (i==1)
             train_label=[train_label;1];   %belongs to present 1-n svm's positive examples.
@@ -173,35 +213,62 @@ end
 
 
 %update theta by fmincon, the result is saved in ansMat.
-opts = optimoptions(@fmincon,'MaxFunEvals',50000);
+opts = optimoptions(@fmincon,'MaxFunEvals',5000,'Algorithm','sqp');
 
 global initWeight;
-
+global thetaCount;
+thetaCount=size(initWeight,2);
 initWeight=rand(1,size(initWeight,2));                                         %random strategy for initial weights.
 initWeight=initWeight./sum(initWeight);
 
+alpha=initWeight;
+
+%implemention of mdy's model.
+global d;
+d=size(train_label,1);
+alpha=[alpha,1*ones(1,d)];
+
+global rho;
+global sigma;
 
 
-[ansMat,fval, exitflag]=fmincon(@theta_opt, ...                                 %goal function.                                                    
-    initWeight,...
-    [],[],                    ...                                               %linear inequility. A,b
-    [],[],                          ...                                         %linear equiity. Aeq,beq
-    zeros(1,size(model.thetaMat(:)',1)*size(model.thetaMat(:)',2)), ...         %lower bound.
-    [],...                                                                      %upper bound.
-    @theta_con,opts);                                                           %constraint function.
+rho=[zeros(1,size(initWeight,2)),ones(1,d)];
+sigma=[ones(1,size(initWeight,2)),zeros(1,d)];
 
-%
-model.thetaMat=ansMat;
-model.exitflag=exitflag;
+[ansMat, fval, exitflag]=fmincon(@theta_opt,...
+                                 alpha,...
+                                 [],[],...
+                                 [],[],...
+                                 zeros(size(alpha)),...
+                                 [],...
+                                 @theta_con,opts);
+                             
+                             
+model.thetaMat=ansMat(1:size(initWeight,2));
 model.fval=fval+1/2*model.w'*model.w;
+model.exitflag=exitflag;
+model.trainerr=ansMat(size(initWeight,2)+1:end);
 
-%OBLIGED normalization operation.
-%Note that sometimes the ansMat is not a convergent solution in finite steps. 
-%Thus, we force it to sum at 1. However, in most cases, there is no need to do so.
-s=sum(model.thetaMat,2);
-for i=1:size(model.thetaMat,1)
-    model.thetaMat(i,:)=model.thetaMat(i,:)./s(i);
-end
+% [ansMat,fval, exitflag]=fmincon(@theta_opt, ...                                 %goal function.                                                    
+%     initWeight,...
+%     [],[],                    ...                                               %linear inequility. A,b
+%     [],[],                          ...                                         %linear equiity. Aeq,beq
+%     zeros(1,size(model.thetaMat(:)',1)*size(model.thetaMat(:)',2)), ...         %lower bound.
+%     [],...                                                                      %upper bound.
+%     @theta_con,opts);                                                           %constraint function.
+% 
+% %
+% model.thetaMat=ansMat;
+% model.exitflag=exitflag;
+% model.fval=fval+1/2*model.w'*model.w;
+% 
+% %OBLIGED normalization operation.
+% %Note that sometimes the ansMat is not a convergent solution in finite steps. 
+% %Thus, we force it to sum at 1. However, in most cases, there is no need to do so.
+% s=sum(model.thetaMat,2);
+% for i=1:size(model.thetaMat,1)
+%     model.thetaMat(i,:)=model.thetaMat(i,:)./s(i);
+% end
 end
 
 
@@ -211,18 +278,26 @@ end
 function [model]=lsvm_update_w_b(train_set,model)
 thetaMat=model.thetaMat;
 train_feat=[]; train_label=[];
-global train_w_b_ratio;
+
+
+global object_bank_word;
 
 for i=1:size(train_set,2)
     
   %  for j=1:floor(size(train_set{i}.trains,2)*train_w_b_ratio)   %specify w b's data.
      for j=1:size(train_set{i}.trains,2)   %cancel the w_b validation strategy.
         feat_new=train_set{i}.trains{j};   %a single video's mat.
+        
+      %  disp(['size of feat_new=',num2str(size(feat_new,1)),'*',num2str(size(feat_new,2))]);
+       feat_new=feat_new(:,(object_bank_word-1)*252+1:(object_bank_word)*252);
+     %   feat_new=feat_new(:,1:(object_bank_word)*252);
         if(isempty(feat_new))
             continue;
         end;
         vec=[];                            % a single video's final result.
         vec=thetaMat*feat_new;
+        
+        %vec=vec((object_bank_word-1)*252+1,(object_bank_word)*252);  %optimize each word.
         if (i==1)
             train_label=[train_label;1];   %belongs to present 1-n svm's positive examples.
             train_feat=[train_feat;vec];
@@ -240,8 +315,8 @@ end
 %conducting linear svm.
 svmarg.bestc=1e200;  %default, the args are as same as that in feifei's raw code.
 svmarg.bestg=length(unique(train_label));
-svmmodel=svmtrain(train_label,train_feat,['-t 0 -c ',num2str(svmarg.bestc),' -g ',num2str(svmarg.bestg)]);
-%svmmodel=svmtrain(train_label,train_feat,['-t 0 -g ',num2str(svmarg.bestg)]);
+%svmmodel=svmtrain(train_label,train_feat,['-t 0 -c ',num2str(svmarg.bestc),' -g ',num2str(svmarg.bestg)]);
+svmmodel=svmtrain(train_label,train_feat,['-t 0 -g ',num2str(svmarg.bestg)]);
 
 %extract w and b from svmmodel, the method is mentioned in libsvm FAQ
 try
