@@ -29,14 +29,14 @@ root=(GetPresentPath);
 
 if (~useold)
     [train_set,test_set]=data_initialize(root,test_object);
-    save([test_object,'_train_set.mat'],'train_set','-v7.3');   %save the test_set, for the convenience of test_engine.
+    save(['/home/liujiang/',test_object,'_train_set.mat'],'train_set','-v7.3');   %save the test_set, for the convenience of test_engine.
     cd(root);
 
     %save test set to file, for lsvm_test_engine use.
-    save([test_object,'_test_set.mat'],'test_set','-v7.3');   %save the test_set, for the convenience of test_engine.
+    save(['/home/liujiang/',test_object,'_test_set.mat'],'test_set','-v7.3');   %save the test_set, for the convenience of test_engine.
     clear test_set;  
 else
-    load([test_object,'_train_set.mat']);
+    load(['/home/liujiang/',test_object,'_train_set.mat']);
 end
 
 %data initializing finished.
@@ -65,7 +65,7 @@ for object_bank_word=1:total_word
   models{object_bank_word}=model;
 end
 
-for itecount=1:100   %begin iteration. maximum iteration count is 100.
+for itecount=1:200   %begin iteration. maximum iteration count is 100.
     
     
    %train each word's pooling strategies in each iteration.
