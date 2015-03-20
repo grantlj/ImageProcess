@@ -1,0 +1,279 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="3436872558" file="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer.prj" location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo" name="MyFlowerServer" preferred-package-location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
+    <param.appname>MyFlowerServer</param.appname>
+    <param.icon />
+    <param.icons />
+    <param.version>1.0</param.version>
+    <param.authnamewatermark>Liu Jiang</param.authnamewatermark>
+    <param.email>393444163@qq.com</param.email>
+    <param.company>CQUPT</param.company>
+    <param.summary />
+    <param.description />
+    <param.screenshot />
+    <param.guid />
+    <param.installpath.string>\CQUPT\MyFlowerServer\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo />
+    <param.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\MyFlowerServer\for_testing</param.intermediate>
+    <param.output>${PROJECT_ROOT}\MyFlowerServer\for_redistribution</param.output>
+    <param.user.defined.mcr.options />
+    <param.embed.ctf>true</param.embed.ctf>
+    <param.server.ctf>${PROJECT_ROOT}\MyFlowerServer\for_testing\.ctf</param.server.ctf>
+    <param.server.readme>${PROJECT_ROOT}\MyFlowerServer\for_testing\readme.txt</param.server.readme>
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.version />
+      <param.authnamewatermark />
+      <param.email />
+      <param.company />
+      <param.summary />
+      <param.description />
+      <param.screenshot />
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.logo />
+      <param.install.notes />
+      <param.intermediate />
+      <param.output />
+      <param.user.defined.mcr.options />
+      <param.embed.ctf />
+      <param.server.ctf />
+      <param.server.readme />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\cnn_Demo.m</file>
+    </fileset.main>
+    <fileset.resources>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\.gitignore</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\.gitmodules</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\COPYING</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\Makefile</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\matconvnet-manual.tex</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\matdoc.py</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\matdocparser.py</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\references.bib</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\about.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\css\fixes.css</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\css\tables.css</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\developers.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\functions.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\gpu.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\index.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\install-alt.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\install.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\js\mathjaxhelper.js</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\pretrained.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\training.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\mkdocs.yml</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\Makefile</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\Makefile.mex</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\Makefile.nvcc</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\project.pbxproj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\project.xcworkspace\contents.xcworkspacedata</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\xcshareddata\xcschemes\matconv CPU.xcscheme</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\xcshareddata\xcschemes\matconv cuDNN.xcscheme</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\xcshareddata\xcschemes\matconv GPU.xcscheme</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\data.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\datacu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\datamex.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\copy_cpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\copy_gpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\im2row_cpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\im2row_gpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\normalize_cpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\normalize_gpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\pooling_cpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\pooling_gpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\subsample_cpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\subsample_gpu.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnconv.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnfullyconnected.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnnormalize.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnpooling.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnsubsample.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\vl_nnconv.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\vl_nnnormalize.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\vl_nnpool.obj</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\vl_nnconv.mexw64</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\vl_nnnormalize.mexw64</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\vl_nnpool.mexw64</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\data.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\data.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\data.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datacu.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datacu.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datamex.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datamex.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datamex.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\blashelper.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\copy.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\copy_cpu.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\copy_gpu.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\im2row.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\im2row_cpu.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\im2row_gpu.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnconv_blas.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnconv_cudnn.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnconv_cudnn.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnpooling_cudnn.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnpooling_cudnn.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\normalize.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\normalize_cpu.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\normalize_gpu.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\pooling.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\pooling_cpu.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\pooling_gpu.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\subsample.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\subsample_cpu.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\subsample_gpu.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\mexutils.h</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnconv.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnconv.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnconv.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnfullyconnected.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnfullyconnected.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnfullyconnected.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnnormalize.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnnormalize.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnnormalize.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnpooling.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnpooling.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnpooling.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnsubsample.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnsubsample.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnsubsample.hpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\config\mex_CUDA_glnxa64.sh</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\config\mex_CUDA_glnxa64.xml</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\config\mex_CUDA_maci64.sh</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\config\mex_CUDA_maci64.xml</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_imreadjpeg.c</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnconv.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnconv.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnnormalize.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnnormalize.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnpool.cpp</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnpool.cu</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_argparse.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_compilenn.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_imreadjpeg.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nndropout.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnloss.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnnoffset.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnrelu.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnsoftmax.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnsoftmaxloss.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_rootnn.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_setupnn.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_simplenn.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_simplenn_diagnose.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_simplenn_display.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_simplenn_move.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\xtest\vl_test_gpureset.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\xtest\vl_test_nnlayers.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\xtest\vl_testder.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\xtest\vl_testsim.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\README.md</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\evaluate_ref_models.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\import-caffe.py</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\import-ref-models.sh</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\preprocess-imagenet.sh</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\__init__.py</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\caffe.proto</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\caffe_old.proto</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\caffe_old_pb2.py</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\caffe_pb2.py</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\vgg_caffe.proto</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\vgg_caffe_pb2.py</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\vgg_synset_words.txt</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\vl_nnconv.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\vl_nnnormalize.m</file>
+      <file>C:\Users\Grant\Desktop\matconvnet-1.0-beta9\vl_nnpool.m</file>
+      <file>${PROJECT_ROOT}\data_mean.mat</file>
+      <file>${PROJECT_ROOT}\get_flower_name.m</file>
+      <file>${PROJECT_ROOT}\net-epoch-50.mat</file>
+      <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\jsonopt.m</file>
+      <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\loadjson.m</file>
+      <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\loadubjson.m</file>
+      <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\mergestruct.m</file>
+      <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\savejson.m</file>
+      <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\saveubjson.m</file>
+      <file>D:\Matlab\ImageProcess\MyFlower\code\jsonlab\varargin2struct.m</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\MyFlowerServer\for_testing" name="readme.txt" optional="true">D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\MyFlowerServer\for_testing" name="splash.png" optional="false">D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\MyFlowerServer\for_testing" name="MyFlowerServer.exe" optional="false">D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_testing\MyFlowerServer.exe</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2014a</root>
+      <toolboxes>
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="fixedpoint" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.2</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

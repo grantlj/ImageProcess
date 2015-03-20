@@ -18,7 +18,7 @@ net.layers{end}.type = 'softmax';
   im=imresize(im,[net.normalization.imageSize(1,1),net.normalization.imageSize(1,2)]);
   im=double(im)-data_mean;
   im=single(im);
-  im=gpuArray(im);
+%  im=gpuArray(im);
  %imshow(im);
  
  %run cnn.

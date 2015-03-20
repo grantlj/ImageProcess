@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3323177476" file="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\CNNServer.prj" location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo" name="CNNServer" preferred-package-location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\CNNServer\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
+  <configuration build-checksum="1767726313" file="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\CNNServer.prj" location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo" name="CNNServer" preferred-package-location="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\CNNServer\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
     <param.appname>CNNServer</param.appname>
     <param.icon />
     <param.icons />
@@ -69,15 +69,12 @@
       <file>${PROJECT_ROOT}\cnn_Demo.m</file>
     </fileset.main>
     <fileset.resources>
-      <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\.gitignore</file>
-      <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\.gitmodules</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\COPYING</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\Makefile</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\matconvnet-manual.tex</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\matdoc.py</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\matdocparser.py</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\references.bib</file>
-      <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\site\docs\about.md</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\site\docs\css\fixes.css</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\site\docs\css\tables.css</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\doc\site\docs\developers.md</file>
@@ -205,7 +202,6 @@
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\utils\import-caffe.py</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\utils\import-ref-models.sh</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\utils\preprocess-imagenet.sh</file>
-      <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\utils\proto\__init__.py</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\utils\proto\caffe.proto</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\utils\proto\caffe_old.proto</file>
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta9\utils\proto\caffe_old_pb2.py</file>

@@ -1,0 +1,102 @@
+ant:
+<ant>
+  <mkdir dir="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_redistribution" />
+  <mkdir dir="D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_testing" />
+</ant>
+mcc -C -o MyFlowerServer -W WinMain:MyFlowerServer -T link:exe -d D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_testing -v D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\cnn_Demo.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\.gitignore -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\.gitmodules -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\__init__.py -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\about.md -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\blashelper.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\caffe.proto -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\caffe_old.proto -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\caffe_old_pb2.py -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\caffe_pb2.py -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\project.xcworkspace\contents.xcworkspacedata -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\copy.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\copy_cpu.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\copy_cpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\copy_gpu.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\copy_gpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\COPYING -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\data.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\data.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\data.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\data.obj -a D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\data_mean.mat -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datacu.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datacu.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\datacu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datamex.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datamex.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\datamex.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\datamex.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\developers.md -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\evaluate_ref_models.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\css\fixes.css -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\functions.md -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\gpu.md -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\im2row.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\im2row_cpu.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\im2row_cpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\im2row_gpu.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\im2row_gpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\import-caffe.py -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\import-ref-models.sh -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\index.md -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\install-alt.md -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\install.md -a D:\Matlab\ImageProcess\MyFlower\code\jsonlab\jsonopt.m -a D:\Matlab\ImageProcess\MyFlower\code\jsonlab\loadjson.m -a D:\Matlab\ImageProcess\MyFlower\code\jsonlab\loadubjson.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\Makefile -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\Makefile -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\Makefile.mex -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\Makefile.nvcc -a 'C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\xcshareddata\xcschemes\matconv CPU.xcscheme' -a 'C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\xcshareddata\xcschemes\matconv cuDNN.xcscheme' -a 'C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\xcshareddata\xcschemes\matconv GPU.xcscheme' -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\matconvnet-manual.tex -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\matdoc.py -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\matdocparser.py -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\js\mathjaxhelper.js -a D:\Matlab\ImageProcess\MyFlower\code\jsonlab\mergestruct.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\config\mex_CUDA_glnxa64.sh -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\config\mex_CUDA_glnxa64.xml -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\config\mex_CUDA_maci64.sh -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\config\mex_CUDA_maci64.xml -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\mexutils.h -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\mkdocs.yml -a D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\net-epoch-50.mat -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnconv.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnconv.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnconv.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnconv.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnconv_blas.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnconv_cudnn.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnconv_cudnn.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnfullyconnected.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnfullyconnected.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnfullyconnected.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnfullyconnected.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnnormalize.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnnormalize.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnnormalize.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnnormalize.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnpooling.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnpooling.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnpooling.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnpooling.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnpooling_cudnn.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\nnpooling_cudnn.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnsubsample.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnsubsample.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\nnsubsample.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\nnsubsample.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\normalize.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\normalize_cpu.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\normalize_cpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\normalize_gpu.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\normalize_gpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\pooling.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\pooling_cpu.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\pooling_cpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\pooling_gpu.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\pooling_gpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\preprocess-imagenet.sh -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\pretrained.md -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matconv.xcodeproj\project.pbxproj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\README.md -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\references.bib -a D:\Matlab\ImageProcess\MyFlower\code\jsonlab\savejson.m -a D:\Matlab\ImageProcess\MyFlower\code\jsonlab\saveubjson.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\subsample.hpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\subsample_cpu.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\subsample_cpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\bits\impl\subsample_gpu.cu -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\bits\impl\subsample_gpu.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\css\tables.css -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\doc\site\docs\training.md -a D:\Matlab\ImageProcess\MyFlower\code\jsonlab\varargin2struct.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\vgg_caffe.proto -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\vgg_caffe_pb2.py -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\utils\proto\vgg_synset_words.txt -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_argparse.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_compilenn.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_imreadjpeg.c -a vl_imreadjpeg -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnconv.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnconv.cu -a vl_nnconv -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\vl_nnconv.mexw64 -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\vl_nnconv.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nndropout.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnloss.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnnoffset.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnnormalize.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnnormalize.cu -a vl_nnnormalize -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\vl_nnnormalize.mexw64 -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\vl_nnnormalize.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnpool.cpp -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\src\vl_nnpool.cu -a vl_nnpool -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\vl_nnpool.mexw64 -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\mex\.build\vl_nnpool.obj -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnrelu.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnsoftmax.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_nnsoftmaxloss.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_rootnn.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_setupnn.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_simplenn.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_simplenn_diagnose.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_simplenn_display.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\vl_simplenn_move.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\xtest\vl_test_gpureset.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\xtest\vl_test_nnlayers.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\xtest\vl_testder.m -a C:\Users\Grant\Desktop\matconvnet-1.0-beta9\matlab\xtest\vl_testsim.m 
+Compiler version: 5.1 (R2014a)
+Dependency analysis by REQUIREMENTS.
+[警告: 重复的目录名称: C:\Program Files\MATLAB\R2014a\toolbox\coder\simulinkcoder\cgv\API] 
+[> In path at 33
+  In requirements at 156] 
+[警告: 重复的目录名称: C:\Program Files\MATLAB\R2014a\toolbox\matlab\winfun\NET] 
+[> In path at 33
+  In requirements at 156] 
+[警告: 重复的目录名称: C:\Program Files\MATLAB\R2014a\toolbox\rtw\targets\AUTOSAR\AUTOSAR] 
+[> In path at 33
+  In requirements at 156] 
+[警告: 重复的目录名称: C:\Program
+Files\MATLAB\R2014a\toolbox\rtw\targets\AUTOSAR\AUTOSAR\dataclasses] 
+[> In path at 33
+  In requirements at 156] 
+[警告: 重复的目录名称: C:\Program Files\MATLAB\R2014a\toolbox\simulink\simulink\MPlayIO] 
+[> In path at 33
+  In requirements at 156] 
+[警告: 重复的目录名称: C:\Program Files\MATLAB\R2014a\toolbox\slvnv\reqmgt\RTExplorer] 
+[> In path at 33
+  In requirements at 156] 
+[警告: Adding path "D:\Matlab\ImageProcess\MyFlower\code\cnnDemo" to Compiler path
+instance.] 
+Parsing file "D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\cnn_Demo.m"
+	(Referenced from: "Compiler Command Line").
+Parsing file "C:\Program Files\MATLAB\R2014a\toolbox\compiler\deploy\deployprint.m"
+	(Referenced from: "Compiler Command Line").
+Parsing file "C:\Program Files\MATLAB\R2014a\toolbox\compiler\deploy\printdlg.m"
+	(Referenced from: "Compiler Command Line").
+Deleting 58 temporary MEX authorization files.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_15722_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_3189_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_27832_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_290_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_8624_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_24850_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_20599_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_1945_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_26740_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_12434_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_24540_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_9212_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_23486_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_8721_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_13890_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_31012_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_21322_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_14564_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_22182_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_20897_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_25627_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_25056_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_19107_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_9492_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_26306_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_16674_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_23667_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_12575_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_3442_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_16102_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_5875_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_19066_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_14862_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_21835_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_27736_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_14554_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_31366_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_27478_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_13597_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_2584_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_8036_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_24888_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_6975_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_8335_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_8354_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_12756_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_17837_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_198_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_17599_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_19836_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_22522_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_8783_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_29051_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_6835_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_6374_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_16569_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_2576_6088.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_6088_29762_6088.auth'.
+Generating file "D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_testing\readme.txt".
+Packaging...
+Adding custom icon C:\Program Files\MATLAB\R2014a\toolbox\compiler\Resources\default_icon.ico to D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_testing\MyFlowerServer.exe.
+Attempting to embed the CTF archive into the application D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_testing\MyFlowerServer.exe.
+Finished embedding CTF archive. Deleting the external CTF archive.
+Creating the bundle...
+Web based installer created at D:\Matlab\ImageProcess\MyFlower\code\cnnDemo\MyFlowerServer\for_redistribution\MyAppInstaller_web.exe.
+Packaging complete.

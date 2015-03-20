@@ -1,5 +1,5 @@
 function myflower_cnn_tester()
-  load('model/net-epoch-45.mat');
+  load('model/net-epoch-50.mat');
   data_splits_path='datasplits.mat';
   data_mean_path='model/data_mean.mat';
   truth_path='truth.mat';
