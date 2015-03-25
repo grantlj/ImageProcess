@@ -1,8 +1,8 @@
 function [] = cnn_Demo(im_path,x1,y1,x2,y2)
-class_count=17;
+class_count=20;
 im=imread(im_path);
 data_mean_path='data_mean.mat';
-load('net-epoch-50.mat');
+load('net_flower_20_cpu.mat');
 load(data_mean_path);data_mean=images.data_mean;
 net.layers{end}.type = 'softmax';
   

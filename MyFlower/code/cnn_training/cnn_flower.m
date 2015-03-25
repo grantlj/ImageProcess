@@ -8,9 +8,9 @@ im_height=240;
 im_width=320;
 
 opts.expDir = 'model';
-opts.imdbPath ='17flowers/imdb.mat';
+opts.imdbPath ='20flowers/imdb.mat';
 opts.train.batchSize = 10 ;
-opts.train.numEpochs = 50 ;
+opts.train.numEpochs = 80 ;
 opts.train.continue = true ;
 opts.train.useGpu = true ;
 opts.train.learningRate = 0.005 ;
@@ -149,8 +149,8 @@ net.layers{end+1} = struct('type', 'dropout', ...
 
 % Block 8
 net.layers{end+1} = struct('type', 'conv', ...
-                           'filters', 0.01/scal * randn(1,1,1024,17,'single'), ...
-                           'biases', zeros(1, 17, 'single'), ...
+                           'filters', 0.01/scal * randn(1,1,1024,20,'single'), ...
+                           'biases', zeros(1, 20, 'single'), ...
                            'stride', 1, ...
                            'pad', 0, ...
                            'filtersLearningRate', 1, ...
@@ -182,7 +182,7 @@ end
 % --------------------------------------------------------------------
 function [im, labels] = getBatch(imdb, batch)
  global im_width;global im_height;
- db_root_path='17flowers/';
+ db_root_path='20flowers/';
 % --------------------------------------------------------------------
 %im = imdb.images.data(:,:,:,batch) ;
 data=zeros(im_height,im_width,3,size(batch,2));
@@ -204,8 +204,8 @@ function imdb = generate_myflower_imdb()
    
 %get image mean and image labels.
     global im_width;global im_height;
-    db_root_path='17flowers/';
-    flower_count=1360;
+    db_root_path='20flowers/';
+    flower_count=1750;
     
     %data=zeros(im_height,im_width,3,flower_count);
     
@@ -215,13 +215,16 @@ function imdb = generate_myflower_imdb()
     load('truth.mat');
     
     for i=1:flower_count
+ 
       im_path=[db_root_path,'image_',sprintf('%04d',i),'.jpg'];
       im_tmp=imread(im_path);
       im_tmp=double(imresize(im_tmp,[im_height,im_width]));
       data_mean=data_mean+im_tmp;
       %data(:,:,:,i)=im_tmp;
       labels(i)=truth(i,1);
+     
     end
+    
     
     data_mean=data_mean./flower_count;
     imdb.images.data_mean=data_mean;                                    %save mean.

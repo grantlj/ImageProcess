@@ -21,7 +21,7 @@ for experi_num = [4]
         feature_dim = length(feature_struct1.encoding) + length(feature_struct2.encoding) + length(feature_struct3.encoding);
         
         training_instance_matrix = zeros(405, feature_dim);
-        training_label_vector = [];
+        training_label_vector = []; 
         testing_instance_matrix = zeros(45, feature_dim);
         testing_label_vector = [];
         training_ordinal = [];

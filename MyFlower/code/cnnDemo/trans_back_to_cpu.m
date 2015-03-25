@@ -1,4 +1,5 @@
-mynet=load('Copy_of_net-epoch-50.mat');
+mynet=load('net-epoch-55.mat');
+net=mynet.net;
 for i=1:size(net.layers,2)
     if (strcmp(net.layers{1,i}.type,'conv')==1)
         net.layers{1,i}.filters=gather(net.layers{1,i}.filters);
