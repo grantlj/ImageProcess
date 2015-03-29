@@ -1,4 +1,4 @@
-%max-pooling: 43.2%
+%max-pooling: 43.2% this strategy works!
 %mean-pooling: 
 regions=2;
 

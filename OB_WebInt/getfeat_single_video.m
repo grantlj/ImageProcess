@@ -19,11 +19,11 @@ function []=getfeat_single_video(datapath,videoid,out_path)
 
 
          feat_raw=[]; 
-         for i=1:floor(numFrames/10)
-           disp(['***Get feat of frame:',num2str(i*10)]);
+         for i=1:floor(numFrames/5)
+           disp(['***Get feat of frame:',num2str(i*5)]);
            %mov(i).cdata=vidFrames(:,:,:,i*5);   
           try
-             mov(i).cdata=getFrameAt(obj,i*10);
+             mov(i).cdata=getFrameAt(obj,i*5);
      
              % imwrite(mov(i).cdata,[num2str(i),'.jpg']);
              feat=getfeat_single_image(mov(i).cdata);
