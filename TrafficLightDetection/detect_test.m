@@ -3,8 +3,9 @@ impath='D:\dataset\TrafficLight\frame_006879.jpg';
 load('frameInfo.mat');
 dataset_path='D:/dataset/TrafficLight/';
 %for frames=1:size(frameInfo,2)
-for frames=7088:7160
-    impath=[dataset_path,'frame_',sprintf('%06d',frames),'.jpg'];
+%for frames=7088:7160
+    %impath=[dataset_path,'frame_',sprintf('%06d',frames),'.jpg'];
+     impath='test.jpg';
   %   impath=[dataset_path,'frame_',sprintf('%06d',frameInfo{frames}.frame),'.jpg'];
     im_rgb=imread(impath);
 
@@ -59,7 +60,8 @@ for frames=7088:7160
     % im_rgb = insertObjectAnnotation(im_rgb,'rectangle',bbox,'candidate');
     % imshow(im_rgb);
     %figure;
-    for radii=[2 4 6 8 10]
+  %  for radii=[2 4 6 8 10]
+    for radii=[10 15 20 25]
        try
         frst_ret=FRST(im_rgyb_a,radii,0.05,3);
        [r c]=nonmaxsuppts(frst_ret,radii,0.85*(max(max(frst_ret))));
@@ -83,4 +85,4 @@ for frames=7088:7160
     end
 
     imshow(im_rgb);
-end
+%end

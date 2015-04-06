@@ -1,4 +1,5 @@
-%AP: 40.8% GROUP=2
+%AP: 40.8% GROUP=2 (old feature)
+%AP: 41.6% GROUP=2 (new feature)
 groups=2;
 
  feature_set_path={'feature/chase/','feature/exchange_object/',...
@@ -79,6 +80,6 @@ groups=2;
      
  end%end of i
  
- save(['divide_',num2str(groups),'_ret_kmeans.mat'],'ret');
+ save(['divide_',num2str(groups),'_ret_kmeans_new_feature.mat'],'ret');
 
 
