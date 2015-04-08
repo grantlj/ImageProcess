@@ -1,7 +1,7 @@
 function myflower_cnn_tester()
-  load('model/net-epoch-50.mat');
+  load('model/net-epoch-55.mat');
   data_splits_path='datasplits.mat';
-  data_mean_path='model/data_mean.mat';
+  data_mean_path='data_mean.mat';
   truth_path='truth.mat';
   
   load(data_splits_path);
@@ -12,7 +12,7 @@ function myflower_cnn_tester()
   %tst1=[tst1,val1,trn1];
    for i=1:size(tst1,2)
      img_count=tst1(1,i);
-     filename=['17flowers/','image_',sprintf('%04d',img_count),'.jpg'];
+     filename=['20flowers/','image_',sprintf('%04d',img_count),'.jpg'];
      im=imread(filename);
      im=imresize(im,[net.normalization.imageSize(1,1),net.normalization.imageSize(1,2)]);
      im=double(im)-data_mean;
@@ -23,8 +23,8 @@ function myflower_cnn_tester()
      res=vl_simplenn(net,im);
      
      scores = squeeze(gather(res(end).x)) ;
-     score=zeros(1,17);
-     for n=1:17
+     score=zeros(1,20);
+     for n=1:20
          for i=1:size(scores,1)
              for j=1:size(scores,2)
                  score(n)=score(n)+scores(i,j,n);
