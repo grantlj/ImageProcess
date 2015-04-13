@@ -1,0 +1,8 @@
+1. matrix learning
+2. segmentation 
+3. 有些类容易 学 有些难学 （一类一类加的时候 有的类可能很容易混淆，干脆放成一种花，自动发现比较接近的类）和 mini-batch结合
+4. segmentation 自动分成几个部分（对背景和花分别做CNN),最后combine到一起（直接拼接到一起）。(context+前景）
+
+5. 归一化，长宽比？
+6. 微软的SPP.(空间金字塔+Deep Learning）
+

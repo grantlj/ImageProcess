@@ -1,12 +1,14 @@
-impath='D:\dataset\TrafficLight\frame_006879.jpg';
+%impath='D:\dataset\TrafficLight\frame_006879.jpg';
 
 load('frameInfo.mat');
 dataset_path='D:/dataset/TrafficLight/';
-%for frames=1:size(frameInfo,2)
-%for frames=7088:7160
+% for frames=1:size(frameInfo,2)
+ %   frames
+for frames=7088:7160
+    frames
     %impath=[dataset_path,'frame_',sprintf('%06d',frames),'.jpg'];
-     impath='test.jpg';
-  %   impath=[dataset_path,'frame_',sprintf('%06d',frameInfo{frames}.frame),'.jpg'];
+     %impath='test.jpg';
+    impath=[dataset_path,'frame_',sprintf('%06d',frameInfo{frames}.frame),'.jpg'];
     im_rgb=imread(impath);
 
     %%
@@ -85,4 +87,4 @@ dataset_path='D:/dataset/TrafficLight/';
     end
 
     imshow(im_rgb);
-%end
+end

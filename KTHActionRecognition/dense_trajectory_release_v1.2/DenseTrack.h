@@ -59,6 +59,8 @@ typedef struct {
     int gap;     // initialization gap for feature re-sampling 
 }TrackInfo;
 
+
+//HOG,HOF,MBHX,MBHY公用的参数配置结构体
 typedef struct {
     int nBins;   // number of bins for vector quantization
     bool isHof; 
@@ -88,10 +90,13 @@ public:
     std::vector<float> mbhY;
     int index;
 
+
+	//每个点的track信息，他这里用构造函数弄的，hof,hog,mbhX,mbhY四个函数，在descriptor.h里面
     Track(const Point2f& point_, const TrackInfo& trackInfo, const DescInfo& hogInfo,
           const DescInfo& hofInfo, const DescInfo& mbhInfo)
         : point(trackInfo.length+1), hog(hogInfo.dim*trackInfo.length),
           hof(hofInfo.dim*trackInfo.length), mbhX(mbhInfo.dim*trackInfo.length), mbhY(mbhInfo.dim*trackInfo.length)
+		  //这个是用vector来表示每个点的信息吗？
     {
         index = 0;
         point[0] = point_;

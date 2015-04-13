@@ -5,6 +5,7 @@
 using namespace cv;
 
 // get the rectangle for computing the descriptor
+//算这个点在哪个框框里
 void GetRect(const Point2f& point, RectInfo& rect, const int width, const int height, const DescInfo& descInfo)
 {
 	int x_min = descInfo.width/2;
@@ -112,15 +113,16 @@ void GetDesc(const DescMat* descMat, RectInfo& rect, DescInfo descInfo, std::vec
 }
 
 // for HOG descriptor
+//计算hog特征
 void HogComp(const Mat& img, float* desc, DescInfo& descInfo)
 {
 	Mat imgX, imgY;
-	Sobel(img, imgX, CV_32F, 1, 0, 1);
+	Sobel(img, imgX, CV_32F, 1, 0, 1);  //两个方向sobel算子提边缘
 	Sobel(img, imgY, CV_32F, 0, 1, 1);
-	BuildDescMat(imgX, imgY, desc, descInfo);
+	BuildDescMat(imgX, imgY, desc, descInfo);  //根据边缘图区算直方图，按照descInfo种的参数配置，最后放到desc里面
 }
 
-// for HOF descriptor
+// for HOF descriptor（计算HOF特征）
 void HofComp(const Mat& flow, float* desc, DescInfo& descInfo)
 {
 	Mat flows[2];
@@ -128,7 +130,7 @@ void HofComp(const Mat& flow, float* desc, DescInfo& descInfo)
 	BuildDescMat(flows[0], flows[1], desc, descInfo);
 }
 
-// for MBH descriptor
+// for MBH descriptor(计算MBH特征，MBH就是那个对光流图 做边缘的东西）
 void MbhComp(const Mat& flow, float* descX, float* descY, DescInfo& descInfo)
 {
 	Mat flows[2];
@@ -197,6 +199,8 @@ bool IsValid(std::vector<Point2f>& track, float& mean_x, float& mean_y, float& v
 }
 
 // detect new feature points in an image without overlapping to previous points
+
+//密集采样
 void DenseSample(const Mat& grey, std::vector<Point2f>& points, const double quality, const int min_distance)
 {
 	int width = grey.cols/min_distance;
@@ -268,6 +272,8 @@ void InitPry(const Mat& frame, std::vector<float>& scales, std::vector<Size>& si
 	}
 }
 
+
+//构建金字塔
 void BuildPry(const std::vector<Size>& sizes, const int type, std::vector<Mat>& grey_pyr)
 {
 	int nlayers = sizes.size();

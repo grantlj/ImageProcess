@@ -25,6 +25,9 @@ int main(int argc, char** argv)
 	TrackInfo trackInfo;
 	DescInfo hogInfo, hofInfo, mbhInfo;
 
+
+
+	//void InitDescInfo(DescInfo* descInfo, int nBins, bool isHof, int size, int nxy_cell, int nt_cell)
 	InitTrackInfo(&trackInfo, track_length, init_gap);
 	InitDescInfo(&hogInfo, 8, false, patch_size, nxy_cell, nt_cell);
 	InitDescInfo(&hofInfo, 9, true, patch_size, nxy_cell, nt_cell);
@@ -66,12 +69,15 @@ int main(int argc, char** argv)
 		}
 
 		if(frame_num == start_frame) {
+
+			//到达起始帧
 			image.create(frame.size(), CV_8UC3);
 			grey.create(frame.size(), CV_8UC1);
 			prev_grey.create(frame.size(), CV_8UC1);
 
 			InitPry(frame, fscales, sizes);
 
+			//构建金字塔
 			BuildPry(sizes, CV_8UC1, prev_grey_pyr);
 			BuildPry(sizes, CV_8UC1, grey_pyr);
 
@@ -84,19 +90,29 @@ int main(int argc, char** argv)
 			frame.copyTo(image);
 			cvtColor(image, prev_grey, CV_BGR2GRAY);
 
+
+			//不同sclse的金字塔
 			for(int iScale = 0; iScale < scale_num; iScale++) {
 				if(iScale == 0)
 					prev_grey.copyTo(prev_grey_pyr[0]);
 				else
+					//根据scale调整大小
 					resize(prev_grey_pyr[iScale-1], prev_grey_pyr[iScale], prev_grey_pyr[iScale].size(), 0, 0, INTER_LINEAR);
 
 				// dense sampling feature points
 				std::vector<Point2f> points(0);
+
+				//密集采样，存到了point里面
 				DenseSample(prev_grey_pyr[iScale], points, quality, min_distance);
 
 				// save the feature points
+
+				//对每个点开始村trackInfo,hogInfo,hofInfo,mbhInfo.
 				std::list<Track>& tracks = xyScaleTracks[iScale];
+				//不同尺度下的一堆track，叫tracks（tracks里面存了所有点的info，叫做Track）
 				for(i = 0; i < points.size(); i++)
+
+					//push 每个点，和这个点对应的描述子信息的参数
 					tracks.push_back(Track(points[i], trackInfo, hogInfo, hofInfo, mbhInfo));
 			}
 
@@ -105,35 +121,60 @@ int main(int argc, char** argv)
 
 			frame_num++;
 			continue;
-		}
+		}  //end of for
+
+
+		//第一个for(iscale结束了），得到了不同scale下的跟踪点，和跟踪点对应的特征的info
 
 		init_counter++;
 		frame.copyTo(image);
 		cvtColor(image, grey, CV_BGR2GRAY);
 
+
+		//算光流
 		// compute optical flow for all scales once
 		my::FarnebackPolyExpPyr(grey, poly_pyr, fscales, 7, 1.5);
 		my::calcOpticalFlowFarneback(prev_poly_pyr, poly_pyr, flow_pyr, 10, 2);
 
+
+
+		//第二个for循环，每个scale下正经提特征
 		for(int iScale = 0; iScale < scale_num; iScale++) {
 			if(iScale == 0)
 				grey.copyTo(grey_pyr[0]);
 			else
 				resize(grey_pyr[iScale-1], grey_pyr[iScale], grey_pyr[iScale].size(), 0, 0, INTER_LINEAR);
 
+
+			//每行多少个点，每列多少个点
 			int width = grey_pyr[iScale].cols;
 			int height = grey_pyr[iScale].rows;
 
 			// compute the integral histograms
+			//DescMat* InitDescMat(int height, int width, int nBins)
+			//初始化直方图(hog,hof,mbhx,mbhy
+
 			DescMat* hogMat = InitDescMat(height+1, width+1, hogInfo.nBins);
+
+			//计算hog特征，按照hogInfo的参数配置，最后存放到hogMat的desc里卖弄
+			//void HogComp(const Mat& img, float* desc, DescInfo& descInfo)
 			HogComp(prev_grey_pyr[iScale], hogMat->desc, hogInfo);
 
+
+			//这边也是差不多
 			DescMat* hofMat = InitDescMat(height+1, width+1, hofInfo.nBins);
 			HofComp(flow_pyr[iScale], hofMat->desc, hofInfo);
 
+			//差不多
 			DescMat* mbhMatX = InitDescMat(height+1, width+1, mbhInfo.nBins);
 			DescMat* mbhMatY = InitDescMat(height+1, width+1, mbhInfo.nBins);
 			MbhComp(flow_pyr[iScale], mbhMatX->desc, mbhMatY->desc, mbhInfo);
+
+
+
+			//现在手头上已经有了这一帧图像 所有点的HOG,HOF,MBH等等东西了，现在根据轨迹构造feature
+
+
 
 			// track feature points in each scale separately
 			std::list<Track>& tracks = xyScaleTracks[iScale];
@@ -144,23 +185,37 @@ int main(int argc, char** argv)
 				int y = std::min<int>(std::max<int>(cvRound(prev_point.y), 0), height-1);
 
 				Point2f point;
+
+				//根据光溜算下一个点的位置
 				point.x = prev_point.x + flow_pyr[iScale].ptr<float>(y)[2*x];
 				point.y = prev_point.y + flow_pyr[iScale].ptr<float>(y)[2*x+1];
- 
+                 
+				//出界就丢掉
 				if(point.x <= 0 || point.x >= width || point.y <= 0 || point.y >= height) {
 					iTrack = tracks.erase(iTrack);
 					continue;
 				}
 
 				// get the descriptors for the feature point
+				//根据当前这个点的位置，结合前面已经有的HOG,HOF,MBH这些东西，来算这个点的feature
 				RectInfo rect;
-				GetRect(prev_point, rect, width, height, hogInfo);
-				GetDesc(hogMat, rect, hogInfo, iTrack->hog, index);
+				GetRect(prev_point, rect, width, height, hogInfo);  //算这个点所在的矩形
+
+				//算这个点所在矩形里面的四种feature
+
+				//// get a descriptor from the integral histogram
+				//void GetDesc(const DescMat* descMat, RectInfo& rect, DescInfo descInfo, std::vector<float>& desc, const int index)
+				GetDesc(hogMat, rect, hogInfo, iTrack->hog, index);  
 				GetDesc(hofMat, rect, hofInfo, iTrack->hof, index);
 				GetDesc(mbhMatX, rect, mbhInfo, iTrack->mbhX, index);
 				GetDesc(mbhMatY, rect, mbhInfo, iTrack->mbhY, index);
+
+				//把这个点压到track轨迹里，也就是说最后东西都是放在itrack里imianle
 				iTrack->addPoint(point);
 
+
+
+				//画图，自行忽略。。。。。
 				// draw the trajectories at the first scale
 				if(show_track == 1 && iScale == 0)
 					DrawTrack(iTrack->point, iTrack->index, fscales[iScale], image);
@@ -196,6 +251,8 @@ int main(int argc, char** argv)
 				}
 				++iTrack;
 			}
+
+			//释放内存
 			ReleDescMat(hogMat);
 			ReleDescMat(hofMat);
 			ReleDescMat(mbhMatX);
@@ -205,6 +262,8 @@ int main(int argc, char** argv)
 				continue;
 
 			// detect new feature points every initGap frames
+
+			//这个是重新采点么？保证固定50个点同时L=15?
 			std::vector<Point2f> points(0);
 			for(std::list<Track>::iterator iTrack = tracks.begin(); iTrack != tracks.end(); iTrack++)
 				points.push_back(iTrack->point[iTrack->index]);

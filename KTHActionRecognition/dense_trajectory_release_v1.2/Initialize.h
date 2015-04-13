@@ -11,6 +11,8 @@ void InitTrackInfo(TrackInfo* trackInfo, int track_length, int init_gap)
 	trackInfo->gap = init_gap;
 }
 
+
+//初始化直方图
 DescMat* InitDescMat(int height, int width, int nBins)
 {
 	DescMat* descMat = (DescMat*)malloc(sizeof(DescMat));
@@ -30,6 +32,8 @@ void ReleDescMat(DescMat* descMat)
 	free(descMat);
 }
 
+
+//初始化，这个是每一个单个描述子的信息
 void InitDescInfo(DescInfo* descInfo, int nBins, bool isHof, int size, int nxy_cell, int nt_cell)
 {
 	descInfo->nBins = nBins;
