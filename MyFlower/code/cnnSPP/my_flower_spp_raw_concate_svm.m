@@ -1,8 +1,11 @@
 
 
 %
-%segmentation(SPP)+last layer 1024 concate:
+%segmentation(SPP)+last layer 1024(original image) concate:
 %Accuracy:83.1192%
+
+%segmentation(SPP)+last layer 1024(background image) concate:
+%Accuarcy: 82.8753%
 level=15;  %layer 19
 load('net-epoch-x.mat');
 data_splits_path='D:\dataset\oxfordflower102\setid.mat';
@@ -11,7 +14,7 @@ truth_path='D:\dataset\oxfordflower102\imagelabels.mat';
 img_raw_path='D:\dataset\oxfordflower102\jpg\';
 %img_bdx_path='D:\dataset\oxfordflower102\bdx_info\';
 feature_path='D:\dataset\oxfordflower102\feat_SPP\';
-feature_raw_path='D:\dataset\oxfordflower102\feat_1024\';
+feature_raw_path='D:\dataset\oxfordflower102\feat_1024_BGONLY\';
 
 
 load(data_splits_path);  %train, val, test split
