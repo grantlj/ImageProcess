@@ -1,7 +1,6 @@
 
 
 %
-%segmentation(SPP) only:72.0442%
 %segmentation(SPP) new:82.5988%
 %
 level=15;  %layer 19
