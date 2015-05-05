@@ -94,7 +94,7 @@
     <ClCompile Include="YSQ_Face.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="C:\Users\Grant\Desktop\libfacedetection-master\lib\libfacedetect.lib" />
+    <Library Include="..\libfacedetect.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

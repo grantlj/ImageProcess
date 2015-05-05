@@ -37,8 +37,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="C:\Users\Grant\Desktop\libfacedetection-master\lib\libfacedetect.lib">
-      <Filter>源文件</Filter>
-    </Library>
+    <Library Include="..\libfacedetect.lib" />
   </ItemGroup>
 </Project>
