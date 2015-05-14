@@ -2,10 +2,10 @@ function []=data_prepossessing()
 neg_path='cropped/neg/';
 pos_path='cropped/pos/';
 %filename transfer.
-%transfer_file_name(neg_path);
+transfer_file_name(neg_path);
 
-data_mean_pos=calculate_mean(pos_path,840);
-data_mean_neg=calculate_mean(neg_path,459);
+data_mean_pos=calculate_mean(pos_path,1076);
+data_mean_neg=calculate_mean(neg_path,1676);
 
 data_mean=data_mean_pos;
 
@@ -42,7 +42,10 @@ jpgCount=size(fileInfo,1);
 
 clc;
 for i=1:jpgCount
-  eval(['!rename', [',',fileInfo{i}] [',image_',sprintf('%04d',i),'.jpg']]);
+  %eval(['!rename', [',',fileInfo{i}] [',image_',sprintf('%04d',i),'.jpg']]);
+  im=imread(fileInfo{i});
+  imwrite(im,['image_',sprintf('%04d',i),'.jpg']);
+  delete(fileInfo{i});
 end
 
 t=cd(root);

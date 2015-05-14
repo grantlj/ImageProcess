@@ -1,7 +1,13 @@
 function []=cnn_1024_naive_SVM()
 
-
-  load('net-epoch-x.mat');
+% optimization finished, #iter = 5351
+% nu = 0.000230
+% obj = -6.906240, rho = 1.294614
+% nSV = 209, nBSV = 0
+% Total nSV = 209
+% Accuracy = 75.1073% (525/699) (classification)
+  
+load('net-epoch-x.mat');
   
   data_mean_path='dataset/data_mean.mat';
   global feature_path;
@@ -18,8 +24,8 @@ function []=cnn_1024_naive_SVM()
   
  'Loading training and testing data...'
  
- [pos_trn_data,pos_trn_label,pos_tst_data,pos_tst_label]=get_trn_tst_data(pos_path,250,840,[feature_path,'pos/'],1);
- [neg_trn_data,neg_trn_label,neg_tst_data,neg_tst_label]=get_trn_tst_data(neg_path,250,459,[feature_path,'neg/'],-1);
+ [pos_trn_data,pos_trn_label,pos_tst_data,pos_tst_label]=get_trn_tst_data(pos_path,300,840,[feature_path,'pos/'],1);
+ [neg_trn_data,neg_trn_label,neg_tst_data,neg_tst_label]=get_trn_tst_data(neg_path,300,459,[feature_path,'neg/'],-1);
 
    %%
    %Training SVM...
