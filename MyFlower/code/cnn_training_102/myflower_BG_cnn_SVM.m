@@ -28,6 +28,7 @@
   train_feat=zeros(size(trn1,2),1024); train_label=[];  %for feature and label, respectively.
    for i=1:size(trn1,2)
      img_count=trn1(1,i);
+     %img_count=19;
      filename=['D:/dataset/oxfordflower102/jpg/','image_',sprintf('%05d',img_count),'.jpg'];
      feat_filename=[feature_path,'image_',sprintf('%05d',img_count),'.mat'];
      image_seg_filename=[image_seg_path,'segmim_',sprintf('%05d',img_count),'.jpg'];  %image-segmentation file.
