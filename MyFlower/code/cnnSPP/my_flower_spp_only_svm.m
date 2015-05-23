@@ -35,7 +35,7 @@ for i=1:size(trn1,2)
  label=truth(img_count);
  %im=imread(filename);
 % res=vl_simplenn(net,single(im));
- if (~exist(feat_filename,'file'))
+ %if (~exist(feat_filename,'file'))
   
      im=imread(filename);  %raw image.
      load(image_seg_filename); %segmentation info.
@@ -51,9 +51,9 @@ for i=1:size(trn1,2)
  %tmp_feat=gather(res(level).x(:)');
  tmp_feat=[get_spp_feat(res(level).x,x_min,y_min,x_max,y_max,height,width)];
  save(feat_filename,'tmp_feat');
- else
+% else
       load(feat_filename);
- end
+ %end
 
 %  train_feat=[train_feat;tmp_feat];
   train_feat(i,:)=tmp_feat;

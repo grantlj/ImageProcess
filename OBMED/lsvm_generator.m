@@ -65,8 +65,11 @@ for object_bank_word=1:total_word
   models{object_bank_word}=model;
 end
 
-for itecount=1:200   %begin iteration. maximum iteration count is 100.
-    
+for itecount=1:100   %begin iteration. maximum iteration count is 100.
+   if (exist(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat'],'file'))
+       load(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);
+       disp('Model existed..');
+   else
     
    %train each word's pooling strategies in each iteration.
    
@@ -91,7 +94,7 @@ for itecount=1:200   %begin iteration. maximum iteration count is 100.
   end  %end of object_bank_word
   
    save(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat'],'models');
-
+   end %end of file not exist
 end  %end of iteration
 
 

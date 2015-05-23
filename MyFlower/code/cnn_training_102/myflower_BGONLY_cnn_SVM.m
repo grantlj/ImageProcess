@@ -33,7 +33,7 @@
      feat_filename=[feature_path,'image_',sprintf('%05d',img_count),'.mat'];
      image_seg_filename=[image_seg_path,'segmim_',sprintf('%05d',img_count),'.jpg'];  %image-segmentation file.
       label=truth(img_count);  
-     if (~exist(feat_filename,'file'))
+   %  if (~exist(feat_filename,'file'))
      im=imread(filename);   im_seg=imread(image_seg_filename);  %read segmentation file.
      im_seg=imresize(im_seg,[net.normalization.imageSize(1,1),net.normalization.imageSize(1,2)]);
      im=imresize(im,[net.normalization.imageSize(1,1),net.normalization.imageSize(1,2)]);
@@ -55,9 +55,9 @@
      res=vl_simplenn(net,im);
      tmp_feat=gather(res(level).x(:)');
      save(feat_filename,'tmp_feat');
-     else
+   %  else
           load(feat_filename);
-     end
+    % end
          
    %  train_feat=[train_feat;tmp_feat];
       train_feat(i,:)=tmp_feat;
