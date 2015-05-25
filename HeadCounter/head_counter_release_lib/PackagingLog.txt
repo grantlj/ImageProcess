@@ -1,0 +1,162 @@
+ant:
+<ant>
+  <mkdir dir="D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_redistribution" />
+  <mkdir dir="D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing" />
+  <mkdir dir="D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_redistribution_files_only" />
+</ant>
+mcc -W cpplib:head_counter_release_lib -T link:lib -d D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing -v D:\Matlab\ImageProcess\HeadCounter\head_counter_release.m -a D:\Matlab\ImageProcess\HeadCounter\cnn_mnist_naive_SVM_model.mat -a D:\Matlab\ImageProcess\HeadCounter\data_mean.mat -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\libsvmread.c' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\libsvmread.mexa64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\libsvmread.mexw64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\libsvmwrite.c' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\libsvmwrite.mexa64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\libsvmwrite.mexw64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\make.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\Makefile' -a D:\Matlab\ImageProcess\HeadCounter\net-epoch-100.mat -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\README' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\svm_model_matlab.c' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\svm_model_matlab.h' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\svmpredict.c' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\svmpredict.mexa64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\svmpredict.mexw64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\svmtrain.c' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\svmtrain.mexa64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\libsvm-3.18\matlab\svmtrain.mexw64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_argparse.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_compilenn.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\mex\vl_imreadjpeg.mexw64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnbnorm.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\mex\vl_nnconv.mexw64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nndropout.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnloss.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnnoffset.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\mex\vl_nnnormalize.mexw64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnpdist.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\mex\vl_nnpool.mexw64' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnrelu.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnsigmoid.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnsoftmax.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnsoftmaxloss.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_nnspnorm.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_rootnn.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_setupnn.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_simplenn.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_simplenn_diagnose.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_simplenn_display.m' -a 'C:\Program Files\MATLAB\R2014b\toolbox\matconvnet-1.0-beta11\matlab\vl_simplenn_move.m' 
+[警告: 函数 cummax 与某个 MATLAB 内置函数同名。建议您重命名该函数以避免潜在的名称冲突。] 
+[警告: 函数 det 与某个 MATLAB 内置函数同名。建议您重命名该函数以避免潜在的名称冲突。] 
+Compiler version: 5.2 (R2014b)
+Dependency analysis by REQUIREMENTS.
+[警告: Adding path "D:\Matlab\ImageProcess\HeadCounter" to Compiler path instance.] 
+Parsing file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release.m"
+	(Referenced from: "Compiler Command Line").
+Warning: The source file 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_6000_8540.auth' has a name conflict with another source file in CTF. It is saved as '/toolbox/libsvm-3.18/matlab/svmpredict_mexw64_1.auth' in the CTF. Please verify that your application works as expected.
+Deleting 37 temporary MEX authorization files.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_16912_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_24016_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_910_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_24296_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_17419_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_24445_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_23363_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_12684_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_30224_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_9689_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_25645_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_12054_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_29178_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_2029_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_29875_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_28855_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_2838_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_20581_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_17445_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_23308_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_30723_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_8873_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_18212_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_21984_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_14548_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_3493_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_1640_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_30091_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_7856_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_32644_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_18545_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_27360_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_18514_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_4417_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_20510_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_12256_8540.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_8540_28510_8540.auth'.
+Generating file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.h".
+Generating file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp".
+Generating file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.exports".
+Generating file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\readme.txt".
+Executing command: ""C:\Program Files\MATLAB\R2014b\bin\mbuild"  -client mbuild -O -v -output "head_counter_release_lib" -I"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing" "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp"  "DEFFILE=\"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def\"" "LINKEXPORT=\"/DLL /def:\"$DEFFILE\"\"" "LDEXT=\".dll\"" "CMDLINE250=\"mt -outputresource:$EXE;2 -manifest $MANIFEST\"" -outdir "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing""详细模式已开。
+... 正在查找编译器 'Microsoft Visual C++ 2013 Professional'...
+... 正在查找注册表设置 'HKLM\SOFTWARE\Microsoft\VisualStudio\SxS\VS7' 12.0...否。
+... 正在查找注册表设置 'HKCU\SOFTWARE\Microsoft\VisualStudio\SxS\VS7' 12.0...否。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VS7' 12.0...是('C:\Program Files (x86)\Microsoft Visual Studio 12.0\')。
+... 正在查找文件 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\amd64\cl.exe'...是。
+... 正在查找文件夹 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC'...是。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.1' InstallationFolder...否。
+... 正在查找注册表设置 'HKCU\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.1' InstallationFolder...否。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\v8.1' InstallationFolder...是('C:\Program Files (x86)\Windows Kits\8.1\')。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Microsoft\VisualStudio\SxS\VS7' 12.0...否。
+... 正在查找注册表设置 'HKCU\SOFTWARE\Microsoft\VisualStudio\SxS\VS7' 12.0...否。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VS7' 12.0...是('C:\Program Files (x86)\Microsoft Visual Studio 12.0\')。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Microsoft\VisualStudio\SxS\VC7' 12.0...否。
+... 正在查找注册表设置 'HKCU\SOFTWARE\Microsoft\VisualStudio\SxS\VC7' 12.0...否。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VC7' 12.0...是('C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\')。
+... 正在查找环境变量 'VS120COMNTOOLS'...是('C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\')。
+... 正在查找文件 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe'...是。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Microsoft\VisualStudio\SxS\VS7' 12.0...否。
+... 正在查找注册表设置 'HKCU\SOFTWARE\Microsoft\VisualStudio\SxS\VS7' 12.0...否。
+... 正在查找注册表设置 'HKLM\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\SxS\VS7' 12.0...是('C:\Program Files (x86)\Microsoft Visual Studio 12.0\')。
+... 正在查找文件 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat'...是。
+... 正在查找文件夹 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC'...是。
+找到已安装的编译器 'Microsoft Visual C++ 2013 Professional'。
+设置 PATH = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Bin\amd64;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Bin\VCPackages;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\..\Common7\IDE;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\..\Common7\Tools;C:\Program Files (x86)\Windows Kits\8.1\\Bin\x64;C:\Program Files (x86)\Windows Kits\8.1\\Bin\x86;;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\libnvvp;C:\Program Files\Broadcom\Broadcom 802.11 Network Adapter\Driver;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\MATLAB\R2014b\runtime\win64;C:\Program Files\MATLAB\R2014b\bin;C:\Program Files\Java\jdk1.7.0_51\bin;C:\Program Files\Java\jdk1.7.0_51jre\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\AndroidDev\adt-bundle-windows-x86_64-20130917\sdk\platform-tools;C:\AndroidDev\adt-bundle-windows-x86_64-20130917\sdk\tools;D:\CppProjects\opencv\build\x64\vc12\bin;C:\CTEX\UserData\miktex\bin;C:\CTEX\MiKTeX\miktex\bin;C:\CTEX\CTeX\ctex\bin;C:\CTEX\CTeX\cct\bin;C:\CTEX\CTeX\ty\bin;C:\CTEX\Ghostscript\gs9.05\bin;C:\CTEX\GSview\gsview;C:\CTEX\WinEdt;D:\OtherTools\xpdf\bin64;C:\Program Files (x86)\Common Files\Apple\Apple Application Support\;D:\CppProjects\opencv\build\x86\vc12\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MATLAB\R2014b\polyspace\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;D:\CppProjects\opencv\build\x86\vc12\bin
+设置 INCLUDE = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\INCLUDE;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\INCLUDE;C:\Program Files (x86)\Windows Kits\8.1\\include\shared;C:\Program Files (x86)\Windows Kits\8.1\\include\um;C:\Program Files (x86)\Windows Kits\8.1\\include\winrt;C:\Program Files\MATLAB\R2014b\extern\include;
+设置 LIB = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Lib\amd64;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\Lib\amd64;C:\Program Files (x86)\Windows Kits\8.1\\lib\winv6.3\um\x64;C:\Program Files\MATLAB\R2014b\lib\win64;
+设置 LIBPATH = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Lib\amd64;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\Lib\amd64;
+Options file details
+-------------------------------------------------------------------
+	Compiler location: C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\..\
+	Options file: C:\Users\Grant\AppData\Roaming\MathWorks\MATLAB\R2014b\MBUILD_C++_win64.xml
+	CMDLINE100 : cl /c -MD -Zp8 -GR -W3 -EHsc- -Zc:wchar_t- -nologo -O2 -DNDEBUG /DMSVC /DIBMPC /D_CRT_SECURE_NO_DEPRECATE -ID:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing  -I"C:\Program Files\MATLAB\R2014b\extern\include" -I"C:\Program Files\MATLAB\R2014b\extern\include\win64" D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp /FoC:\Users\Grant\AppData\Local\Temp\mex_33349467133769_5208\head_counter_release_lib.obj
+	CMDLINE200 : link /nologo /manifest   /DLL /def:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def" C:\Users\Grant\AppData\Local\Temp\mex_33349467133769_5208\head_counter_release_lib.obj  /MACHINE:AMD64 /LIBPATH:"C:\Program Files\MATLAB\R2014b\extern\lib\win64\microsoft" mclmcrrt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /out:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll
+	CMDLINE250 : mt -outputresource:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll;2 -manifest D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll.manifest
+	CMDLINE300 : del D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll.manifest "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.map"
+	COMPILER : cl
+	COMPFLAGS : -MD -Zp8 -GR -W3 -EHsc- -Zc:wchar_t- -nologo
+	COMPDEFINES : /DMSVC /DIBMPC /D_CRT_SECURE_NO_DEPRECATE
+	MATLABMEX : 
+	OPTIMFLAGS : -O2 -DNDEBUG
+	INCLUDE : -ID:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing  -I"C:\Program Files\MATLAB\R2014b\extern\include" -I"C:\Program Files\MATLAB\R2014b\extern\include\win64"
+	DEBUGFLAGS : /Z7
+	LINKER : link
+	LINKFLAGS : /nologo /manifest
+	LINKTYPE : 
+	LINKEXPORT : /DLL /def:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def"
+	LINKLIBS : /MACHINE:AMD64 /LIBPATH:"C:\Program Files\MATLAB\R2014b\extern\lib\win64\microsoft" mclmcrrt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib
+	LINKDEBUGFLAGS : /debug /PDB:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.pdb"
+	LINKOPTIMFLAGS : 
+	OBJEXT : .obj
+	LDEXT : .dll
+	SETENV : set COMPILER=cl 
+				set COMPFLAGS=/c -MD -Zp8 -GR -W3 -EHsc- -Zc:wchar_t- -nologo /DMSVC /DIBMPC /D_CRT_SECURE_NO_DEPRECATE  
+				set OPTIMFLAGS=-O2 -DNDEBUG 
+				set DEBUGFLAGS=/Z7 
+				set LINKER=link 
+				set LINKFLAGS=/nologo /manifest /export:%ENTRYPOINT%  /MACHINE:AMD64 /LIBPATH:"C:\Program Files\MATLAB\R2014b\extern\lib\win64\microsoft" mclmcrrt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DLL /def:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def" 
+				set LINKDEBUGFLAGS=/debug /PDB:"%OUTDIR%%MEX_NAME%.dll.pdb" 
+				set NAME_OUTPUT=/out:"%OUTDIR%%MEX_NAME%%MEX_EXT%"
+	VCROOT : C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC
+	SDKROOT : C:\Program Files (x86)\Windows Kits\8.1\
+	VSINSTALLDIR : C:\Program Files (x86)\Microsoft Visual Studio 12.0\
+	VCINSTALLDIR : C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\
+	PROF_ENV : C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe
+	VCVARSALLDIR : C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC
+	MATLABROOT : C:\Program Files\MATLAB\R2014b
+	ARCH : win64
+	SRC : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp
+	OBJ : C:\Users\Grant\AppData\Local\Temp\mex_33349467133769_5208\head_counter_release_lib.obj
+	OBJS : C:\Users\Grant\AppData\Local\Temp\mex_33349467133769_5208\head_counter_release_lib.obj 
+	SRCROOT : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib
+	DEF : C:\Users\Grant\AppData\Local\Temp\mex_33349467133769_5208\head_counter_release_lib.def
+	EXP : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.exp
+	LIB : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.lib
+	EXE : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll
+	ILK : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.ilk
+	MANIFEST : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll.manifest
+	TEMPNAME : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib
+	EXEDIR : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\
+	EXENAME : head_counter_release_lib
+	DEFFILE : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def
+	OPTIM : -O2 -DNDEBUG
+	LINKOPTIM : 
+-------------------------------------------------------------------
+使用 'Microsoft Visual C++ 2013 Professional' 编译。
+cl /c -MD -Zp8 -GR -W3 -EHsc- -Zc:wchar_t- -nologo -O2 -DNDEBUG /DMSVC /DIBMPC /D_CRT_SECURE_NO_DEPRECATE -ID:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing  -I"C:\Program Files\MATLAB\R2014b\extern\include" -I"C:\Program Files\MATLAB\R2014b\extern\include\win64" D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp /FoC:\Users\Grant\AppData\Local\Temp\mex_33349467133769_5208\head_counter_release_lib.obj
+head_counter_release_lib.cpp
+
+link /nologo /manifest   /DLL /def:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def" C:\Users\Grant\AppData\Local\Temp\mex_33349467133769_5208\head_counter_release_lib.obj  /MACHINE:AMD64 /LIBPATH:"C:\Program Files\MATLAB\R2014b\extern\lib\win64\microsoft" mclmcrrt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /out:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll
+   正在创建库 D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.lib 和对象 D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.exp
+
+mt -outputresource:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll;2 -manifest D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll.manifest
+Microsoft (R) Manifest Tool version 6.3.9600.16384
+
+Copyright (c) Microsoft Corporation 2012. 
+
+All rights reserved.
+
+
+del D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll.manifest "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.map"
+Packaging...
+Creating the bundle...
+Web based installer created at D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_redistribution\MyAppInstaller_web.exe.
+Packaging complete.

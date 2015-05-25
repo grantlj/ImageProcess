@@ -1,0 +1,8 @@
+LIBRARY head_counter_release_lib
+EXPORTS
+head_counter_release_libInitialize
+head_counter_release_libInitializeWithHandlers
+head_counter_release_libTerminate
+head_counter_release_libPrintStackTrace
+mlxHead_counter_release
+

@@ -19,7 +19,7 @@ function []=cnn_mnist_naive_SVM()
 load('net-epoch-100.mat');
   
   data_mean_path='dataset/data_mean.mat';
-  global feature_path;
+  global feature_path;  global net;
   feature_path='dataset/feat_cnn_mnist/';
   neg_path='cropped/neg/';
   pos_path='cropped/pos/';
@@ -28,7 +28,7 @@ load('net-epoch-100.mat');
   data_mean=imresize(data_mean,[net.normalization.imageSize(1,1),net.normalization.imageSize(1,2)]);
   net.layers{end}.type = 'softmax';
  
-  global net;
+
   %tst1=[tst1,val1,trn1];
   
  'Loading training and testing data...'

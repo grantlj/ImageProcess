@@ -1,13 +1,15 @@
 %myflower FOREGROUND ONLY+ALL concated LATE FUSION SVM experiment.
 %accuracy: 75.51%
+%with optima late fusion: 65.30%
 
 %myflower BACKGROUND ONLY+ALL concated LATE FUSION SVM experiment.
 %accuracy: 67.4747%
+%with optimal late fusion:
 clc;
 clear all;
 
-feature_no_bg_path='D:\dataset\oxfordflower102\feat_1024_BG\';% foreground
-%feature_no_bg_path='D:\dataset\oxfordflower102\feat_1024_BGONLY\';
+%feature_no_bg_path='D:\dataset\oxfordflower102\feat_1024_BG\';% foreground
+feature_no_bg_path='D:\dataset\oxfordflower102\feat_1024_BGONLY\';
 feature_bg_path='D:\dataset\oxfordflower102\feat_1024\';
 truth_path='D:\dataset\oxfordflower102\imagelabels.mat';
 data_splits_path='D:\dataset\oxfordflower102\setid.mat';
@@ -67,18 +69,19 @@ end
  end
  
  
-%Training SVM...
-svmmodel_1=svmtrain(train_label,train_feat_1,'-s 0 -t 0');
-svmmodel_2=svmtrain(train_label,train_feat_2,'-s 0 -t 0');
+
 
 %%
 %Using optimal fusion strategy for every individual svm.
 
-if (~exist('OPTIMAL_MODEL_FOREGROUND_RAW.mat','file'))
+if (~exist('OPTIMAL_MODEL_BACKGROUND_RAW.mat','file'))
+  %Training SVM...
+  svmmodel_1=svmtrain(train_label,train_feat_1,'-s 0 -t 0');
+  svmmodel_2=svmtrain(train_label,train_feat_2,'-s 0 -t 0');
   thetaVec=get_optimal_fusion_parameter(svmmodel_1,svmmodel_2,train_label,train_feat_1,train_feat_2);
-  save('OPTIMAL_MODEL_FOREGROUND_RAW.mat','thetaVec','svmmodel_1','svmmodel_2');
+  save('OPTIMAL_MODEL_BACKGROUND_RAW.mat','thetaVec','svmmodel_1','svmmodel_2');
 else
-    load('OPTIMAL_MODEL_FOREGROUND_RAW.mat');
+    load('OPTIMAL_MODEL_BACKGROUND_RAW.mat');
 end
 [predict_label_1, accuracy_1, prob_1] = svmpredict(test_label, test_feat_1, svmmodel_1);
 [predict_label_2, accuracy_2, prob_2] = svmpredict(test_label, test_feat_2, svmmodel_2);
