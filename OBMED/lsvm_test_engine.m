@@ -47,7 +47,7 @@ addpath(genpath('libsvm-3.18/'));
     
     for j=1:modelCount
        model=models{j};
-       feat=feat0(:,(j-1)*252+1:(j)*252);
+       feat=feat0(:,(j-1)*4096+1:(j)*4096);
        thetaMat=model.thetaMat;
        
       

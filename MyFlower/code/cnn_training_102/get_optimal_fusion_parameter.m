@@ -39,7 +39,7 @@ for i=1:n_class-1
       [theta,fval,exitflag]=fmincon(@theta_opt,0.5,[],[],[],[],0,1);
       
       thetaVec=[thetaVec;theta];
-      disp(['Exit flag=',num2str(exitflag)]);
+      disp(['Exit flag=',num2str(exitflag),'    Theta=',num2str(theta)]);
     end
 end
 
@@ -56,8 +56,10 @@ function f=theta_opt(theta)
   
   now_sum=0;
   for i=1:size(now_train_label,1)
-    y=now_train_label(i);
-    tmp=1-theta*y*(w1_global'*now_train_feat_1(i,:)'+b1_global)+(1-theta)*y*(w2_global'*now_train_feat_2(i,:)'+b2_global);
+    y=now_train_label(i,1);
+    
+    %calculate the hinge loss.
+    tmp=1-theta*y*(w1_global'*now_train_feat_1(i,:)'+b1_global)-(1-theta)*y*(w2_global'*now_train_feat_2(i,:)'+b2_global);
     if (tmp>0) 
         now_sum=now_sum+tmp;
     end

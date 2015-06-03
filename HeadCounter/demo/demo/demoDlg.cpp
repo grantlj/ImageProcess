@@ -536,7 +536,7 @@ void thread_draw_pic(CdemoDlg *pp, IplImage* imagenow, UINT ID)
 	 CdemoDlg *pp = (CdemoDlg *)CWnd::FromHandle((HWND)lpParam); //通过窗口句柄得到窗口的对象指针
 	 CListCtrl *mlist = (CListCtrl*)pp->GetDlgItem(IDC_LIST2);
 	 //载入级联检测器配置文件；
-	
+	 IplImage *image1, *image_raw;
 	 CascadeClassifier cascade, nestedCascade;
 	 double scale = 0.75;
 	 if (!cascade.load(cascadeName))
@@ -563,14 +563,12 @@ void thread_draw_pic(CdemoDlg *pp, IplImage* imagenow, UINT ID)
 			 t1 = timeGetTime();
 
 
-			 IplImage* image1;
+			
 			 //载入图片
 			 image1 = cvLoadImage(filename.c_str());
-
+			// image_raw = *image1;
 			 
-			 //绘图至左侧原始图界面：
-			 thread_draw_pic(pp, image1, IDC_STATIC1);
-			 
+			
 
 			 string bdx_filename=detectAndDraw(image1, cascade, scale,i+1);//得到Adaboost处理后的boundingbox.txt
 
@@ -596,10 +594,16 @@ void thread_draw_pic(CdemoDlg *pp, IplImage* imagenow, UINT ID)
 
 			 sprintf(temp, "%ld", t2 - t1);
 			 mlist->SetItemText(i, 3, string(temp).c_str());
+			 //绘图至左侧原始图界面：
+			 image_raw = cvLoadImage(filename.c_str());
+			 thread_draw_pic(pp, image_raw, IDC_STATIC1);
+			 //绘图至右侧检测结果界面：
 			 thread_draw_pic(pp, img_to_show, IDC_STATIC2);
 
 			 
 			 //更新下方统计表
+			 //delete(image_raw);
+			// delete(image1);
 		 }
 	 
 	 //end of one round.
