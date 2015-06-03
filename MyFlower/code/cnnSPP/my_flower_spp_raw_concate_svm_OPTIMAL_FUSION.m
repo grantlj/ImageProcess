@@ -1,8 +1,10 @@
 %segmentation(SPP)+last layer 1024(original image) concate LATE FUSION:
 %Accuracy: 82.37%
+%Optimal:  81.82%
 
 %segmentation(SPP)+last layer 1024(background image) concate LATE FUSION:
 %Accuarcy: 64.14%
+%Optimal:  
 level=15;  %layer 19
 load('net-epoch-x.mat');
 data_splits_path='D:\dataset\oxfordflower102\setid.mat';
@@ -87,14 +89,19 @@ svmmodel_2=svmtrain(train_label,train_feat_2,'-s 0 -t 0');
 
 %%
 %Using optimal fusion strategy for every individual svm.
-thetaVec=get_optimal_fusion_parameter(svmmodel_1,svmmodel_2,train_label,train_feat_1,train_feat_2);
-
-save('OPTIMAL_MODEL_SPP_ORIGIN_IM.mat','thetaVec','svmmodel_1','svmmodel_2');
-%clear train_label;
-%clear train_feat;
+if (~exist('OPTIMAL_MODEL_SPP_RAW.mat','file'))
+  %Training SVM...
+  svmmodel_1=svmtrain(train_label,train_feat_1,'-s 0 -t 0');
+  svmmodel_2=svmtrain(train_label,train_feat_2,'-s 0 -t 0');
+  thetaVec=get_optimal_fusion_parameter(svmmodel_1,svmmodel_2,train_label,train_feat_1,train_feat_2);
+  save('OPTIMAL_MODEL_SPP_RAW.mat','thetaVec','svmmodel_1','svmmodel_2');
+else
+    load('OPTIMAL_MODEL_SPP_RAW.mat');
+end
 [predict_label_1, accuracy_1, prob_1] = svmpredict(test_label, test_feat_1, svmmodel_1);
 [predict_label_2, accuracy_2, prob_2] = svmpredict(test_label, test_feat_2, svmmodel_2);
 
-final_prob=prob_1+prob_2;
+thetaMat=repmat(thetaVec',size(prob_1,1),1);
 
+final_prob=prob_1.*thetaMat+prob_2.*(1-thetaMat);
 get_accuracy_by_prob(final_prob,test_label,102)

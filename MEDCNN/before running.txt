@@ -1,0 +1,12 @@
+在运行matlab前添加环境变量： 
+ export PATH=/usr/local/cuda-6.5/bin:$PATH
+ export LD_LIBRARY_PATH=/usr/local/cuda-6.5/lib64:$LD_LIBRARY_PATH
+
+运行matlab后添加库
+addpath(genpath('/data/collegestudent/liujiang/matconvnet-1.0-beta11/matlab/'))
+
+初始化：
+vl_setupnn
+
+测试：
+vl_test_nnlayers(true)

@@ -1,10 +1,10 @@
 %myflower FOREGROUND ONLY+ALL concated LATE FUSION SVM experiment.
 %accuracy: 75.51%
-%with optima late fusion: 65.30%
+%with optima late fusion: 74.61%
 
 %myflower BACKGROUND ONLY+ALL concated LATE FUSION SVM experiment.
 %accuracy: 67.4747%
-%with optimal late fusion:
+%with optimal late fusion:63.88%
 clc;
 clear all;
 

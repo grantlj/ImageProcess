@@ -57,7 +57,7 @@ function f=theta_opt(theta)
   now_sum=0;
   for i=1:size(now_train_label,1)
     y=now_train_label(i);
-    tmp=1-theta*y*(w1_global'*now_train_feat_1(i,:)'+b1_global)+(1-theta)*y*(w2_global'*now_train_feat_2(i,:)'+b2_global);
+    tmp=1-theta*y*(w1_global'*now_train_feat_1(i,:)'+b1_global)-(1-theta)*y*(w2_global'*now_train_feat_2(i,:)'+b2_global);
     if (tmp>0) 
         now_sum=now_sum+tmp;
     end
