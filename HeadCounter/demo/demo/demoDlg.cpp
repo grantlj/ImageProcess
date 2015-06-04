@@ -57,7 +57,7 @@ const static String cascadeName = "cascadebest.xml";
 //CdemoDlg dlg;
 
 //全局变量，定义教室总数
-const static int class_count = 50;
+const static int class_count = 100;
 
 //全局变量，进程监测信号量
 

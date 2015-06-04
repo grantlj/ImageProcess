@@ -11,7 +11,7 @@ function []=run_lsvm_test_engine(test_object,model_folder)
     disp(['modelcount=',num2str(modelcount)]);
 
     % load('lsvm_rand_row.mat');    %load rand row info.
-     load(['/home/liujiang/',test_object,'_test_set.mat']);     %load test set.
+     load(['/home/liujiang/',test_object,'_CNN_test_set.mat']);     %load test set.
 
     fvals=zeros(1,modelcount); 
     

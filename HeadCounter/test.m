@@ -31,7 +31,7 @@ level=7;
 %read ground truth file, raw image file and labeled bounding box file,
 %respectively.
 
-for img_count=1:50
+for img_count=1:100
    % bdx_gt_file=[bdx_gt_root_path,num2str(img_count),'.txt'];
     figure_raw_file=[figure_raw_root_path,num2str(img_count),'.jpg'];
     bdx_label_file=[bdx_labeled_root_path,num2str(img_count),'.txt'];
