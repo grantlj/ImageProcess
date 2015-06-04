@@ -31,7 +31,7 @@ addpath(genpath('libsvm-3.18/'));
  score=[];
  for i=1:featureCount
    feat0=tests{i};     %raw feat for each video.
-  % feat=feat(:,1:(object_bank_word)*252);
+  % feat=feat(:,1:(object_bank_word)*4096);
   
    if (isempty(feat0))
       continue;
@@ -47,7 +47,7 @@ addpath(genpath('libsvm-3.18/'));
     
     for j=1:modelCount
        model=models{j};
-       feat=feat0(:,(j-1)*252+1:(j)*252);
+       feat=feat0(:,(j-1)*4096+1:(j)*4096);
        thetaMat=model.thetaMat;
        
       
