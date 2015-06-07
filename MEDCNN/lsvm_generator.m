@@ -130,13 +130,13 @@ function [c ceq]=theta_con(alpha)
           
         if (i==1 || i==2)
             feat_new=train_set_global{i}.trains{j};   %a single video's feture mat after lagrange: 20*40000+
-            feat_new=feat_new(:,(object_bank_word-1)*4096+1:(object_bank_word)*4096);
-            % feat_new=feat_new(:,1:(object_bank_word)*4096);
+            feat_new=feat_new(:,(object_bank_word-1)*128+1:(object_bank_word)*128);
+            % feat_new=feat_new(:,1:(object_bank_word)*128);
             if(isempty(feat_new)), continue; end;    % a single video's final pooling result after multiplied by theta.
      
             vec=theta*feat_new;
             
-           % vec=vec((object_bank_word-1)*4096+1,object_bank_word*4096);
+           % vec=vec((object_bank_word-1)*128+1,object_bank_word*128);
             train_feat=[train_feat;vec];             
             
         end
@@ -216,7 +216,7 @@ end
 
 
 %update theta by fmincon, the result is saved in ansMat.
-opts = optimoptions(@fmincon,'MaxFunEvals',2000,'Algorithm','sqp');
+opts = optimoptions(@fmincon,'MaxFunEvals',8000,'Algorithm','sqp');
 
 global initWeight;
 global thetaCount;
@@ -292,15 +292,15 @@ for i=1:size(train_set,2)
         feat_new=train_set{i}.trains{j};   %a single video's mat.
         
       %  disp(['size of feat_new=',num2str(size(feat_new,1)),'*',num2str(size(feat_new,2))]);
-       feat_new=double(feat_new(:,(object_bank_word-1)*4096+1:(object_bank_word)*4096));
-     %   feat_new=feat_new(:,1:(object_bank_word)*4096);
+       feat_new=double(feat_new(:,(object_bank_word-1)*128+1:(object_bank_word)*128));
+     %   feat_new=feat_new(:,1:(object_bank_word)*128);
         if(isempty(feat_new))
             continue;
         end;
         vec=[];                            % a single video's final result.
         vec=thetaMat*feat_new;
         
-        %vec=vec((object_bank_word-1)*4096+1,(object_bank_word)*4096);  %optimize each word.
+        %vec=vec((object_bank_word-1)*128+1,(object_bank_word)*128);  %optimize each word.
         if (i==1)
             train_label=[train_label;1];   %belongs to present 1-n svm's positive examples.
             train_feat=[train_feat;vec];

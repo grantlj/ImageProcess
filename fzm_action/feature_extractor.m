@@ -28,6 +28,7 @@ function feature_extractor()
     for i=1:size(filelist,1)
       output_filename=[bow_path{action_class_count},num2str(i),'_feat_bow.mat'];
       if (~exist(output_filename,'file'))
+        disp(['Now handling:',filelist{i}]);
         feat_bow=calculate_frame_bag_of_words(filelist{i},wordslist,kdtree);  
         save(output_filename,'feat_bow');
       else
@@ -44,6 +45,7 @@ end
 %calculate frame bag of words.
 function [feat_bow]=calculate_frame_bag_of_words(filename,wordslist,kdtree)
    feat_list=generate_wordslist(filename);
+   disp('Finish pre-processing...');
    frames=size(feat_list,1)/1200;
    feat_bow=[];
    for i=1:frames
