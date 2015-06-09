@@ -4,14 +4,14 @@ function []=run_lsvm_test_engine(test_object,model_folder)
     clc;
     acc=[];
     
-    word=20;
+    word=177;
 
-    t=dir([model_folder,'/']);
+    t=dir([model_folder,'/',test_object,'/']);
     modelcount=size(t,1)-3;
     disp(['modelcount=',num2str(modelcount)]);
 
     % load('lsvm_rand_row.mat');    %load rand row info.
-     load(['/home/liujiang/',test_object,'_test_set.mat']);     %load test set.
+     load(['/home/liujiang/',test_object,'_test_set_177.mat']);     %load test set.
 
     fvals=zeros(1,modelcount); 
     
@@ -28,7 +28,7 @@ function []=run_lsvm_test_engine(test_object,model_folder)
     
     
     
-    save(['figures/',test_object,'_Word_',num2str(word),'_AP_RAW.mat'],'acc');
+    save(['figures/',test_object,'_Word_',num2str(word),'_AP_RAW_OB177.mat'],'acc');
     %modelcount=6;
     
     figure;
@@ -39,12 +39,12 @@ function []=run_lsvm_test_engine(test_object,model_folder)
 %    plot(1:modelcount,acc(0)*ones(1,modelcount+1),'r');
     line([1,modelcount+2],[acc(1),acc(1)],'Color','r','LineWidth',2);  %the baseline: AP of the default pooling strategy.
     
-    saveas(gcf,['figures/AP_',test_object,'_word_',num2str(word),'_MODELCOUNT_',num2str(modelcount),'.fig']);
+    saveas(gcf,['figures/AP_',test_object,'_word_',num2str(word),'_MODELCOUNT_',num2str(modelcount),'_OB177.fig']);
     
     
     figure;
     grid on;
     hold on;
     plot(1:modelcount,fvals);
-    saveas(gcf,['figures/ITEINFO_',test_object,'_word_',num2str(word),'_MODELCOUNT_',num2str(modelcount),'.fig']);
+    saveas(gcf,['figures/ITEINFO_',test_object,'_word_',num2str(word),'_MODELCOUNT_',num2str(modelcount),'_OB177.fig']);
 end

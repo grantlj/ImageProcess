@@ -29,14 +29,14 @@ root=(GetPresentPath);
 
 if (~useold)
     [train_set,test_set]=data_initialize(root,test_object);
-    save(['/home/liujiang/',test_object,'_train_set.mat'],'train_set','-v7.3');   %save the test_set, for the convenience of test_engine.
+    save(['/home/liujiang/',test_object,'_train_set_177.mat'],'train_set','-v7.3');   %save the test_set, for the convenience of test_engine.
     cd(root);
 
     %save test set to file, for lsvm_test_engine use.
-    save(['/home/liujiang/',test_object,'_test_set.mat'],'test_set','-v7.3');   %save the test_set, for the convenience of test_engine.
+    save(['/home/liujiang/',test_object,'_test_set_177.mat'],'test_set','-v7.3');   %save the test_set, for the convenience of test_engine.
     clear test_set;  
 else
-    load(['/home/liujiang/',test_object,'_train_set.mat']);
+    load(['/home/liujiang/',test_object,'_train_set_177.mat']);
 end
 
 %data initializing finished.
@@ -51,7 +51,7 @@ global initWeight;
 
 T=20;   %the normalized frame count after lagrange.
 
-total_word=20;
+total_word=177;
 
 %model initialization.
 initWeight=1/T.*ones(1,T);     %initial value means "Mean-Pooling"
@@ -66,8 +66,8 @@ for object_bank_word=1:total_word
 end
 
 for itecount=1:100   %begin iteration. maximum iteration count is 100.
-   if (exist(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat'],'file'))
-       load(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);
+   if (exist(['lsvm_model_new/',test_object,'/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat'],'file'))
+       load(['lsvm_model_new/',test_object,'/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);
        disp('Model existed..');
    else
     
@@ -82,7 +82,7 @@ for itecount=1:100   %begin iteration. maximum iteration count is 100.
    
   %save classical result using mean-pooling with ordinary svm model.
   if (itecount==1)
-        save(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_0.mat'],'models');  %save default mean-pooling strategy for comparable test.
+        save(['lsvm_model_new/',test_object,'/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_0.mat'],'models');  %save default mean-pooling strategy for comparable test.
   end
   
   
@@ -93,7 +93,7 @@ for itecount=1:100   %begin iteration. maximum iteration count is 100.
     models{object_bank_word}=model;
   end  %end of object_bank_word
   
-   save(['lsvm_model_new/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat'],'models');
+   save(['lsvm_model_new/',test_object,'/',test_object,'_Word_',num2str(object_bank_word),'_1vN_Models_After_ITE_',num2str(itecount),'.mat'],'models');
    end %end of file not exist
 end  %end of iteration
 
