@@ -12,7 +12,7 @@ addpath(genpath('libsvm-3.18/'));
  
  
  %itecount=1;                    %select models of the n-th iteration.
- load([model_folder,'/',test_object,'_Word_',num2str(word_count),'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);   %load models.
+ load([model_folder,'/',test_object,'/',test_object,'_Word_',num2str(word_count),'_1vN_Models_After_ITE_',num2str(itecount),'.mat']);   %load models.
  try
   fval=0;
   for i=1:size(models,2)
@@ -47,7 +47,7 @@ addpath(genpath('libsvm-3.18/'));
     
     for j=1:modelCount
        model=models{j};
-       feat=feat0(:,(j-1)*4096+1:(j)*4096);
+       feat=feat0(:,(j-1)*252+1:(j)*252);
        thetaMat=model.thetaMat;
        
       
