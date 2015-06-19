@@ -45,5 +45,8 @@ public:
 	static DWORD WINAPI automatic_detection(LPVOID lpParam);
 	afx_msg void OnLbnSelchangeList1();
 	afx_msg void OnLvnItemchangedList2(NMHDR *pNMHDR, LRESULT *pResult);
+//	afx_msg void OnClose();
+	afx_msg void OnBnClickedCancel();
+	afx_msg void OnBnClickedOk();
 	afx_msg void OnClose();
 };

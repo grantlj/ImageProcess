@@ -21,7 +21,7 @@ load('cnn_mnist_naive_SVM_model.mat');
 
 
 %load net info(optional)
-load('net-epoch-100.mat');
+load('net-epoch-150.mat');
 %load('cropped/imdb.mat');
 load('data_mean.mat');
 data_mean=images.data_mean;
@@ -87,7 +87,7 @@ level=7;
     
     bdx_label_mat=uint16(bdx_label_mat(cnn_bdx_index,:));
     imwrite(im_raw,out_im_file_name);
-    save(out_bdx_file_name,'bdx_label_mat');
+    %save(out_bdx_file_name,'bdx_label_mat');
   %  save(out_bdx_file_name,'bdx_label_mat','-ascii');
    % figure;
    % imshow(im_raw);

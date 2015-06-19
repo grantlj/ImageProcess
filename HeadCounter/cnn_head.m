@@ -9,11 +9,11 @@ im_width=28;
 
 opts.expDir = 'model';
 opts.imdbPath ='cropped/imdb.mat';
-opts.train.batchSize = 15;
-opts.train.numEpochs = 100 ;
+opts.train.batchSize = 100;
+opts.train.numEpochs = 150 ;
 opts.train.continue = true ;
 opts.train.useGpu = false ;
-opts.train.learningRate = 0.001 ;
+opts.train.learningRate = 0.005 ;
 
 %expDir ÊÇ´æ·Åcnn modelµÄ
 opts.train.expDir = opts.expDir ;
@@ -115,10 +115,10 @@ function imdb = generate_head_imdb()
     neg_db_root_path='cropped/neg/';
     
     %total count of heads.
-    head_pos_count=676; head_nega_count=400;
+    head_pos_count=2152; head_nega_count=2507;
     
     %total count of training samples.
-    pos_trn_count=676; nega_trn_count=1000;
+    pos_trn_count=1652; nega_trn_count=2007;
     
     %save raw data.
     data=zeros(im_height,im_width,3,head_pos_count+head_nega_count);

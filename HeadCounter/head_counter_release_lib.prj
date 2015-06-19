@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3342253669" file="D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib.prj" location="D:\Matlab\ImageProcess\HeadCounter" name="head_counter_release_lib" preferred-package-location="D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.library" target-name="MATLAB Compiler for Libraries and Classes">
+  <configuration build-checksum="1783503621" file="D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib.prj" location="D:\Matlab\ImageProcess\HeadCounter" name="head_counter_release_lib" preferred-package-location="D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.library" target-name="MATLAB Compiler for Libraries and Classes">
     <param.appname>head_counter_release_lib</param.appname>
     <param.icon />
     <param.icons />
@@ -52,7 +52,7 @@
     <param.net.tsa.namespace>head_counter_release_lib</param.net.tsa.namespace>
     <param.net.tsa.superclass>Class1</param.net.tsa.superclass>
     <param.net.tsa.metadata />
-    <param.net.tsa.metadata.assembly>C:\Program Files (x86)\FileZilla FTP Client</param.net.tsa.metadata.assembly>
+    <param.net.tsa.metadata.assembly>C:\Users\Grant\Documents\MATLAB</param.net.tsa.metadata.assembly>
     <unset>
       <param.icon />
       <param.icons />
@@ -154,7 +154,7 @@
       <file>${MATLAB_ROOT}\toolbox\matconvnet-1.0-beta11\matlab\vl_simplenn_move.m</file>
       <file>${PROJECT_ROOT}\cnn_mnist_naive_SVM_model.mat</file>
       <file>${PROJECT_ROOT}\data_mean.mat</file>
-      <file>${PROJECT_ROOT}\net-epoch-100.mat</file>
+      <file>${PROJECT_ROOT}\net-epoch-150.mat</file>
     </fileset.resources>
     <fileset.package />
     <build-deliverables>

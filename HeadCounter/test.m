@@ -1,6 +1,6 @@
 clear all;
 clc;
-
+vl_setupnn;
 %im1=imread('figure_raw/1.jpg');
 
 %path of bounding box ground truth.
@@ -21,7 +21,7 @@ load('cnn_mnist_naive_SVM_model.mat');
 
 
 %load net info(optional)
-load('net-epoch-100.mat');
+load('net-epoch-150.mat');
 load('cropped/imdb.mat');
 data_mean=images.data_mean;
 net.layers{end}.type = 'softmax';

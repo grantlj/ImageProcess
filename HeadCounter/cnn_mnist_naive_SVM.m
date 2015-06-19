@@ -15,8 +15,17 @@ function []=cnn_mnist_naive_SVM()
 % nSV = 37, nBSV = 0
 % Total nSV = 37
 % Accuracy = 76.681% (536/699) (classification)
+
+%==============================================
+%all new version. with data augumentation at 2015/6/11/
+% optimization finished, #iter = 654
+% nu = 0.000000
+% obj = -0.011471, rho = 0.220869
+% nSV = 94, nBSV = 0
+% Total nSV = 94
+% Accuracy = 94.5% (945/1000) (classification)
   
-load('net-epoch-100.mat');
+load('net-epoch-150.mat');
   
   data_mean_path='dataset/data_mean.mat';
   global feature_path;  global net;
@@ -33,8 +42,8 @@ load('net-epoch-100.mat');
   
  'Loading training and testing data...'
  
- [pos_trn_data,pos_trn_label,pos_tst_data,pos_tst_label]=get_trn_tst_data(pos_path,676,1076,[feature_path,'pos/'],1);
- [neg_trn_data,neg_trn_label,neg_tst_data,neg_tst_label]=get_trn_tst_data(neg_path,676,1676,[feature_path,'neg/'],-1);
+ [pos_trn_data,pos_trn_label,pos_tst_data,pos_tst_label]=get_trn_tst_data(pos_path,1652,2152,[feature_path,'pos/'],1);
+ [neg_trn_data,neg_trn_label,neg_tst_data,neg_tst_label]=get_trn_tst_data(neg_path,2007,2507,[feature_path,'neg/'],-1);
 
    %%
    %Training SVM...

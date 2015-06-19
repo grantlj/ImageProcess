@@ -31,6 +31,8 @@ using namespace cv;
 #endif
 
 
+static int global_class_id = -1;
+
 
 //定义路径
 
@@ -120,7 +122,7 @@ BEGIN_MESSAGE_MAP(CdemoDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON2, &CdemoDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CdemoDlg::OnBnClickedButton3)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST2, &CdemoDlg::OnLvnItemchangedList2)
-	ON_WM_CLOSE()
+    ON_WM_CLOSE(&CdemoDlg::OnClose)
 END_MESSAGE_MAP()
 
 
@@ -547,8 +549,10 @@ void thread_draw_pic(CdemoDlg *pp, IplImage* imagenow, UINT ID)
 
 	 while (1)
 	 {
-		 for (int i = 0; i < class_count; i++)
-		 {
+		// for (int i = 0; i < class_count; i++)
+		// {
+		    global_class_id = (global_class_id + 1) % class_count;
+			int i = global_class_id;
 			 CString tmpstr;
 			 tmpstr.Format(_T("当前教室ID=%d,检测中..."), (i+1));
 			 detecting = true;
@@ -604,7 +608,7 @@ void thread_draw_pic(CdemoDlg *pp, IplImage* imagenow, UINT ID)
 			 //更新下方统计表
 			 //delete(image_raw);
 			// delete(image1);
-		 }
+	//	 }
 	 
 	 //end of one round.
 	 }
@@ -669,9 +673,27 @@ void CdemoDlg::OnLvnItemchangedList2(NMHDR *pNMHDR, LRESULT *pResult)
 }
 
 
+//void CdemoDlg::OnClose()
+//{
+//	// TODO:  在此添加消息处理程序代码和/或调用默认值
+//	//ExitProcess(0);
+//	//CDialogEx::OnClose();
+//	
+//		CDialogEx::OnClose();
+//
+//}
+
+
 void CdemoDlg::OnClose()
 {
 	// TODO:  在此添加消息处理程序代码和/或调用默认值
-	ExitProcess(0);
+	if (MessageBox("您确定要退出程序吗？", "友情提示", MB_ICONINFORMATION | MB_YESNO) == IDNO)
+
+		// 结束这个函数，使程序不会执行“CDialogEx::OnClose();”,也就是下面的一条语句。  
+		return;
+
+	// 当程序调用这个方法的时候，程序就会退出  
+	
 	CDialogEx::OnClose();
+	ExitProcess(0);
 }
