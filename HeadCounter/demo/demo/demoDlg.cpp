@@ -31,8 +31,11 @@ using namespace cv;
 #endif
 
 
+<<<<<<< HEAD
 static int global_class_id = -1;
 
+=======
+>>>>>>> origin/master
 
 //定义路径
 
@@ -122,7 +125,11 @@ BEGIN_MESSAGE_MAP(CdemoDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON2, &CdemoDlg::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &CdemoDlg::OnBnClickedButton3)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST2, &CdemoDlg::OnLvnItemchangedList2)
+<<<<<<< HEAD
     ON_WM_CLOSE(&CdemoDlg::OnClose)
+=======
+	ON_WM_CLOSE()
+>>>>>>> origin/master
 END_MESSAGE_MAP()
 
 
@@ -549,10 +556,15 @@ void thread_draw_pic(CdemoDlg *pp, IplImage* imagenow, UINT ID)
 
 	 while (1)
 	 {
+<<<<<<< HEAD
 		// for (int i = 0; i < class_count; i++)
 		// {
 		    global_class_id = (global_class_id + 1) % class_count;
 			int i = global_class_id;
+=======
+		 for (int i = 0; i < class_count; i++)
+		 {
+>>>>>>> origin/master
 			 CString tmpstr;
 			 tmpstr.Format(_T("当前教室ID=%d,检测中..."), (i+1));
 			 detecting = true;
@@ -608,7 +620,11 @@ void thread_draw_pic(CdemoDlg *pp, IplImage* imagenow, UINT ID)
 			 //更新下方统计表
 			 //delete(image_raw);
 			// delete(image1);
+<<<<<<< HEAD
 	//	 }
+=======
+		 }
+>>>>>>> origin/master
 	 
 	 //end of one round.
 	 }
@@ -673,6 +689,7 @@ void CdemoDlg::OnLvnItemchangedList2(NMHDR *pNMHDR, LRESULT *pResult)
 }
 
 
+<<<<<<< HEAD
 //void CdemoDlg::OnClose()
 //{
 //	// TODO:  在此添加消息处理程序代码和/或调用默认值
@@ -696,4 +713,11 @@ void CdemoDlg::OnClose()
 	
 	CDialogEx::OnClose();
 	ExitProcess(0);
+=======
+void CdemoDlg::OnClose()
+{
+	// TODO:  在此添加消息处理程序代码和/或调用默认值
+	ExitProcess(0);
+	CDialogEx::OnClose();
+>>>>>>> origin/master
 }
