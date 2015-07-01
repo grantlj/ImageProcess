@@ -21,7 +21,7 @@
  end
  
  datapath='/data/MED11_small_9746/dataset9746/';
- bow_path=[datapath,'BoW_Words_300.mat'];
+ bow_path=['dataset_MED/BoW_Words_100.mat'];
  load(bow_path);
  %datapath='D:/Matlab/ImageProcess/OBMED/';
  

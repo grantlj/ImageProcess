@@ -20,7 +20,7 @@ function [] = words_generator()
      mkdir(dev_evl_path);
  end
  
- datapath='/data/MED11_small_9746/dataset9746/';
+ datapath='/dataset_MED/';
  %datapath='D:/Matlab/ImageProcess/OBMED/';
  
   root=GetPresentPath();
@@ -50,11 +50,12 @@ function [] = words_generator()
   
   disp('Doing K-means...');
   raw_feat=double(raw_feat);
-  [centers,~]=vl_kmeans(raw_feat',300);
+  [centers,~]=vl_kmeans(raw_feat',100);
   
   disp('Constructing KD-tree...');
   kdtree=vl_kdtreebuild(centers);
-  bow_path=[datapath,'BoW_Words_300.mat'];
+  %bow_path=[datapath,'BoW_Words_100.mat'];
+  bow_path=['BoW_Words_100.mat'];
   save(bow_path,'centers','kdtree');
   
 end

@@ -4,7 +4,7 @@ function []=getfeat_single_video(datapath,videoid,out_path)
 %     videopath='test.avi';
 %   end;
  disp(['Now handling:',num2str(videoid),'  under path;',datapath,'   output path:',out_path]); 
- if (~exist([out_path,num2str(videoid),'-HOG_RAW_Feature.mat'],'file'))
+if (~exist([out_path,num2str(videoid),'-HOG_RAW_Feature.mat'],'file'))
 
          root=GetPresentPath();
         %  obj=VideoReader(videopath);  
@@ -27,7 +27,7 @@ function []=getfeat_single_video(datapath,videoid,out_path)
                 total=total+1;
                 tmp_im=imread([videopath,tmp_jpgfile{1,i}]);
                 feat=getfeat_single_image(tmp_im);
-                feat_raw{i}=feat;
+                feat_raw{total}=feat;
             end
          end
          disp(['Now handling:',num2str(videoid),'  raw feature finished']); 

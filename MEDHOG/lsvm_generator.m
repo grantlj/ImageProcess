@@ -11,7 +11,7 @@ else
     useold=1;
 end
 
-mkdir('lsvm_model_hog');
+mkdir('lsvm_model_HOG');
 
 addpath(genpath('libsvm-3.18/'));
 try
@@ -130,7 +130,7 @@ function [c ceq]=theta_con(alpha)
           
         if (i==1 || i==2)
             feat_new=train_set_global{i}.trains{j};   %a single video's feture mat after lagrange: 20*40000+
-            feat_new=feat_new(:,(object_bank_word-1)*300+1:(object_bank_word)*300);
+            feat_new=feat_new(:,(object_bank_word-1)*100+1:(object_bank_word)*100);
             % feat_new=feat_new(:,1:(object_bank_word)*128);
             if(isempty(feat_new)), continue; end;    % a single video's final pooling result after multiplied by theta.
      
@@ -216,7 +216,7 @@ end
 
 
 %update theta by fmincon, the result is saved in ansMat.
-opts = optimoptions(@fmincon,'MaxFunEvals',3000,'Algorithm','sqp');
+opts = optimoptions(@fmincon,'MaxFunEvals',20000,'Algorithm','sqp');
 
 global initWeight;
 global thetaCount;
@@ -292,7 +292,7 @@ for i=1:size(train_set,2)
         feat_new=train_set{i}.trains{j};   %a single video's mat.
         
       %  disp(['size of feat_new=',num2str(size(feat_new,1)),'*',num2str(size(feat_new,2))]);
-       feat_new=double(feat_new(:,(object_bank_word-1)*300+1:(object_bank_word)*300));
+       feat_new=double(feat_new(:,(object_bank_word-1)*100+1:(object_bank_word)*100));
      %   feat_new=feat_new(:,1:(object_bank_word)*128);
         if(isempty(feat_new))
             continue;
