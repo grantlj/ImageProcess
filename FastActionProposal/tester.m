@@ -1,18 +1,14 @@
- out_root_path='feat_boundingbox/';
- video_count=50;
- for i=1:video_count
-    boundingbox_path=[out_root_path,sprintf('%06d',i),'_bounding.mat'];  
-    load(boundingbox_path);
-    flag=0;
-    for j=1:size(feat_bdx,2)
-       now_struct=feat_bdx{1,j};
-       if (now_struct.total>1)
-            flag=flag+1;
-       end
-    end
-    
-    if (flag>=1)
-        disp([num2str(i),'-',num2str(flag)]);
-    end
-     
- end
+%%function [] = proposal_main(video_path,bdx_path,out_video_path)
+ 
+video_root_path='test_dataset/';
+bdx_root_path='feat_boundingbox/';
+out_video_root_path='out/';
+
+video_count=30;
+
+for i=1:video_count
+   video_path=[video_root_path,sprintf('%06d',video_count-i+1),'_walk.avi']; 
+   bdx_path=[bdx_root_path,sprintf('%06d',video_count-i+1),'_walk_bounding.mat'];
+   out_video_path=[out_video_root_path,sprintf('%06d',video_count-i+1),'_walk_out.avi'];
+   proposal_main(video_path,bdx_path,out_video_path);
+end

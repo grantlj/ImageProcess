@@ -1,11 +1,11 @@
 function bounding_box_extractor()
-  addpath(genpath('poselet'));
+  addpath(genpath('Ptoolbox/'));
   db_root_path='test_dataset/';
   out_root_path='feat_boundingbox/';
   video_count=30;
-  for i=02:02
-    videopath=[db_root_path,sprintf('%06d',i),'.avi']; 
-    boundingbox_path=[out_root_path,sprintf('%06d',i),'_bounding.mat'];
+  for i=1:video_count
+    videopath=[db_root_path,sprintf('%06d',i),'_walk.avi']; 
+    boundingbox_path=[out_root_path,sprintf('%06d',i),'_walk_bounding.mat'];
     if (~exist(boundingbox_path,'file'))
       feat_bdx=handle_bdx_with_video_path(videopath);
       save(boundingbox_path,'feat_bdx');

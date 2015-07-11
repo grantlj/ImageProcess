@@ -1,8 +1,10 @@
-function [] = proposal_main()
-  video_path='test_02.avi';
-  bdx_path='test_02_bdx.mat';
-  out_video_path='test_02_out.avi';
-  
+function [] = proposal_main(video_path,bdx_path,out_video_path)
+%   video_path='test_02.avi';
+%   bdx_path='test_02_bdx.mat';
+%   out_video_path='test_02_out.avi';
+  % video_path='test_39.avi';
+  %bdx_path='test_39_bdx.mat';
+  % out_video_path='test_39_out.avi';
   load(bdx_path);
   [frames,numFrames]=load_video(video_path);
   
