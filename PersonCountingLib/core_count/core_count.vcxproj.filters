@@ -24,19 +24,7 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorOperator.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="psense4.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="sense4.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SenseLockEncryptor.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneralHandler.h">
+    <ClInclude Include="detect_core.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,17 +32,8 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ErrorOperator.cpp">
+    <ClCompile Include="core_count.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="PersonCountingLib.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Sense4.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="Sense4.lib" />
   </ItemGroup>
 </Project>

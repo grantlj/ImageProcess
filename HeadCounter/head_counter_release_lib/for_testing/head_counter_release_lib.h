@@ -1,6 +1,6 @@
 //
 // MATLAB Compiler: 5.2 (R2014b)
-// Date: Thu Jun 11 09:22:22 2015
+// Date: Thu Jul 23 17:33:26 2015
 // Arguments: "-B" "macro_default" "-W" "cpplib:head_counter_release_lib" "-T"
 // "link:lib" "-d"
 // "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing"
@@ -181,7 +181,7 @@ bool MW_CALL_CONV mlxHead_counter_release(int nlhs, mxArray *plhs[], int nrhs, m
 
 #endif
 
-extern LIB_head_counter_release_lib_CPP_API void MW_CALL_CONV head_counter_release(int nargout, mwArray& bdx_label_mat, const mwArray& img_path, const mwArray& bdx_path);
+extern LIB_head_counter_release_lib_CPP_API void MW_CALL_CONV head_counter_release(int nargout, mwArray& bdx_label_mat, const mwArray& img_path, const mwArray& bdx_label_mat_in1);
 
 #endif
 #endif

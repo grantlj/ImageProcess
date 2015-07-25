@@ -1,0 +1,5 @@
+D:\\test\\四教一楼机柜_4101.jpg
+D:\\test_out\\四教一楼机柜_4101_bbx_list.txt
+四教一楼机柜
+4101
+D:\\test_out\\

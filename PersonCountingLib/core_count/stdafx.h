@@ -4,7 +4,7 @@
 //
 
 #pragma once
-#include <afxwin.h>
+
 #include "targetver.h"
 
 #include <stdio.h>

@@ -1,0 +1,4 @@
+".\SES51L.LIB",
+"main.obj" 
+TO "lock_prj" 
+RAMSIZE(256) 

@@ -1,0 +1,149 @@
+BL51 BANKED LINKER/LOCATER V5.03                                                        07/14/2015  15:13:37  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V5.03, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE .\SES51L.LIB, main.obj TO lock_prj RAMSIZE (256)
+
+
+MEMORY MODEL: LARGE
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  .\SES51L.LIB (SYS_EXIT)
+  .\SES51L.LIB (SYS_SETRET)
+  C:\KEIL\C51\LIB\C51L.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51L.LIB (?C?CLDOPTR)
+  C:\KEIL\C51\LIB\C51L.LIB (?C?CSTOPTR)
+
+
+LINK MAP OF MODULE:  lock_prj (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     000FH     UNIT         _XDATA_GROUP_
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00EDH     UNIT         ?PR?_BUBBLE_SORT?MAIN
+            CODE    00F0H     004FH     UNIT         ?C?LIB_CODE
+            CODE    013FH     003BH     UNIT         ?PR?MAIN?MAIN
+            CODE    017AH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0186H     0004H     UNIT         ?PR?_EXIT?SYS_EXIT
+            CODE    018AH     0004H     UNIT         ?PR?__SET_RESPONSE?SYS_SETRET
+
+
+
+OVERLAY MAP OF MODULE:   lock_prj (MAIN)
+
+
+SEGMENT                                 XDATA_GROUP
+  +--> CALLED SEGMENT                 START    LENGTH
+-----------------------------------------------------
+?C_C51STARTUP                         -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                         0000H    0005H
+  +--> ?PR?_BUBBLE_SORT?MAIN
+  +--> ?PR?__SET_RESPONSE?SYS_SETRET
+  +--> ?PR?_EXIT?SYS_EXIT
+
+?PR?_BUBBLE_SORT?MAIN                 0005H    000AH
+
+
+
+BL51 BANKED LINKER/LOCATER V5.03                                                      07/14/2015  15:13:37  PAGE 2
+
+
+SYMBOL TABLE OF MODULE:  lock_prj (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:013FH         PUBLIC        main
+  C:0003H         PUBLIC        _bubble_sort
+  -------         PROC          _BUBBLE_SORT
+  X:0005H         SYMBOL        p
+  X:0008H         SYMBOL        len
+  -------         DO            
+  X:000AH         SYMBOL        i
+  X:000CH         SYMBOL        j
+  X:000EH         SYMBOL        tmp
+  -------         ENDDO         
+  C:0003H         LINE#         3
+  C:0014H         LINE#         4
+  C:0014H         LINE#         7
+  C:003DH         LINE#         8
+  C:003DH         LINE#         9
+  C:0073H         LINE#         10
+  C:0073H         LINE#         11
+  C:0092H         LINE#         12
+  C:0092H         LINE#         13
+  C:00A5H         LINE#         14
+  C:00BBH         LINE#         15
+  C:00C7H         LINE#         16
+  C:00C7H         LINE#         17
+  C:00DBH         LINE#         18
+  C:00EFH         LINE#         19
+  -------         ENDPROC       _BUBBLE_SORT
+  -------         PROC          MAIN
+  -------         DO            
+  X:0000H         SYMBOL        test
+  X:0003H         SYMBOL        len
+  -------         ENDDO         
+  C:013FH         LINE#         22
+  C:013FH         LINE#         23
+  C:013FH         LINE#         24
+  C:0150H         LINE#         25
+  C:0161H         LINE#         27
+  C:0164H         LINE#         29
+  C:0177H         LINE#         30
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        SYS_EXIT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0186H         PUBLIC        _exit
+  -------         PROC          _EXIT
+  C:0186H         LINE#         3
+  C:0186H         LINE#         4
+  C:0186H         LINE#         5
+  C:0189H         LINE#         6
+  -------         ENDPROC       _EXIT
+BL51 BANKED LINKER/LOCATER V5.03                                                      07/14/2015  15:13:37  PAGE 3
+
+
+  -------         ENDMOD        SYS_EXIT
+
+  -------         MODULE        SYS_SETRET
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:018AH         PUBLIC        __set_response
+  -------         PROC          __SET_RESPONSE
+  D:0007H         SYMBOL        length
+  D:0001H         SYMBOL        pbdata
+  C:018AH         LINE#         3
+  C:018AH         LINE#         4
+  C:018AH         LINE#         5
+  C:018DH         LINE#         6
+  -------         ENDPROC       __SET_RESPONSE
+  -------         ENDMOD        SYS_SETRET
+
+  -------         MODULE        ?C?CLDOPTR
+  C:00F0H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTOPTR
+  C:011DH         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+Program Size: data=9.0 xdata=15 code=398
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

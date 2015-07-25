@@ -1,3 +1,9 @@
+*.dll
+*.exe
+*.lib
+*.exp
+*.rar
+*.zip
 practical-cnn-2015a/
 Python_EX/
 *.exe

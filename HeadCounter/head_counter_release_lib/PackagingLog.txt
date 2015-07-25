@@ -12,45 +12,45 @@ Dependency analysis by REQUIREMENTS.
 [警告: Adding path "D:\Matlab\ImageProcess\HeadCounter" to Compiler path instance.] 
 Parsing file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release.m"
 	(Referenced from: "Compiler Command Line").
-Warning: The source file 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_4257_2240.auth' has a name conflict with another source file in CTF. It is saved as '/toolbox/libsvm-3.18/matlab/svmpredict_mexw64_1.auth' in the CTF. Please verify that your application works as expected.
+Warning: The source file 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_1668_9652.auth' has a name conflict with another source file in CTF. It is saved as '/toolbox/libsvm-3.18/matlab/svmpredict_mexw64_1.auth' in the CTF. Please verify that your application works as expected.
 Deleting 37 temporary MEX authorization files.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_20758_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_30747_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_4252_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_31496_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_3869_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_9219_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_20562_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_12048_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_14786_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_28439_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_12364_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_25794_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_24337_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_5775_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_27044_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_1956_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_7192_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_14038_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_13312_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_4936_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_29815_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_9448_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_28140_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_23558_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_28084_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_4257_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_11769_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_8556_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_2851_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_8828_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_15589_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_29311_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_29769_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_2855_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_13725_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_19470_2240.auth'.
-Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_2240_339_2240.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_14037_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_18980_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_5806_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_21861_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_17352_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_7738_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_28296_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_11617_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_13689_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_4985_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_2582_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_23062_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_21154_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_9305_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_5709_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_20760_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_23796_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_31251_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_16458_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_13788_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_23478_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_1783_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_29141_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_32141_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_32473_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_1668_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_19455_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_9992_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_4288_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_11727_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_10222_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_26081_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_22966_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_2282_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_29113_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_23935_9652.auth'.
+Removing: 'C:\Users\Grant\AppData\Local\Temp\mathworks_tmp_9652_3125_9652.auth'.
 Generating file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.h".
 Generating file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp".
 Generating file "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.exports".
@@ -79,7 +79,7 @@ Executing command: ""C:\Program Files\MATLAB\R2014b\bin\mbuild"  -client mbuild 
 ... 正在查找文件 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat'...是。
 ... 正在查找文件夹 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC'...是。
 找到已安装的编译器 'Microsoft Visual C++ 2013 Professional'。
-设置 PATH = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Bin\amd64;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Bin\VCPackages;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\..\Common7\IDE;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\..\Common7\Tools;C:\Program Files (x86)\Windows Kits\8.1\\Bin\x64;C:\Program Files (x86)\Windows Kits\8.1\\Bin\x86;;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\libnvvp;C:\Program Files\Broadcom\Broadcom 802.11 Network Adapter\Driver;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\MATLAB\R2014b\runtime\win64;C:\Program Files\MATLAB\R2014b\bin;C:\Program Files\Java\jdk1.7.0_51\bin;C:\Program Files\Java\jdk1.7.0_51jre\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\AndroidDev\adt-bundle-windows-x86_64-20130917\sdk\platform-tools;C:\AndroidDev\adt-bundle-windows-x86_64-20130917\sdk\tools;D:\CppProjects\opencv\build\x64\vc12\bin;C:\CTEX\UserData\miktex\bin;C:\CTEX\MiKTeX\miktex\bin;C:\CTEX\CTeX\ctex\bin;C:\CTEX\CTeX\cct\bin;C:\CTEX\CTeX\ty\bin;C:\CTEX\Ghostscript\gs9.05\bin;C:\CTEX\GSview\gsview;C:\CTEX\WinEdt;D:\OtherTools\xpdf\bin64;C:\Program Files (x86)\Common Files\Apple\Apple Application Support\;D:\CppProjects\opencv\build\x86\vc12\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MATLAB\R2014b\polyspace\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;D:\CppProjects\opencv\build\x86\vc12\bin
+设置 PATH = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Bin\amd64;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Bin\VCPackages;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\..\Common7\IDE;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\..\Common7\Tools;C:\Program Files (x86)\Windows Kits\8.1\\Bin\x64;C:\Program Files (x86)\Windows Kits\8.1\\Bin\x86;;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\libnvvp;C:\Program Files\Broadcom\Broadcom 802.11 Network Adapter\Driver;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\MATLAB\R2014b\runtime\win64;C:\Program Files\MATLAB\R2014b\bin;C:\Program Files\Java\jdk1.7.0_51\bin;C:\Program Files\Java\jdk1.7.0_51jre\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\AndroidDev\adt-bundle-windows-x86_64-20130917\sdk\platform-tools;C:\AndroidDev\adt-bundle-windows-x86_64-20130917\sdk\tools;D:\CppProjects\opencv\build\x64\vc12\bin;C:\CTEX\UserData\miktex\bin;C:\CTEX\MiKTeX\miktex\bin;C:\CTEX\CTeX\ctex\bin;C:\CTEX\CTeX\cct\bin;C:\CTEX\CTeX\ty\bin;C:\CTEX\Ghostscript\gs9.05\bin;C:\CTEX\GSview\gsview;C:\CTEX\WinEdt;D:\OtherTools\xpdf\bin64;C:\Program Files (x86)\Common Files\Apple\Apple Application Support\;D:\CppProjects\opencv\build\x86\vc12\bin;C:\Program Files\MATLAB\R2014b\polyspace\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;D:\CppProjects\opencv\build\x86\vc12\bin
 设置 INCLUDE = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\INCLUDE;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\INCLUDE;C:\Program Files (x86)\Windows Kits\8.1\\include\shared;C:\Program Files (x86)\Windows Kits\8.1\\include\um;C:\Program Files (x86)\Windows Kits\8.1\\include\winrt;C:\Program Files\MATLAB\R2014b\extern\include;
 设置 LIB = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Lib\amd64;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\Lib\amd64;C:\Program Files (x86)\Windows Kits\8.1\\lib\winv6.3\um\x64;C:\Program Files\MATLAB\R2014b\lib\win64;
 设置 LIBPATH = C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Lib\amd64;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\Lib\amd64;
@@ -87,8 +87,8 @@ Options file details
 -------------------------------------------------------------------
 	Compiler location: C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\..\
 	Options file: C:\Users\Grant\AppData\Roaming\MathWorks\MATLAB\R2014b\MBUILD_C++_win64.xml
-	CMDLINE100 : cl /c -MD -Zp8 -GR -W3 -EHsc- -Zc:wchar_t- -nologo -O2 -DNDEBUG /DMSVC /DIBMPC /D_CRT_SECURE_NO_DEPRECATE -ID:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing  -I"C:\Program Files\MATLAB\R2014b\extern\include" -I"C:\Program Files\MATLAB\R2014b\extern\include\win64" D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp /FoC:\Users\Grant\AppData\Local\Temp\mex_5784170939122_6844\head_counter_release_lib.obj
-	CMDLINE200 : link /nologo /manifest   /DLL /def:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def" C:\Users\Grant\AppData\Local\Temp\mex_5784170939122_6844\head_counter_release_lib.obj  /MACHINE:AMD64 /LIBPATH:"C:\Program Files\MATLAB\R2014b\extern\lib\win64\microsoft" mclmcrrt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /out:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll
+	CMDLINE100 : cl /c -MD -Zp8 -GR -W3 -EHsc- -Zc:wchar_t- -nologo -O2 -DNDEBUG /DMSVC /DIBMPC /D_CRT_SECURE_NO_DEPRECATE -ID:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing  -I"C:\Program Files\MATLAB\R2014b\extern\include" -I"C:\Program Files\MATLAB\R2014b\extern\include\win64" D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp /FoC:\Users\Grant\AppData\Local\Temp\mex_95457158241262_6760\head_counter_release_lib.obj
+	CMDLINE200 : link /nologo /manifest   /DLL /def:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def" C:\Users\Grant\AppData\Local\Temp\mex_95457158241262_6760\head_counter_release_lib.obj  /MACHINE:AMD64 /LIBPATH:"C:\Program Files\MATLAB\R2014b\extern\lib\win64\microsoft" mclmcrrt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /out:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll
 	CMDLINE250 : mt -outputresource:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll;2 -manifest D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll.manifest
 	CMDLINE300 : del D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll.manifest "D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.map"
 	COMPILER : cl
@@ -124,10 +124,10 @@ Options file details
 	MATLABROOT : C:\Program Files\MATLAB\R2014b
 	ARCH : win64
 	SRC : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp
-	OBJ : C:\Users\Grant\AppData\Local\Temp\mex_5784170939122_6844\head_counter_release_lib.obj
-	OBJS : C:\Users\Grant\AppData\Local\Temp\mex_5784170939122_6844\head_counter_release_lib.obj 
+	OBJ : C:\Users\Grant\AppData\Local\Temp\mex_95457158241262_6760\head_counter_release_lib.obj
+	OBJS : C:\Users\Grant\AppData\Local\Temp\mex_95457158241262_6760\head_counter_release_lib.obj 
 	SRCROOT : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib
-	DEF : C:\Users\Grant\AppData\Local\Temp\mex_5784170939122_6844\head_counter_release_lib.def
+	DEF : C:\Users\Grant\AppData\Local\Temp\mex_95457158241262_6760\head_counter_release_lib.def
 	EXP : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.exp
 	LIB : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.lib
 	EXE : D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll
@@ -141,10 +141,10 @@ Options file details
 	LINKOPTIM : 
 -------------------------------------------------------------------
 使用 'Microsoft Visual C++ 2013 Professional' 编译。
-cl /c -MD -Zp8 -GR -W3 -EHsc- -Zc:wchar_t- -nologo -O2 -DNDEBUG /DMSVC /DIBMPC /D_CRT_SECURE_NO_DEPRECATE -ID:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing  -I"C:\Program Files\MATLAB\R2014b\extern\include" -I"C:\Program Files\MATLAB\R2014b\extern\include\win64" D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp /FoC:\Users\Grant\AppData\Local\Temp\mex_5784170939122_6844\head_counter_release_lib.obj
+cl /c -MD -Zp8 -GR -W3 -EHsc- -Zc:wchar_t- -nologo -O2 -DNDEBUG /DMSVC /DIBMPC /D_CRT_SECURE_NO_DEPRECATE -ID:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing  -I"C:\Program Files\MATLAB\R2014b\extern\include" -I"C:\Program Files\MATLAB\R2014b\extern\include\win64" D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.cpp /FoC:\Users\Grant\AppData\Local\Temp\mex_95457158241262_6760\head_counter_release_lib.obj
 head_counter_release_lib.cpp
 
-link /nologo /manifest   /DLL /def:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def" C:\Users\Grant\AppData\Local\Temp\mex_5784170939122_6844\head_counter_release_lib.obj  /MACHINE:AMD64 /LIBPATH:"C:\Program Files\MATLAB\R2014b\extern\lib\win64\microsoft" mclmcrrt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /out:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll
+link /nologo /manifest   /DLL /def:"D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.def" C:\Users\Grant\AppData\Local\Temp\mex_95457158241262_6760\head_counter_release_lib.obj  /MACHINE:AMD64 /LIBPATH:"C:\Program Files\MATLAB\R2014b\extern\lib\win64\microsoft" mclmcrrt.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /out:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll
    正在创建库 D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.lib 和对象 D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.exp
 
 mt -outputresource:D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll;2 -manifest D:\Matlab\ImageProcess\HeadCounter\head_counter_release_lib\for_testing\head_counter_release_lib.dll.manifest

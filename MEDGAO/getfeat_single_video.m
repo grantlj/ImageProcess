@@ -21,12 +21,12 @@ function []=getfeat_single_video(datapath,videoid,out_path)
          cd(root);
          total=0;
 
-         for i=1:size(tmp_jpgfile,2)
+         parfor i=1:size(tmp_jpgfile,2)
             if (~isempty(strfind(tmp_jpgfile{1,i},'-2.jpg')))
                 total=total+1;
                 tmp_im=imread([videopath,tmp_jpgfile{1,i}]);
                 feat=getfeat_single_image(tmp_im);
-                feat_raw=[feat_raw;feat];
+                feat_raw(i,:)=feat;
             end
          end
 
