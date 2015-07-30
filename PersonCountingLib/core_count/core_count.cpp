@@ -28,6 +28,34 @@ cv::Mat do_concate(cv::Mat img_object, cv::Mat img_scene)
 	return combine;
 }
 
+//画bounding box
+void draw_bounding_box(cv::Mat& out_img, vector<BBX> bbxlist)
+{
+	const static Scalar colors[] = { CV_RGB(0, 0, 255),
+		CV_RGB(0, 128, 255),
+		CV_RGB(0, 255, 255),
+		CV_RGB(0, 255, 0),
+		CV_RGB(255, 128, 0),
+		CV_RGB(255, 255, 0),
+		CV_RGB(255, 0, 0),
+		CV_RGB(255, 0, 255) };
+
+	for (int i = 0; i < bbxlist.size(); i++)
+	{
+
+		//画图
+		CvPoint pt3, pt4;
+		int x = (int)bbxlist[i].x;
+		int y = (int)bbxlist[i].y;
+		int w = (int)bbxlist[i].w;
+		int h = (int)bbxlist[i].h;
+		pt3.x = x;
+		pt4.x = x + w;
+		pt3.y = y;
+		pt4.y = y + h;
+		rectangle(out_img, pt3, pt4, colors[6 % 8], 0.5, 8, 0);
+	}
+}
 
 //后续处理程序
 void Handler()
@@ -41,8 +69,6 @@ void Handler()
 		infile.close();
 	}
 
-
-
 	cout << "New task:" << list_username << " " << chlname << endl;
 
 
@@ -51,6 +77,7 @@ void Handler()
 	DetectResult ret = do_detect(image, image_file_name, list_username, chlname);
 
 	cout << "Detection finished..." << endl;
+
 	//save to file.
 	if ((_access(output_bbx_file_name.c_str(), 0)) != -1)
 		DeleteFile(LPCWSTR(output_bbx_file_name.c_str()));
@@ -58,7 +85,9 @@ void Handler()
 
 	if (_access(output_bbx_file_name.c_str(), 0) != -1)
 		DeleteFile(LPCWSTR(output_bbx_file_name.c_str()));
+	
 	ofstream outfile(output_bbx_file_name);
+
 	if (outfile.is_open())
 	{
 		//outfile << ret.bbxlist.size() << endl;
@@ -71,37 +100,16 @@ void Handler()
 		outfile.close();
 	}
 
-	//	DeleteFile("todo.tmp");
-	Sleep(10);
-
 	//开始画图。
-	cv::Mat out_img = image;
+	cv::Mat out_img = image.clone();
 
-	const static Scalar colors[] = { CV_RGB(0, 0, 255),
-		CV_RGB(0, 128, 255),
-		CV_RGB(0, 255, 255),
-		CV_RGB(0, 255, 0),
-		CV_RGB(255, 128, 0),
-		CV_RGB(255, 255, 0),
-		CV_RGB(255, 0, 0),
-		CV_RGB(255, 0, 255) };
+	//Draw the result.
+	//Step 1: Draw result with adaboost result.
+	draw_bounding_box(image, ret.ada_bbxlist);
 
-	for (int i = 0; i < ret.bbxlist.size(); i++)
-	{
-		
-		//画图
-		CvPoint pt3, pt4;
-		int x = (int)ret.bbxlist[i].x;
-		int y = (int)ret.bbxlist[i].y;
-		int w = (int)ret.bbxlist[i].w;
-		int h = (int)ret.bbxlist[i].h;
-		pt3.x = x;
-		pt4.x = x + w;
-		pt3.y = y;
-		pt4.y = y + h;
-		rectangle(out_img, pt3, pt4, colors[6 % 8], 0.5, 8, 0);
-	}
-
+	//Step 2: Draw result with CNN result.
+	draw_bounding_box(out_img, ret.bbxlist);
+    
 	cv::Mat concated = do_concate(image, out_img);
 	string out_path = out_image_root + list_username + "_" + chlname + "_RESULT.jpg";
 	cout << out_path << endl;

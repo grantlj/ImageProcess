@@ -44,6 +44,7 @@ typedef struct DetectResult
 	cv::Mat rawimage; //原始图片
 	cv::Mat reimage;  //标定后图片
 	int person_count; //总人数
+	vector<BBX> ada_bbxlist; //adaboost后的bounding box信息
 	vector<BBX> bbxlist; //bounding box 信息
 	string time_stamp;  //时间信息
 } DetectResult;
@@ -206,6 +207,9 @@ DetectResult do_detect(cv::Mat raw_image, std::string filename, string listname,
 
 	//first, detect with cascade classifer.
 	vector<BBX> bbxlist = detectWithCascade(raw_image, scale);
+
+	//save cascade classifier result to ret structure.
+	ret.ada_bbxlist = bbxlist;
 
 	//Second, further detect with CNN.
 	
