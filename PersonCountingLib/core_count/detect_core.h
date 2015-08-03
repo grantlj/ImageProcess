@@ -10,7 +10,10 @@
 
 #include <Windows.h>
 #include "head_counter_release_lib.h"
+
 #include  <stdlib.h>
+#include "post_template_comparator.h"
+#include "post_kick_containing.h"
 using namespace std;
 using namespace cv;
 
@@ -32,11 +35,13 @@ const string cascadeName = "cascadebest.xml";
 
 
 //定义bounding box结构体
+#ifndef _BBX_
+#define _BBX_
 typedef struct BBX
 {
 	int x, y, w, h;
 } BBX;
-
+#endif
 
 //定义检测结果结构体
 typedef struct DetectResult
@@ -48,7 +53,6 @@ typedef struct DetectResult
 	vector<BBX> bbxlist; //bounding box 信息
 	string time_stamp;  //时间信息
 } DetectResult;
-
 
 
 //获取当前时间
@@ -191,7 +195,7 @@ char* CString2char(CString &str)
 }
 
 
-DetectResult do_detect(cv::Mat raw_image, std::string filename, string listname, string channelname)
+DetectResult do_detect(cv::Mat raw_image, std::string filename, string listname, string channelname, string template_root_path)
 {
 	if (run_for_first_time)
 	{
@@ -222,6 +226,18 @@ DetectResult do_detect(cv::Mat raw_image, std::string filename, string listname,
 
 	bbxlist = parse_mw_output_data(mw_output_bbxlist);
 	
+
+	//Post-processing steps.
+	//First, compare with templates.
+
+	//string template_root_path = "D:\\templates\\";
+
+	//parameter: template file path, present bbxlist.
+	bbxlist = post_process_template_comparator(template_root_path+listname + "_" + channelname + "_template.txt",bbxlist);
+
+	//Second, kick containing boxes.
+	bbxlist = post_process_kick_contain(bbxlist);
+
 	ret.rawimage = raw_image;
 	ret.reimage = raw_image;
 	ret.person_count = bbxlist.size();

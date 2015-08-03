@@ -57,24 +57,29 @@ void draw_bounding_box(cv::Mat& out_img, vector<BBX> bbxlist)
 	}
 }
 
-//后续处理程序
+//核心处理程序，完成检测,画图和输出三个步骤
 void Handler()
 {
-	string image_file_name, output_bbx_file_name, list_username, chlname,out_image_root;
+	//todo.tmp 和主程序交互，得到当前任务。
+	string image_file_name, output_bbx_file_name, list_username, chlname,out_image_root,template_root_path;
 	ifstream infile("todo.tmp");
+
+	//传入任务参数。
 	if (infile.is_open())
 	{
 		infile >> image_file_name; infile >> output_bbx_file_name; infile >> list_username; infile >> chlname;
 		infile >> out_image_root;
+		infile >> template_root_path;
 		infile.close();
 	}
 
 	cout << "New task:" << list_username << " " << chlname << endl;
 
 
+	//读入图片，调用检测程序。
 	cv::Mat image = imread(image_file_name);
 
-	DetectResult ret = do_detect(image, image_file_name, list_username, chlname);
+	DetectResult ret = do_detect(image, image_file_name, list_username, chlname, template_root_path);
 
 	cout << "Detection finished..." << endl;
 

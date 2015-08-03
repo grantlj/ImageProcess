@@ -27,6 +27,12 @@
     <ClInclude Include="detect_core.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="post_template_comparator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="post_kick_containing.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

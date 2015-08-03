@@ -1,5 +1,0 @@
-1. Object Bank 20 words : OBMED
-2. CNN: MEDCNN
-3. HOG : MEDHOG
-4. SIFT : MEDSIFT
-5. GAO's model: MEDGAO

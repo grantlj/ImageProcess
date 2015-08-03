@@ -30,6 +30,7 @@ string username = "dev";
 string userpwd = "940414";
 string raw_image_root_path = "D:\\test\\";
 string out_image_root_path = "D:\\test_out\\";
+string template_root_path = "D:\\templates\\";
 
 
 /*
@@ -69,6 +70,7 @@ void load_settings()
 	getline(fin, userpwd);
 	getline(fin, raw_image_root_path);
 	getline(fin, out_image_root_path);
+	getline(fin, template_root_path);
 
 
 }
@@ -233,6 +235,7 @@ void do_detection_and_update(string filename, string output_bbx_file_name, strin
 	outfile << tmplist_username << endl;
 	outfile << chlname << endl;
 	outfile << out_image_root_path << endl;
+	outfile << template_root_path << endl;
 
 	outfile.close();
 
