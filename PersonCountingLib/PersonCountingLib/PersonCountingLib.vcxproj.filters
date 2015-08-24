@@ -39,6 +39,21 @@
     <ClInclude Include="GeneralHandler.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="uploader\doupload.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="uploader\soapH.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="uploader\soapStub.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="uploader\soapUpdateStudentStatusSoapProxy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="uploader\stdsoap2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +63,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PersonCountingLib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SOAPUploader.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="uploader\soapC.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="uploader\soapUpdateStudentStatusSoapProxy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="uploader\dom.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="uploader\dom.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="uploader\stdsoap2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

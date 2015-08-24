@@ -84,12 +84,10 @@ void Handler()
 	cout << "Detection finished..." << endl;
 
 	//save to file.
-	if ((_access(output_bbx_file_name.c_str(), 0)) != -1)
-		DeleteFile(LPCWSTR(output_bbx_file_name.c_str()));
 
 
 	if (_access(output_bbx_file_name.c_str(), 0) != -1)
-		DeleteFile(LPCWSTR(output_bbx_file_name.c_str()));
+		remove(output_bbx_file_name.c_str());
 	
 	ofstream outfile(output_bbx_file_name);
 

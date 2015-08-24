@@ -12,6 +12,7 @@
 #include <cv.h>
 #include <highgui.h>
 #include <fstream>
+#include "SOAPUploader.cpp"     //大屏幕显示SOAP通讯模块（多线程封装）
 //#include "detect_core.h"
 using namespace std;
 
@@ -32,6 +33,8 @@ string raw_image_root_path = "D:\\test\\";
 string out_image_root_path = "D:\\test_out\\";
 string template_root_path = "D:\\templates\\";
 
+HANDLE HSOAPMainThread;
+DWORD  SOAPMainThreadID;
 
 /*
 string serv_ip = "222.177.140.120";
@@ -221,12 +224,18 @@ void initDetectCore()
 	WinExec(cmd.c_str(), SW_SHOW);
 }
 
-//核心程序
+//调用核心检测程序
 void do_detection_and_update(string filename, string output_bbx_file_name, string tmplist_username, string chlname)
 {
+	//写入任务文件todo.tmp，供core_count调用。
+	cout << output_bbx_file_name << endl;
+	if (_access(output_bbx_file_name.c_str(), 0) != -1)
+		remove(output_bbx_file_name.c_str());
+		
+	
 	while ((_access("todo.tmp", 0)) != -1)
 	{
-		Sleep(30);
+		Sleep(10);
 	};  //waiting for tasklist.
 
 	ofstream outfile("todo.tmp");
@@ -239,17 +248,43 @@ void do_detection_and_update(string filename, string output_bbx_file_name, strin
 
 	outfile.close();
 
+	//读入结果文件。
+
+	while ((_access(output_bbx_file_name.c_str(), 0)) == -1)
+	{
+		Sleep(10);
+	};  //waiting for result file.
+
+	Sleep(50);
+	ifstream re_file(output_bbx_file_name);
+
+	string updateTime, roomNo=chlname;
+	int studentCount;
+	getline(re_file, updateTime);   //time stamp.
+	re_file >> studentCount;        //student count.
+    re_file.close();
+
+	//do_soap_upload(chlname, studentCount, updateTime);
+    //将结果传递消息给SOAPMain函数。
+	upload_data_package* now_data = new upload_data_package;
+	now_data->chlname = chlname; now_data->studentCount = studentCount; now_data->updateTime = updateTime;
+	while (PostThreadMessage(SOAPMainThreadID, 0, int(now_data), 0) == false)
+	{
+		Sleep(10);
+	}
 }
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	cout << "Welcome to use!" << endl;
-	//LockerVerify();                       //验证加密狗 
+	LockerVerify();                       //验证加密狗 
 	load_settings();
 	initDetectCore();                       //初始化检测核心程序
 	initAndLogin();                         //初始化并登录
 	
+	//启动大屏幕SOAP传输线程；
+	HSOAPMainThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)SOAPMain, NULL, 0, &SOAPMainThreadID);
 
 	CString stmp = GetDomainName();         //获取全局SIP域名
     //主循环开始
@@ -305,7 +340,7 @@ int _tmain(int argc, _TCHAR* argv[])
              } //end of each channel.
         }  //end of each list element.
 	
-//	LockerVerify();  //每一轮都要验证加密狗
+     LockerVerify();  //每一轮都要验证加密狗
 
 	}
 

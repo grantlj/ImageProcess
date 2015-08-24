@@ -1,11 +1,22 @@
 function gao_fusion_test()
 
 %Oxford flower 102 : 87.64%
+%d5 distortion: 86.44%
+%d4 distortion: 86.76%
+%d3 distortion: 86.85%
+%d2 distortion  86.92%
+%d1 distortion  87.00%
+
 vl_setupnn;
 
 flower_count=8189;
-content_db_root_path='D:/dataset/oxfordflower102/ZUO/feat_spp_object/';
-context_db_root_path='D:/dataset/oxfordflower102/ZUO/feat_spp_context/';
+%content_db_root_path='D:/dataset/oxfordflower102/ZUO/feat_spp_object/';
+%context_db_root_path='D:/dataset/oxfordflower102/ZUO/feat_spp_context/';
+
+%segmentation distortion result.
+content_db_root_path='D:/dataset/oxfordflower102/ZUO/feat_spp_content_d1/';
+context_db_root_path='D:/dataset/oxfordflower102/ZUO/feat_spp_context_d1/';
+
 set_split_path='D:/dataset/oxfordflower102/setid.mat';
 label_path='D:/dataset/oxfordflower102/imagelabels.mat';
 [set labels]=get_set_split_info(flower_count,set_split_path,label_path);
@@ -15,7 +26,7 @@ lr=0.005;
 [content_feat, context_feat, img_labels]=load_features(sel_imgs,content_db_root_path,context_db_root_path,labels);
 
 errlist=[];
-for i=1:150
+for i=1:110
     model_filename=['model/net-epoch-',num2str(i),'.mat'];
     load(model_filename);
     init_state=0;
@@ -67,7 +78,7 @@ function [set,labels]=get_set_split_info(flower_count,set_split_path,label_path)
        if (ismember(i,trnid))
          set(i)=1;
      elseif (ismember(i,valid))
-         set(i)=1;
+         set(i)=3;
      else
          set(i)=3;
      end

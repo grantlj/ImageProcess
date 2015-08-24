@@ -39,14 +39,14 @@ for i=1:batchSize
    u=reshape(u,1,size(content_result,3));
    %pi_u=1/1+exp(-u);pi_u=reshape(pi_u,1,size(content_result,3));
    res(6,1).x(i,:)=u; %res(5,1).x is the resulted classification probability.
-   [~,index]=max(res(6,1).x(i,:));
+   [~,index]=max(1./(1+exp(-res(6,1).x(i,:))));
    if (index~=img_labels(i))
        err=err+1;
    end
 end
 
-err=err/batchSize;
-1-err
+%err=err/batchSize;
+%1-err
 %calculate loss function.
 % dldu=0; dl_dcontent=0; dl_dcontext=0; dl_dq=0;
 
@@ -66,6 +66,9 @@ for i=1:batchSize
 %      dl_dq=dl_dq+( (y(1,j)/pi_u(1,j)-(1-y(1,j))/(1-pi_u(1,j)))*(pi_u(1,j)*(1-pi_u(1,j))))*(res(4,2).x(1,1,j,i)-res(4,1).x(1,1,j,i));
   end
 end
+
+err=err/batchSize;
+1-err
 
 dldu=-dldu./batchSize;
 dl_dcontent=-dl_dcontent; dl_dcontext=-dl_dcontext;

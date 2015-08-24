@@ -3,6 +3,7 @@ function [net,res,dldu,err]=gao_nn_update(content_feat,context_feat,img_labels,n
 %  1       10752           1          20
 opts.weightDecay = 0.0005 ;
 opts.momentum = 0.9 ;
+opts.filtersWeightDecay=0.0003;
 
 batchSize=size(content_feat,1);
 res=[];

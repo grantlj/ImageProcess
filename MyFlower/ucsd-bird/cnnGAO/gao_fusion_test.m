@@ -4,8 +4,17 @@ function gao_fusion_test()
 vl_setupnn;
 
 flower_count=6033;
-content_db_root_path='D:/dataset/birds/ZUO/feat_spp_object/';
-context_db_root_path='D:/dataset/birds/ZUO/feat_spp_context/';
+%content_db_root_path='D:/dataset/birds/ZUO/feat_spp_object/';
+%context_db_root_path='D:/dataset/birds/ZUO/feat_spp_context/';
+
+%distortion d1: 41.59%
+%distortion d2: 41.49%
+%distortion d3: 40.96%
+%distortion d4: 40.70%
+%distortion d5: 40.17%
+content_db_root_path='D:/dataset/birds/ZUO/feat_spp_content_d1/';
+context_db_root_path='D:/dataset/birds/ZUO/feat_spp_context_d1/';
+
 set_split_path='D:/dataset/birds/setid.mat';
 label_path='D:/dataset/birds/imagelabels.mat';
 [set labels]=get_set_split_info(flower_count,set_split_path,label_path);
@@ -67,7 +76,7 @@ function [set,labels]=get_set_split_info(flower_count,set_split_path,label_path)
        if (ismember(i,trnid))
          set(i)=1;
      elseif (ismember(i,valid))
-         set(i)=1;
+         set(i)=3;
      else
          set(i)=3;
      end

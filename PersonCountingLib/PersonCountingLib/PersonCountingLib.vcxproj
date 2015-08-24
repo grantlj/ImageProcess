@@ -94,16 +94,17 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions> /D _CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions> /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>/force:multiple %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -169,16 +170,27 @@
     <ClInclude Include="SenseLockEncryptor.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="uploader\doupload.h" />
+    <ClInclude Include="uploader\soapH.h" />
+    <ClInclude Include="uploader\soapStub.h" />
+    <ClInclude Include="uploader\soapUpdateStudentStatusSoapProxy.h" />
+    <ClInclude Include="uploader\stdsoap2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ErrorOperator.cpp" />
     <ClCompile Include="PersonCountingLib.cpp" />
+    <ClCompile Include="SOAPUploader.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="uploader\dom.c" />
+    <ClCompile Include="uploader\dom.cpp" />
+    <ClCompile Include="uploader\soapC.cpp" />
+    <ClCompile Include="uploader\soapUpdateStudentStatusSoapProxy.cpp" />
+    <ClCompile Include="uploader\stdsoap2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sense4.dll" />
