@@ -1,11 +1,12 @@
-
+ vl_setupnn;
 
   level=19;                       %5,9,13,15,22
   %%
-  %Accuracy: level 19: 32.4102%
+  %Accuracy: level 19: 28.42%
   
   %%
-  load('net-epoch-x.mat');
+  load('net-epoch-40.mat');
+  net=vl_simplenn_move(net,'cpu');
   data_splits_path='D:\dataset\birds\setid.mat';
   data_mean_path='D:\dataset\birds\data_mean.mat';
   truth_path='D:\dataset\birds\imagelabels.mat';
@@ -99,7 +100,7 @@
     end
    %%
    %Training SVM...
-   svmmodel=svmtrain(train_label,train_feat,'-s 0 -t 0');
+   svmmodel=svmtrain(train_label,train_feat);
    clear train_label;
    clear train_feat;
    [predict_label, accuracy, prob] = svmpredict(test_label, test_feat, svmmodel);

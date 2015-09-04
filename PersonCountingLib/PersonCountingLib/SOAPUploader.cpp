@@ -9,6 +9,9 @@
 #include <iostream>
 using namespace std;
 
+extern string upload_username = "junfatech";      //显示系统上传账户
+extern string upload_pwd = "junfatech";           //显示系统上传密码
+
 struct upload_data_package
 {
 	string chlname;
@@ -41,7 +44,7 @@ time_t convert_string_to_time_t(const std::string & time_string)
 string transfer_to_ret_str(int val)
 {
 	val--;
-	string retStr[] = { "OK", "Saving failed.", "Classroom not found.", "Update failed", "Wrong pwd/username" };
+	string retStr[] = { "OK", "Saving failed.", "Classroom not found", "Update failed", "Wrong pwd/username","Dataset storage error" };
 	return retStr[val];
 }
 
@@ -54,13 +57,14 @@ void do_soap_upload(string chlname, int studentCount, string updateTime)
 	struct _ns1__UpdateClassRoomPersonStatus toSend;
 	struct _ns1__UpdateClassRoomPersonStatusResponse toRecv;
 
-	toSend.account = "junfatech";
-	toSend.password = "junfatech";
-	
-	int len = chlname.length();
-	toSend.roomNo = (char *)malloc((len + 1)*sizeof(char));
-	chlname.copy(toSend.roomNo, len, 0);
-	
+	//toSend.account = "junfatech";
+	//toSend.password = "junfatech";
+	toSend.account = (char*)upload_username.data();
+	toSend.password = (char*)upload_pwd.data();
+	int len = 4;
+	//toSend.roomNo = (char *)malloc((len + 1)*sizeof(char));
+	//chlname.copy(toSend.roomNo, len, 0);
+	toSend.roomNo=(char*)chlname.data();
 	toSend.studentCount = studentCount;
 	toSend.updateTime = convert_string_to_time_t(updateTime);
 
@@ -69,9 +73,10 @@ void do_soap_upload(string chlname, int studentCount, string updateTime)
 	if (service.UpdateClassRoomPersonStatus(&toSend, toRecv) == SOAP_OK)
 		cout << "Return result:" << transfer_to_ret_str(toRecv.UpdateClassRoomPersonStatusResult) << endl;
 	else
+	{
 		service.soap_stream_fault(std::cerr);
 		cout << "Connect to server failed..." << endl;
-
+	}
 	service.destroy();
 
 }

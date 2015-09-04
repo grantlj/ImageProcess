@@ -118,7 +118,7 @@ int UpdateStudentStatusSoapProxy::UpdateClassRoomPersonStatus(const char *endpoi
 	if (endpoint)
 		soap_endpoint = endpoint;
 	if (soap_endpoint == NULL)
-		soap_endpoint = "http://cqjunfa.xicp.cn:5678/UpdateStudentStatus.asmx";
+		soap_endpoint = "http://172.22.62.238/UpdateStudentStatus.asmx";
 	if (soap_action == NULL)
 		soap_action = "JF.ClassRoomGuidance.Webservice/UpdateClassRoomPersonStatus";
 	soap_begin(soap);
@@ -172,7 +172,7 @@ int UpdateStudentStatusSoapProxy::UpdateClassRoomPersonStatus_(const char *endpo
 	if (endpoint)
 		soap_endpoint = endpoint;
 	if (soap_endpoint == NULL)
-		soap_endpoint = "http://cqjunfa.xicp.cn:5678/UpdateStudentStatus.asmx";
+		soap_endpoint = "http://172.22.62.238/UpdateStudentStatus.asmx";
 	if (soap_action == NULL)
 		soap_action = "JF.ClassRoomGuidance.Webservice/UpdateClassRoomPersonStatus";
 	soap_begin(soap);

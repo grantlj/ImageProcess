@@ -1,11 +1,12 @@
 
-
+  vl_setupnn;
   level=19;                       %5,9,13,15,22
   %%
-  %Accuracy: level 19:75.584%
+  %Accuracy: level 19:77.2483%
   
   %%
-  load('net-epoch-x.mat');
+  load('flower-ft-net-epoch-60.mat');
+  net=vl_simplenn_move(net,'cpu');
   data_splits_path='D:\dataset\oxfordflower102\setid.mat';
   data_mean_path='D:\dataset\oxfordflower102\data_mean.mat';
   truth_path='D:\dataset\oxfordflower102\imagelabels.mat';
@@ -98,8 +99,8 @@
 
     end
    %%
-%    %Training SVM...
-%    svmmodel=svmtrain(train_label,train_feat,'-s 0 -t 0');
-%    clear train_label;
-%    clear train_feat;
-%    [predict_label, accuracy, prob] = svmpredict(test_label, test_feat, svmmodel);
+   %Training SVM...
+   svmmodel=svmtrain(train_label,train_feat,'-s 0 -t 0');
+   clear train_label;
+   clear train_feat;
+   [predict_label, accuracy, prob] = svmpredict(test_label, test_feat, svmmodel);

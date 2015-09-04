@@ -113,6 +113,9 @@ int __stdcall callback(int Commd_, char* buf_, int len_)
 			//cout << platform_domain_uir << "((" << endl;
 		}
 
+		else
+			login_ok_flag = false;
+
 
 		//tmp.Format(LPCWSTR("\r\nµÇÂ½·µ»Ø--err:%d,lve:%d,_uir:%s\r\n", err, lev, _uir));
 		//OutputDebugString(tmp);

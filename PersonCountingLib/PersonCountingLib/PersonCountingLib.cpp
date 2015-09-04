@@ -13,6 +13,9 @@
 #include <highgui.h>
 #include <fstream>
 #include "SOAPUploader.cpp"     //大屏幕显示SOAP通讯模块（多线程封装）
+#include <stdio.h>
+#include <stdlib.h>
+#include <direct.h>
 //#include "detect_core.h"
 using namespace std;
 
@@ -32,6 +35,7 @@ string userpwd = "940414";
 string raw_image_root_path = "D:\\test\\";
 string out_image_root_path = "D:\\test_out\\";
 string template_root_path = "D:\\templates\\";
+
 
 HANDLE HSOAPMainThread;
 DWORD  SOAPMainThreadID;
@@ -61,7 +65,12 @@ char* CString2char(CString &str)
 void load_settings()
 {
 	if ((_access(setting_file.c_str(), 0)) == -1)
+	{
+		_mkdir(raw_image_root_path.c_str());
+		_mkdir(out_image_root_path.c_str());
+		_mkdir(template_root_path.c_str());
 		return;  //setting file not exist.
+	}
 	cout << "Loading setting file." << endl;
 	ifstream fin(setting_file);
 	getline(fin, serv_ip);
@@ -71,9 +80,11 @@ void load_settings()
 	stream >> serv_port;
 	getline(fin, username);
 	getline(fin, userpwd);
-	getline(fin, raw_image_root_path);
-	getline(fin, out_image_root_path);
-	getline(fin, template_root_path);
+	getline(fin, raw_image_root_path); _mkdir(raw_image_root_path.c_str());
+	getline(fin, out_image_root_path); _mkdir(out_image_root_path.c_str());
+	getline(fin, template_root_path);  _mkdir(template_root_path.c_str());
+	getline(fin, upload_username);
+	getline(fin, upload_pwd);
 
 
 }
@@ -131,6 +142,10 @@ void initAndLogin()
 
 CString GetDomainName()
 {
+	//加入掉线检测功能，断线后重新login
+	if (!login_ok_flag)
+		initAndLogin();
+	
 	//获取域名，以下所有函数都会用到stmp
 	CString  stmp(platform_domain_uir);
 	int pos = stmp.Find(_T("#"));
@@ -148,13 +163,23 @@ CString GetDomainName()
 
 }
 
-void GetListInfo(CString stmp)
+bool GetListInfo(CString stmp)
 {
+	if (!login_ok_flag)
+		initAndLogin();
+
 //信息存放在JFListInfo结构体中。
+	int list_try_count = 0;
 	while (listinfo_ok_flag != true)
 	{
 		cout << "Getting list info..." << endl;
 		listInfo_list.clear();
+		list_try_count++;
+		if (list_try_count++ > 6)
+		{
+			listinfo_ok_flag = false;
+			return false;
+		}
 		GetList(CString2char(stmp), 2);
 		Sleep(3000);  //一定要注意时间间隔。
 	}
@@ -163,10 +188,13 @@ void GetListInfo(CString stmp)
 	listinfo_ok_flag = false;  //ready for next time.
 	//获取列表完成，准备获取channel name。
 	//cout << "list info get..." << endl;
+	return true;
 }
 
 bool GetChannelInfo(CString stmp, JF_ListInfo tmplist)
 {
+	if (!login_ok_flag)
+		initAndLogin();
 	//开始遍历channel，即每个教室,获取通道标签。
 	//present_list_id = i;
 	int channel_try_count = 0;
@@ -193,6 +221,8 @@ bool GetChannelInfo(CString stmp, JF_ListInfo tmplist)
 
 bool GetSingleImage(CString stmp, JF_ListInfo tmplist, int j)
 {
+	if (!login_ok_flag)
+		initAndLogin();
 	//704*576.
 	int capture_try_count = 0;
 	GetPic(CString2char(stmp), tmplist.UserId, j);
@@ -278,7 +308,7 @@ void do_detection_and_update(string filename, string output_bbx_file_name, strin
 int _tmain(int argc, _TCHAR* argv[])
 {
 	cout << "Welcome to use!" << endl;
-	LockerVerify();                       //验证加密狗 
+	//LockerVerify();                       //验证加密狗 
 	load_settings();
 	initDetectCore();                       //初始化检测核心程序
 	initAndLogin();                         //初始化并登录
@@ -293,7 +323,11 @@ int _tmain(int argc, _TCHAR* argv[])
 		//STEP 1:获取列表。
 		//首先清空list vector
 		
-		GetListInfo(stmp);
+		if (!GetListInfo(stmp))
+		{
+			cout << "Get list info failed..." << endl;
+			continue;
+		}
 		
 
 		//STEP 2: 遍历列表中的每一个机柜。
@@ -323,7 +357,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			//STEP 3:获取通道标签成功，开始处理单张图片。
 			for (int j = 0; j < chlname_list.size(); j++)
 			{
-				if (!GetSingleImage(stmp, tmplist, j)) continue;
+				if (!(chlname_list[j][1]>='0' && chlname_list[j][1]<='9') || !GetSingleImage(stmp, tmplist, j)) continue;
                 
 				//保存原始图片
 				std::string filename = raw_image_root_path + std::string(tmplist.username)+"_"+chlname_list[j] + ".jpg";
@@ -340,7 +374,7 @@ int _tmain(int argc, _TCHAR* argv[])
              } //end of each channel.
         }  //end of each list element.
 	
-     LockerVerify();  //每一轮都要验证加密狗
+    // LockerVerify();  //每一轮都要验证加密狗
 
 	}
 

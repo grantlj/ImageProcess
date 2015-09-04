@@ -11,7 +11,7 @@
     <ns1:password></ns1:password>
     <ns1:roomNo></ns1:roomNo>
     <ns1:studentCount>0</ns1:studentCount>
-    <ns1:updateTime>2015-08-24T08:11:25Z</ns1:updateTime>
+    <ns1:updateTime>2015-09-02T02:46:09Z</ns1:updateTime>
    </ns1:UpdateClassRoomPersonStatus>
 
  </SOAP-ENV:Body>

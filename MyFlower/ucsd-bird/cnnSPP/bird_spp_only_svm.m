@@ -1,16 +1,17 @@
 
-
+vl_setupnn;
 %
 %segmentation(SPP) new: 30.1352%
 %
 level=15;  %layer 19
-load('net-epoch-x.mat');
+load('net-epoch-40.mat');
+net=vl_simplenn_move(net,'cpu');
 data_splits_path='D:\dataset\birds\setid.mat';
 data_mean_path='D:\dataset\birds\data_mean.mat';
 truth_path='D:\dataset\birds\imagelabels.mat';
 img_raw_path='D:\dataset\birds\jpg\';
 img_bdx_path='D:\dataset\birds\bdx_info\';
-feature_path='D:\dataset\birds\feat_SPP\';
+feature_path='D:\dataset\birds\ZUO\feat_spp_content\';
 
 
 load(data_splits_path);  %train, val, test split
@@ -61,6 +62,7 @@ end
  end
 
 %  train_feat=[train_feat;tmp_feat];
+  tmp_feat=gather(tmp_feat);
   train_feat(i,:)=tmp_feat;
  train_label=[train_label;label];
 
@@ -103,6 +105,7 @@ end
 
 
 % test_feat=[test_feat;tmp_feat];
+ tmp_feat=gather(tmp_feat);
  test_feat(i,:)=tmp_feat;
  test_label=[test_label;label];
 

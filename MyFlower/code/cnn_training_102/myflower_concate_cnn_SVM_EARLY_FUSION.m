@@ -7,7 +7,7 @@ clc;
 clear all;
 
 %feature_no_bg_path='D:\dataset\oxfordflower102\feat_1024_BG\'; foreground
-feature_no_bg_path='D:\dataset\oxfordflower102\feat_1024_BGONLY\';
+%feature_no_bg_path='D:\dataset\oxfordflower102\feat_1024_BGONLY\';
 feature_bg_path='D:\dataset\oxfordflower102\feat_1024\';
 truth_path='D:\dataset\oxfordflower102\imagelabels.mat';
 data_splits_path='D:\dataset\oxfordflower102\setid.mat';

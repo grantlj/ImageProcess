@@ -1,21 +1,23 @@
 
-
+vl_setupnn;
 %
-%segmentation(SPP) new:82.5988%
+%segmentation(SPP) new:80.9546% 
 %
 level=15;  %layer 19
-load('net-epoch-x.mat');
+load('flower-ft-net-epoch-60.mat');
+net=vl_simplenn_move(net,'cpu');
 data_splits_path='D:\dataset\oxfordflower102\setid.mat';
 data_mean_path='D:\dataset\oxfordflower102\data_mean.mat';
 truth_path='D:\dataset\oxfordflower102\imagelabels.mat';
 img_raw_path='D:\dataset\oxfordflower102\jpg\';
 img_bdx_path='D:\dataset\oxfordflower102\bdx_info\';
-feature_path='D:\dataset\oxfordflower102\feat_SPP\';
+feature_path='D:\dataset\oxfordflower102\ZUO\feat_spp_content\';
 
 
 load(data_splits_path);  %train, val, test split
 load(truth_path);        %groundtruth.
 load(data_mean_path);data_mean=images.data_mean;  %image_mean
+
 
 data_mean=imresize(data_mean,[net.normalization.imageSize(1,1),net.normalization.imageSize(1,2)]);
 net.layers{end}.type = 'softmax';
@@ -35,7 +37,7 @@ for i=1:size(trn1,2)
  label=truth(img_count);
  %im=imread(filename);
 % res=vl_simplenn(net,single(im));
- %if (~exist(feat_filename,'file'))
+ if (~exist(feat_filename,'file'))
   
      im=imread(filename);  %raw image.
      load(image_seg_filename); %segmentation info.
@@ -51,11 +53,12 @@ for i=1:size(trn1,2)
  %tmp_feat=gather(res(level).x(:)');
  tmp_feat=[get_spp_feat(res(level).x,x_min,y_min,x_max,y_max,height,width)];
  save(feat_filename,'tmp_feat');
-% else
+else
       load(feat_filename);
- %end
+end
 
 %  train_feat=[train_feat;tmp_feat];
+  tmp_feat=gather(tmp_feat);
   train_feat(i,:)=tmp_feat;
  train_label=[train_label;label];
 
@@ -94,6 +97,7 @@ for i=1:size(tst1,2)
 
 
 % test_feat=[test_feat;tmp_feat];
+ tmp_feat=gather(tmp_feat);
  test_feat(i,:)=tmp_feat;
  test_label=[test_label;label];
 

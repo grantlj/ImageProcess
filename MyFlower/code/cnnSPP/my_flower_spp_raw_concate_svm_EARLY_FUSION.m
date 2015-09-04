@@ -4,8 +4,7 @@
 %segmentation(SPP)+last layer 1024(original image) concate:
 %Accuracy:83.1192%
 
-%segmentation(SPP)+last layer 1024(background image) concate:
-%Accuarcy: 82.8753%
+
 level=15;  %layer 19
 load('net-epoch-x.mat');
 data_splits_path='D:\dataset\oxfordflower102\setid.mat';
