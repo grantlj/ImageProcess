@@ -54,6 +54,9 @@
     <ClInclude Include="uploader\stdsoap2.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SOAPUploader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -64,9 +67,6 @@
     </ClCompile>
     <ClCompile Include="PersonCountingLib.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SOAPUploader.cpp">
-      <Filter>头文件</Filter>
     </ClCompile>
     <ClCompile Include="uploader\soapC.cpp">
       <Filter>源文件</Filter>

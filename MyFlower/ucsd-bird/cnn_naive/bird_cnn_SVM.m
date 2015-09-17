@@ -1,11 +1,11 @@
  vl_setupnn;
 
-  level=19;                       %5,9,13,15,22
+  level=20 ;                       %5,9,13,15,22
   %%
-  %Accuracy: level 19: 28.42%
+  %Accuracy: level 19: 
   
   %%
-  load('net-epoch-40.mat');
+  load('net-epoch-70.mat');
   net=vl_simplenn_move(net,'cpu');
   data_splits_path='D:\dataset\birds\setid.mat';
   data_mean_path='D:\dataset\birds\data_mean.mat';
@@ -40,7 +40,7 @@
    %  im=gpuArray(im);
    
      
-     res=vl_simplenn(net,im);
+     res=vl_simplenn_t(net,im);
      tmp_feat=gather(res(level).x(:)');
      save(feat_filename,'tmp_feat');
      else
@@ -84,7 +84,7 @@
     % im=gpuArray(im);
    
      
-     res=vl_simplenn(net,im);
+     res=vl_simplenn_t(net,im);
      tmp_feat=gather(res(level).x(:)');
      save(feat_filename,'tmp_feat');
      

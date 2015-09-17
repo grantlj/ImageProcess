@@ -1,4 +1,7 @@
 //大屏幕公司显示驱动程序
+#ifndef _SOAP_UPLOADER
+#define _SOAP_UPLOADER
+#pragma once
 #include "stdafx.h"
 #include "uploader/UpdateStudentStatusSoap.nsmap"
 //#include "uploader/doupload.h"
@@ -62,12 +65,15 @@ void do_soap_upload(string chlname, int studentCount, string updateTime)
 	toSend.account = (char*)upload_username.data();
 	toSend.password = (char*)upload_pwd.data();
 	int len = 4;
+	chlname = chlname.substr(0, len);
 	//toSend.roomNo = (char *)malloc((len + 1)*sizeof(char));
 	//chlname.copy(toSend.roomNo, len, 0);
-	toSend.roomNo=(char*)chlname.data();
+	//toSend.roomNo=(char*)chlname.substr(0,len).data();
+	toSend.roomNo = (char*)chlname.data();
+	cout << toSend.roomNo << endl;
 	toSend.studentCount = studentCount;
 	toSend.updateTime = convert_string_to_time_t(updateTime);
-
+	
 	//send request.
 	UpdateStudentStatusSoapProxy service;
 	if (service.UpdateClassRoomPersonStatus(&toSend, toRecv) == SOAP_OK)
@@ -96,3 +102,5 @@ void SOAPMain()
 		Sleep(100);
 	}
 }
+
+#endif

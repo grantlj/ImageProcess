@@ -1,6 +1,6 @@
 // PersonCountingLib.cpp : 定义控制台应用程序的入口点。
 //
-
+#pragma once
 #include "stdafx.h"
 #include <iostream>
 #include <string>
@@ -12,7 +12,7 @@
 #include <cv.h>
 #include <highgui.h>
 #include <fstream>
-#include "SOAPUploader.cpp"     //大屏幕显示SOAP通讯模块（多线程封装）
+#include "SOAPUploader.h"     //大屏幕显示SOAP通讯模块（多线程封装）
 #include <stdio.h>
 #include <stdlib.h>
 #include <direct.h>
