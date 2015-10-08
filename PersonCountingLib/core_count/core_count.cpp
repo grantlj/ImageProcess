@@ -113,10 +113,10 @@ void Handler()
 	//Step 2: Draw result with CNN result.
 	draw_bounding_box(out_img, ret.bbxlist);
     
-	cv::Mat concated = do_concate(image, out_img);
+	//cv::Mat concated = do_concate(image, out_img);
 	string out_path = out_image_root + list_username + "_" + chlname + "_RESULT.jpg";
 	cout << out_path << endl;
-	imwrite(out_path.c_str(), concated);
+	imwrite(out_path.c_str(), out_img);
 
 	
 } 
