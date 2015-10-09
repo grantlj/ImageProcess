@@ -23,7 +23,7 @@ function []=feat_extractor()
    i
    img_filename=[image_root_path,'image_',sprintf('%04d',i),'.jpg'];
    feat_filename=[feat_root_path,'image_',sprintf('%04d',i),'.mat'];
-   if (~exist(feat_filename,'file'))
+  % if (~exist(feat_filename,'file'))
        im=imread(img_filename);
        im=imresize(im,[28,28]);
        im=double(im)-data_mean;
@@ -34,7 +34,7 @@ function []=feat_extractor()
          tmp_feat{p}=gather(res(level_list(1,p)).x(:)');
        end
        save(feat_filename,'tmp_feat');
-   end
+  % end
  end
  
 
