@@ -1,7 +1,7 @@
 function []=data_prepossessing()
 neg_path='D:/dataset/belt_detection/images/belt_free/';
-%pos_path='D:/dataset/belt_detection/images/belted/';
-vague_path='D:/dataset/belt_detection/images/vague/';
+pos_path='D:/dataset/belt_detection/images/belted/';
+%vague_path='D:/dataset/belt_detection/images/vague/';
 %extra_path='D:/dataset/HLeaf/other/20150926/';
 
 %filename transfer.
@@ -10,12 +10,12 @@ vague_path='D:/dataset/belt_detection/images/vague/';
 %transfer_file_name(pos_path);
 %transfer_file_name(neg_path);
 %move_file_from_to(vague_path,neg_path,5745,5294); 
-%data_mean_pos=calculate_mean(pos_path,2858);
+data_mean_pos=calculate_mean(pos_path,15910);
 %data_mean_neg=calculate_mean(neg_path,2010);
 
-%data_mean=data_mean_neg;
+data_mean=data_mean_pos;
 
-%save('D:/dataset/belt_detection/data_mean.mat','data_mean');
+save('D:/dataset/belt_detection/data_mean.mat','data_mean');
 end
 
 
@@ -79,7 +79,7 @@ clc;
 for i=1:jpgCount
   %eval(['!rename', [',',fileInfo{i}] [',image_',sprintf('%04d',i),'.jpg']]);
   im=imread(fileInfo{i});
-  imwrite(im,['image_',sprintf('%05d',i+2010),'.jpg']);
+  imwrite(im,['image_',sprintf('%05d',i),'.jpg']);
   delete(fileInfo{i});
 end
 
