@@ -357,8 +357,10 @@ int _tmain(int argc, _TCHAR* argv[])
 			//STEP 3:获取通道标签成功，开始处理单张图片。
 			for (int j = 0; j < chlname_list.size(); j++)
 			{
-				if (!(chlname_list[j][1]>='0' && chlname_list[j][1]<='9') || !GetSingleImage(stmp, tmplist, j)) continue;
+				if (!(chlname_list[j][1] >= '0' && chlname_list[j][1] <= '9')) continue;
                 
+				if (!((chlname_list[j][chlname_list[j].length() - 1] >= '0' && chlname_list[j][chlname_list[j].length() - 1] <= '9') || (chlname_list[j][chlname_list[j].length() - 1] == 'A')) || !GetSingleImage(stmp, tmplist, j))
+					continue;
 				//保存原始图片
 				std::string filename = raw_image_root_path + std::string(tmplist.username)+"_"+chlname_list[j] + ".jpg";
 				//DetectResult re = do_detect(now_frame,filename,tmplist.username,chlname_list[j]);

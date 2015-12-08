@@ -233,7 +233,7 @@ DetectResult do_detect(cv::Mat raw_image, std::string filename, string listname,
 	//string template_root_path = "D:\\templates\\";
 
 	//parameter: template file path, present bbxlist.
-	bbxlist = post_process_template_comparator(template_root_path+listname + "_" + channelname + "_template.txt",bbxlist);
+	bbxlist = post_process_template_comparator(template_root_path + channelname + ".txt",bbxlist);
 
 	//Second, kick containing boxes.
 	bbxlist = post_process_kick_contain(bbxlist);

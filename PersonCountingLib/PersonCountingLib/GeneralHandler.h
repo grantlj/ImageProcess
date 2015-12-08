@@ -191,16 +191,18 @@ int __stdcall callback(int Commd_, char* buf_, int len_)
 			memcpy(wuserid, buf_ + 65, 65);//设备ID
 			memcpy(&chan, buf_ + 65 + 65, 4);//通道号
 			memcpy(&ret, buf_ + 65 + 65 + 4, 4);//返回结果
-			memcpy(&lenn, buf_ + 65 + 65 + 4 + 4, 4);//图片总长度
-			memcpy(&packs, buf_ + 65 + 65 + 4 + 4 + 4, 4);//总包数，表示共分成多少个包
-			memcpy(&packstype, buf_ + 65 + 65 + 4 + 4 + 4 + 4, 4);//0-开始包，1-中间包，2-结束包
-			memcpy(&pack, buf_ + 65 + 65 + 4 + 4 + 4 + 4 + 4, 4);//表示该包是第几个包
-			memcpy(listinfo, buf_ + 65 + 65 + 4 + 4 + 4 + 4 + 4 + 4, (len_)-(65 + 65 + 4 + 4 + 4 + 4 + 4 + 4));//表示图片数据
+			
 
 
 
 			if (ret == 0)
 			{
+				memcpy(&lenn, buf_ + 65 + 65 + 4 + 4, 4);//图片总长度
+				memcpy(&packs, buf_ + 65 + 65 + 4 + 4 + 4, 4);//总包数，表示共分成多少个包
+				memcpy(&packstype, buf_ + 65 + 65 + 4 + 4 + 4 + 4, 4);//0-开始包，1-中间包，2-结束包
+				memcpy(&pack, buf_ + 65 + 65 + 4 + 4 + 4 + 4 + 4, 4);//表示该包是第几个包
+				memcpy(listinfo, buf_ + 65 + 65 + 4 + 4 + 4 + 4 + 4 + 4, (len_)-(65 + 65 + 4 + 4 + 4 + 4 + 4 + 4));//表示图片数据
+				
 				char tmpfilename[1024];
 				sprintf_s(tmpfilename, "tmp.jpg");
 				if ((_access("tmp.jpg", 0)) != -1 && packstype==0)

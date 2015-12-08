@@ -11,6 +11,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <io.h>
+#include <afxwin.h>
 //#include "common_constants.h"
 
 using namespace std;
@@ -64,29 +65,42 @@ public:
 vector<BBX> post_process_template_comparator(string template_filename, vector<BBX> in_bbxlist)
 {
 	if (_access(template_filename.c_str(), 0) == -1)
+	{
+		cout << "template not exist..." << template_filename << endl;
 		return in_bbxlist;  //模板不存在 直接返回
-	
+	}
 	vector<BBX> out_bbxlist;
 	
 	ifstream fin1(template_filename, ios_base::in);  //template input.
 	
 	//read in the template, define each pixel's size, etc.
-	positionCollect s;
-	int x1, y1, wmin, hmin, wmax, hmax, wmean, hmean;
-	while (fin1)
+	
+	int x1, y1, x2, y2, x3, y3, x4, y4;
+	CPoint PT[4];
+	CRgn rgn;
+	if (fin1)
 	{
 		fin1 >> x1;
 		fin1 >> y1;
-		fin1 >> wmin;
-		fin1 >> hmin;
-		fin1 >> wmax;
-		fin1 >> hmax;
-		fin1 >> wmean;
-		fin1 >> hmean;
-		position1 s1(x1, y1, wmin, wmax, wmean, hmin, hmax, hmean);
-		s.Add1(s1);
+		fin1 >> x2;
+		fin1 >> y2;
+		fin1 >> x3;
+		fin1 >> y3;
+		fin1 >> x4;
+		fin1 >> y4;
+		PT[0].x = x1;
+		PT[0].y = y1;
+		PT[1].x = x2;
+		PT[1].y = y2;
+		PT[2].x = x3;
+		PT[2].y = y3;
+		PT[3].x = x4;
+		PT[3].y = y4;//定义的四个点
+		rgn.CreatePolygonRgn(PT, 4, WINDING);
 	}
-   fin1.close(); //close template info.
+
+	fin1.close();
+
 
 
    //开始进行模板匹配
@@ -99,19 +113,11 @@ vector<BBX> post_process_template_comparator(string template_filename, vector<BB
 
 	   pt3.x = (x + width / 2);
 	   pt3.y = (y + height / 2);
-	   for (int t = 0; t < s.pos1.size(); t++)
-	   {
-		   position1& s2 = s.pos1.at(t);   //容器的某一行放入到结构体 
-		   if ((abs(s2.m_x - pt3.x) < 25) && (abs(s2.m_y - pt3.y)<25))
-		   {
-			   if ((width>0.5*s2.m_wmean) && (width<1.3*s2.m_wmean) && (height>0.5*s2.m_hmean) && (height < 1.3*s2.m_hmean))
-			   {
-				   //是有效的bounding box
-				   out_bbxlist.push_back(in_bbxlist[i]);
-				   break;
-			   }  //end of inner if
-		   } //end of outer if.
-	   }  //end of t
+	  
+	   if (PtInRegion(rgn,pt3.x,pt3.y))
+	
+		 //是有效的bounding box
+	     out_bbxlist.push_back(in_bbxlist[i]);
 
    }//end of i
    

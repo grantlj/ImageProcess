@@ -1,0 +1,6 @@
+1. 裸CNN+VGG_16，取第二层FC作为feature 4096维。Accuracy: 59.3% Flower：85.2%
+2. SPP feature(content only)：67.9%                            Flower: 91.4%
+3. SPP feature combined:                                       
+early: 66.7%                                                   Flower：93.7%
+late:  73.3%                                                   Flower：93.8%
+4. SPP feature combined+optimal fusion:  76.9%                 Flower：94.5%

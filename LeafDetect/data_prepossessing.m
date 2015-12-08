@@ -1,19 +1,19 @@
 function []=data_prepossessing()
-neg_path='D:/dataset/HLeaf/normal/';
-pos_path='D:/dataset/HLeaf/abnormal/';
-extra_path='D:/dataset/HLeaf/other/20150926/';
+neg_path='D:/dataset/HLeaf/image_20151019/normal/';
+pos_path='D:/dataset/HLeaf/image_20151019/abnormal/';
+%extra_path='D:/dataset/HLeaf/other/20150926/';
 
 %filename transfer.
 
-%transfer_file_name(neg_path);
-%transfer_file_name(pos_path);
-transfer_file_name(extra_path);
+transfer_file_name(neg_path);
+transfer_file_name(pos_path);
+%transfer_file_name(extra_path);
 %data_mean_pos=calculate_mean(pos_path,170);
 %data_mean_neg=calculate_mean(neg_path,6427);
 
-data_mean=data_mean_pos;
+%data_mean=data_mean_pos;
 
-save('D:/dataset/HLeaf/data_mean.mat','data_mean');
+%save('D:/dataset/HLeaf/data_mean.mat','data_mean');
 end
 
 
@@ -48,7 +48,7 @@ clc;
 for i=1:jpgCount
   %eval(['!rename', [',',fileInfo{i}] [',image_',sprintf('%04d',i),'.jpg']]);
   im=imread(fileInfo{i});
-  imwrite(im,['image_',sprintf('%04d',i+170),'.jpg']);
+  imwrite(im,['image_',sprintf('%04d',i),'.jpg']);
   %delete(fileInfo{i});
 end
 
